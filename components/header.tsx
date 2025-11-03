@@ -15,11 +15,11 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
-            <span className="text-sm font-bold text-primary-foreground">BK</span>
+        <div className="flex items-center gap-2 notranslate" translate="no">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent" translate="no">
+            <span className="text-sm font-bold text-primary-foreground" translate="no">BK</span>
           </div>
-          <span className="text-xl font-bold text-foreground">BoostK</span>
+          <span className="text-xl font-bold text-foreground" translate="no">BOOSTK</span>
         </div>
 
         {/* Desktop Navigation */}

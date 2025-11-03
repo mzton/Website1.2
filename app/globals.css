@@ -142,6 +142,18 @@
 
 /* Added custom keyframe animations for horizontal sliding sections */
 @layer utilities {
+  /* Hide Google Translate UI chrome and banner */
+  .goog-te-banner-frame { display: none !important; visibility: hidden !important; height: 0 !important; }
+  iframe.goog-te-banner-frame { display: none !important; visibility: hidden !important; height: 0 !important; }
+  .goog-te-menu-frame { display: none !important; visibility: hidden !important; }
+  #goog-gt-tt { display: none !important; }
+  .goog-te-balloon-frame { display: none !important; }
+  .goog-text-highlight { background: none !important; box-shadow: none !important; }
+  .skiptranslate iframe { display: none !important; }
+  body { top: 0 !important; position: static !important; }
+  /* Hide gadget icon if injected */
+  .goog-te-gadget-icon { display: none !important; }
+  .goog-logo-link { display: none !important; }
   @keyframes slideInFromLeft {
     from {
       opacity: 0;

@@ -10,6 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"
+import { setGoogleTranslateLanguage } from "./google-translate"
 
 type LanguageMenuProps = {
   className?: string
@@ -28,14 +29,23 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align}>
-        <DropdownMenuItem onClick={() => setLanguage("English")} className="font-sans">
+        <DropdownMenuItem
+          onClick={() => {
+            setLanguage("English")
+            setGoogleTranslateLanguage("en")
+          }}
+          className="font-sans"
+        >
           English
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("Korean")} className="font-sans">
+        <DropdownMenuItem
+          onClick={() => {
+            setLanguage("Korean")
+            setGoogleTranslateLanguage("ko")
+          }}
+          className="font-sans"
+        >
           Korean
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLanguage("Japanese")} className="font-sans">
-          Japanese
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
