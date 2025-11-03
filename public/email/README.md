@@ -1,0 +1,1 @@
+Email-related images used for newsletters, transactional emails, and campaigns.
