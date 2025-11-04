@@ -321,7 +321,7 @@ export default function ImageCarousel() {
                     ...getFixedItemStyle(index),
                   }}
                 >
-                  <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                    <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
                 </div>
               ))}
             </div>

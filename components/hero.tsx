@@ -35,7 +35,10 @@ export default function Hero() {
           <motion.div
             className="text-left"
           >
-            <h1 className="mb-8 text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-foreground leading-tight text-balance min-h-[200px] sm:min-h-[240px] lg:min-h-[280px] flex items-start">
+            <h1
+              className="mb-8 text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-foreground leading-tight text-balance min-h-[200px] sm:min-h-[240px] lg:min-h-[280px] flex items-start"
+              style={{ fontFamily: "var(--font-inter)" }}
+            >
               <span className="block">{fullText}</span>
             </h1>
 

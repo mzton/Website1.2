@@ -1,5 +1,6 @@
 "use client"
 
+import { useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Megaphone, TrendingUp, Target } from "lucide-react"
 import { motion } from "framer-motion"
@@ -32,6 +33,14 @@ const features = [
 ]
 
 export default function Features() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  const previewVideos = [
+    "/video/service1.mp4",
+    "/video/service2.mp4",
+    "/video/service1.mp4",
+    "/video/service2.mp4",
+  ]
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -74,11 +83,42 @@ export default function Features() {
           whileInView="visible"
           className="grid gap-8 md:grid-cols-2"
         >
-          {features.map((feature) => {
+          {features.map((feature, idx) => {
             const Icon = feature.icon
             return (
               <motion.div key={feature.title} variants={itemVariants}>
-                <Card className="border-border/50 bg-background/50 backdrop-blur p-8 hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 cursor-pointer group">
+                <Card
+                  className="border-border/50 bg-background/50 backdrop-blur p-8 hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 cursor-pointer group"
+                  onMouseEnter={() => {
+                    setHoveredIndex(idx)
+                    const v = videoRefs.current[idx]
+                    if (v) {
+                      v.currentTime = 0
+                      v.muted = true
+                      v.play().catch(() => {})
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    const v = videoRefs.current[idx]
+                    if (v) {
+                      v.pause()
+                    }
+                    setHoveredIndex(null)
+                  }}
+                >
+                  <div className="relative mb-4 h-40 w-full overflow-hidden rounded-lg">
+                    <video
+                      ref={(el) => (videoRefs.current[idx] = el)}
+                      src={previewVideos[idx]}
+                      poster="/placeholder.jpg"
+                      muted
+                      playsInline
+                      preload="auto"
+                      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${
+                        hoveredIndex === idx ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </div>
                   <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/40 group-hover:to-accent/40 transition-all">
                     <Icon className="h-6 w-6 text-accent" />
                   </div>

@@ -1,11 +1,14 @@
 "use client"
 
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, CheckCircle } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import LoginModal from "@/components/login-modal"
 
 export default function CTA() {
+  const [loginOpen, setLoginOpen] = useState(false)
   return (
     <section id="why" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl space-y-20">
@@ -102,7 +105,11 @@ export default function CTA() {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto"
+                  onClick={() => setLoginOpen(true)}
+                >
                   Get Free Global Assessment
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -111,6 +118,7 @@ export default function CTA() {
           </motion.div>
         </motion.div>
       </div>
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </section>
   )
 }

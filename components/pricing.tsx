@@ -10,7 +10,7 @@ import LoginModal from "@/components/login-modal"
 const plans = [
   {
     name: "Starter",
-    price: "$2,499/mo",
+    price: "$1,099/mo",
     features: [
       "Dedicated team lead",
       "Up to 40 hours/month",
@@ -20,7 +20,7 @@ const plans = [
   },
   {
     name: "Growth",
-    price: "$4,999/mo",
+    price: "$2,099/mo",
     features: [
       "Cross-functional dedicated team",
       "Up to 80 hours/month",
