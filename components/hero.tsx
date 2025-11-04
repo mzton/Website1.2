@@ -52,6 +52,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold w-full sm:w-auto"
+                className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold w-full sm:w-auto"
                 onClick={() => setLoginOpen(true)}
               >
                 Request Free Consultation
@@ -59,6 +60,7 @@ export default function Hero() {
               <Button
                 size="lg"
                 variant="outline"
+                className="border-accent/50 hover:bg-accent/10 px-8 text-lg font-medium text-accent bg-transparent w-full sm:w-auto"
                 className="border-accent/50 hover:bg-accent/10 px-8 text-lg font-medium text-accent bg-transparent w-full sm:w-auto"
               >
                 Schedule Demo
