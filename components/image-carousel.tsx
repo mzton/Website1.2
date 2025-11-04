@@ -208,8 +208,10 @@ export default function ImageCarousel() {
   const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
   
   // Configuration constants
-  const ITEM_WIDTH = 224 // Matches w-56 (which is 224px)
-  const VISIBLE_ITEMS = 8 // Total intended slots around the cylinder
+  // Base values; actual values will adapt to viewport
+  const [itemWidth, setItemWidth] = useState(280)
+  const [itemHeight, setItemHeight] = useState(340)
+  const [visibleItems, setVisibleItems] = useState(8)
   const DEPTH = 400 // Perspective depth for the center/wrapper
   const RADIUS_SCALE = 1.5 // Widen the cylinder by scaling the computed radius
 
@@ -217,7 +219,7 @@ export default function ImageCarousel() {
   const itemCount = activeItems.length
   
   // Use the larger of the two counts to determine the number of slots
-  const slots = Math.max(itemCount, VISIBLE_ITEMS)
+  const slots = Math.max(itemCount, visibleItems)
 
   // 1. Calculate the fixed angle step and cylinder radius
   const { angleStep, radius } = useMemo(() => {
@@ -226,11 +228,11 @@ export default function ImageCarousel() {
     // Calculate Radius (R) needed for items to touch edge-to-edge
     // R = (Item Width / 2) / tan(Angle / 2)
     const calculatedRadius = Math.round(
-      ((ITEM_WIDTH / 2) / Math.tan((Math.PI / 180) * (calculatedAngleStep / 2))) * RADIUS_SCALE
+      ((itemWidth / 2) / Math.tan((Math.PI / 180) * (calculatedAngleStep / 2))) * RADIUS_SCALE
     )
     // If the count is low, we may need a larger radius to spread them out
     return { angleStep: calculatedAngleStep, radius: calculatedRadius }
-  }, [slots, ITEM_WIDTH])
+  }, [slots, itemWidth])
 
 
   useEffect(() => {
@@ -238,6 +240,33 @@ export default function ImageCarousel() {
   }, [activeCategory])
 
   // Remove step-based rotation; use continuous CSS animation on wrapper instead
+
+  // Responsive sizing based on viewport width
+  useEffect(() => {
+    const applyResponsiveSizes = () => {
+      const w = window.innerWidth
+      if (w < 640) {
+        setItemWidth(160)
+        setItemHeight(210)
+        setVisibleItems(6)
+      } else if (w < 768) {
+        setItemWidth(180)
+        setItemHeight(240)
+        setVisibleItems(6)
+      } else if (w < 1024) {
+        setItemWidth(220)
+        setItemHeight(280)
+        setVisibleItems(7)
+      } else {
+        setItemWidth(280)
+        setItemHeight(340)
+        setVisibleItems(8)
+      }
+    }
+    applyResponsiveSizes()
+    window.addEventListener("resize", applyResponsiveSizes)
+    return () => window.removeEventListener("resize", applyResponsiveSizes)
+  }, [])
 
   // 2. Style to FIX the item position in 3D space
   const getFixedItemStyle = (index: number) => {
@@ -281,18 +310,20 @@ export default function ImageCarousel() {
                 ...getWrapperStyle(),
               }}
             >
-                {/* Render actual items with fixed positions */}
-                {activeItems.map((item, index) => (
-                  <div
-                    key={item.id}
-                    className="absolute w-56 h-[260px] duration-2000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
-                    style={{
-                      ...getFixedItemStyle(index),
-                    }}
-                  >
-                    <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
-                  </div>
-                ))}
+              {/* Render actual items with fixed positions */}
+              {activeItems.map((item, index) => (
+                <div
+                  key={item.id}
+                  className="absolute duration-2000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+                  style={{
+                    width: `${itemWidth}px`,
+                    height: `${itemHeight}px`,
+                    ...getFixedItemStyle(index),
+                  }}
+                >
+                  <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                </div>
+              ))}
             </div>
           </div>
         </div>

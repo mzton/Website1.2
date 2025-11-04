@@ -121,10 +121,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-border/40 pt-8 flex flex-col items-center justify-between gap-4 md:flex-row">
-          <div className="flex items-center gap-2 notranslate" translate="no">
-            <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent" translate="no">
-              <span className="text-xs font-bold text-primary-foreground" translate="no">BK</span>
-            </div>
+          <div className="flex items-center notranslate" translate="no">
             <span className="font-semibold text-foreground" translate="no">BOOSTK</span>
           </div>
           <p className="text-sm text-muted-foreground text-center md:text-right notranslate" translate="no">

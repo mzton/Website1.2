@@ -70,9 +70,9 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative hidden md:block"
+            className="relative block"
           >
-            <div className="relative w-full h-96 rounded-2xl overflow-hidden border border-accent/30 shadow-2xl">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-accent/30 shadow-2xl">
               {heroImages.map((src, i) => (
                 <Image
                   key={src}
