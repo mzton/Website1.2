@@ -1,29 +1,1629 @@
-[00:00:01.602] Server  LOG      ✓ Ready in 908ms
-[00:00:04.662] Server  LOG      ○ Compiling / ...
-[00:00:08.441] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:08.467] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:26.824] Server  LOG      ✓ Compiled in 280ms
-[00:00:34.251] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:38.267] Server  LOG      ✓ Compiled in 294ms
-[00:02:47.598] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:33.366] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:06:00.181] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+[00:00:02.550] Server  LOG      ✓ Ready in 1372ms
+[00:00:12.697] Server  LOG      ○ Compiling / ...
+[00:00:15.556] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:44.728] Server  LOG      ✓ Compiled in 380ms
+[00:00:44.922] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:44.922] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:44.922] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:44.922] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:44.922] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:44.922] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:00:44.922] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:48.923] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:00:48.923] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:49.929] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:00:49.929] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:56.927] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:00:56.927] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:00:59.933] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:00:59.933] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:03.935] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:01:03.935] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:01:21.924] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:21.924] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:01:21.924] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/hero.tsx:71:4
+Parsing ecmascript source code failed
+  69 |               </Button>
+  70 |             </div>
+> 71 | <<<<<<< Updated upstream
+     |    ^^
+  72 | =======
+  73 |
+  74 |             <div className="mt-16 pt-8 border-t border-border/40">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/hero.tsx:30:1
+Parsing ecmascript source code failed
+  28 |   const [loginOpen, setLoginOpen] = useState(false)
+  29 |   return (
+> 30 | <<<<<<< Updated upstream
+     | ^^^^^^^
+  31 |     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/hero.tsx:34:7
+Parsing ecmascript source code failed
+  32 | =======
+  33 |     <section className="relative overflow-hidden px-4 py-16 sm:py-24 sm:px-6 lg:px-8">
+> 34 | >>>>>>> Stashed changes
+     |       ^
+  35 |       <div className="absolute inset-0 -z-10">
+  36 |         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
+  37 |         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import trace:
+  Server Component:
+    ./components/hero.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:01:23.927] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:01:23.927] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:02:55.080] Server  LOG      ✓ Compiled in 237ms
+[00:02:55.926] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:02:55.926] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:02:55.926] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:02:55.926] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:03:08.924] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:03:08.924] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:03:08.924] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:03:08.924] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:05:40.161] Server  LOG      ✓ Compiled in 144ms
+[00:05:40.927] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:05:40.927] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:05:40.927] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:05:40.927] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:05:52.959] Server  LOG      ✓ Compiled in 99ms
+[00:05:53.923] Browser ERROR   ./components/image-carousel.tsx:337:4
+Parsing ecmascript source code failed
+  335 |         {/* Category Tabs */}
+  336 |         <div className="border-b border-border">
+> 337 | <<<<<<< Updated upstream
+      |    ^^
+  338 |           <div className="flex gap-8 md:gap-16 justify-center">
+  339 | =======
+  340 |           <div className="flex gap-4 sm:gap-8 md:gap-16 overflow-x-auto whitespace-nowrap -mx-4 px-4">
+
+Expression expected
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:05:53.923] Browser ERROR   ./components/image-carousel.tsx:321:1
+Parsing ecmascript source code failed
+  319 | =======
+  320 |                   className="absolute w-32 h-[168px] sm:w-40 sm:h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+> 321 | >>>>>>> Stashed changes
+      | ^^^^^^^
+  322 |                   style={{
+  323 |                     width: `${itemWidth}px`,
+  324 |                     height: `${itemHeight}px`,
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:05:53.923] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:05:53.923] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:04.448] Server  LOG      ✓ Compiled in 244ms
+[00:06:04.923] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:06:04.923] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:18.532] Server  LOG      ✓ Compiled in 111ms
+[00:06:18.933] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:06:18.933] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:27.670] Server  LOG      ✓ Compiled in 219ms
+[00:06:27.925] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:06:27.925] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:30.947] Browser ERROR   ./components/login-modal.tsx:58:4
+Parsing ecmascript source code failed
+  56 |   return (
+  57 |     <Dialog open={open} onOpenChange={onOpenChange}>
+> 58 | <<<<<<< Updated upstream
+     |    ^^
+  59 |       <DialogContent className="max-w-md">
+  60 |         <DialogHeader>
+  61 |           <DialogTitle>Sign In</DialogTitle>
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:06:30.947] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:48.420] Server  LOG      ✓ Compiled in 103ms
+[00:06:48.935] Browser ERROR   ./components/login-modal.tsx:94:25
+Parsing ecmascript source code failed
+  92 |               <Button type="submit" className="w-full">Create Account</Button>
+  93 |             </form>
+> 94 |           </TabsContent>
+     |                         ^
+> 95 |         </Tabs>
+     | ^^^^^^^^^
+  96 |       </DialogContent>
+  97 |     </Dialog>
+  98 |   )
+
+Expected '</', got 'jsx text (
+        )'
+
+Import traces:
+  Client Component Browser:
+    ./components/login-modal.tsx [Client Component Browser]
+    ./components/pricing.tsx [Client Component Browser]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./components/login-modal.tsx [Client Component SSR]
+    ./components/pricing.tsx [Client Component SSR]
+    ./components/pricing.tsx [Server Component]
+    ./app/page.tsx [Server Component]
+[00:06:48.935] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:56.537] Server  LOG      ✓ Compiled in 238ms
+[00:06:56.921] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:06:58.010] Browser ERROR   ./components/pricing.tsx:89:1
+Parsing ecmascript source code failed
+  87 |                   className="mt-auto w-full sm:w-auto"
+  88 |                   variant={plan.highlighted ? "default" : "outline"}
+> 89 | >>>>>>> Stashed changes
+     | ^^^^^^^
+  90 |                   onClick={() => setLoginOpen(true)}
+  91 |                 >
+  92 |                   Request Consultation
+
+Merge conflict marker encountered.
+
+Import trace:
+  Server Component:
+    ./components/pricing.tsx
+    ./app/page.tsx
+[00:07:03.677] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:05.550] Server  LOG      ✓ Compiled in 313ms
+[00:07:12.812] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
 
 If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
 
 For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:06:00.181] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:06:00.181] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+[00:07:12.812] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:07:12.812] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
 
 If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
 
 For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:06:00.181] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:07:00.346] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:07:28.552] Server  LOG      ✓ Compiled in 246ms
-[00:07:37.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:22.180] Server  LOG      ✓ Compiled in 132ms
-[00:11:31.236] Server  LOG      ✓ Compiled in 208ms
-[00:11:38.059] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:15:18.138] Server  LOG      ✓ Compiled in 225ms
-[00:15:32.200] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:12.812] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
