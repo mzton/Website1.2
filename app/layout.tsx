@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Nunito, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
 import GoogleTranslate from "@/components/google-translate"
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
@@ -31,6 +32,7 @@ export default function RootLayout({
         <ThemeProvider>
           <GoogleTranslate />
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
