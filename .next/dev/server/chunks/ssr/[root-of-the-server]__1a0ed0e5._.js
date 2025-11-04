@@ -525,6 +525,11 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [confirmPassword, setConfirmPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
+    const [documents, setDocuments] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])([]);
+    const handleDocsChange = (e)=>{
+        const files = e.target.files ? Array.from(e.target.files) : [];
+        setDocuments(files);
+    };
     const handleSubmit = (e)=>{
         e.preventDefault();
         if (mode === "signup") {
@@ -551,7 +556,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
         } else {
             toast({
                 title: "Thanks for signing up!",
-                description: `Welcome, ${role === "teacher" ? "Assistant" : "Client"}. We’ll be in touch soon.`
+                description: `Welcome, ${role === "teacher" ? "Assistant" : "Client"}. ${role === "teacher" && documents.length > 0 ? `${documents.length} document${documents.length > 1 ? "s" : ""} selected. ` : ""}We’ll be in touch soon.`
             });
         }
         onOpenChange(false);
@@ -575,7 +580,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                 children: "Sign In"
                             }, void 0, false, {
                                 fileName: "[project]/components/login-modal.tsx",
-                                lineNumber: 61,
+                                lineNumber: 67,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TabsTrigger"], {
@@ -583,13 +588,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                 children: "Sign Up"
                             }, void 0, false, {
                                 fileName: "[project]/components/login-modal.tsx",
-                                lineNumber: 62,
+                                lineNumber: 68,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/components/login-modal.tsx",
-                        lineNumber: 60,
+                        lineNumber: 66,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -606,7 +611,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Email"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 68,
+                                            lineNumber: 74,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -619,13 +624,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "email"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 69,
+                                            lineNumber: 75,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 67,
+                                    lineNumber: 73,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -636,7 +641,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 72,
+                                            lineNumber: 78,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -649,13 +654,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "current-password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 73,
+                                            lineNumber: 79,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 71,
+                                    lineNumber: 77,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -664,18 +669,18 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                     children: "Sign In"
                                 }, void 0, false, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 75,
+                                    lineNumber: 81,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/login-modal.tsx",
-                            lineNumber: 66,
+                            lineNumber: 72,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/login-modal.tsx",
-                        lineNumber: 65,
+                        lineNumber: 71,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$tabs$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["TabsContent"], {
@@ -691,7 +696,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Join as"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 82,
+                                            lineNumber: 88,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$radio$2d$group$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["RadioGroup"], {
@@ -707,7 +712,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                                             id: "client"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/login-modal.tsx",
-                                                            lineNumber: 85,
+                                                            lineNumber: 91,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
@@ -715,13 +720,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                                             children: "Client"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/login-modal.tsx",
-                                                            lineNumber: 86,
+                                                            lineNumber: 92,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/login-modal.tsx",
-                                                    lineNumber: 84,
+                                                    lineNumber: 90,
                                                     columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -732,7 +737,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                                             id: "teacher"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/login-modal.tsx",
-                                                            lineNumber: 89,
+                                                            lineNumber: 95,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
@@ -740,25 +745,25 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                                             children: "Assistant"
                                                         }, void 0, false, {
                                                             fileName: "[project]/components/login-modal.tsx",
-                                                            lineNumber: 90,
+                                                            lineNumber: 96,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/components/login-modal.tsx",
-                                                    lineNumber: 88,
+                                                    lineNumber: 94,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 83,
+                                            lineNumber: 89,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 81,
+                                    lineNumber: 87,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -769,7 +774,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Name"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 96,
+                                            lineNumber: 102,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -781,13 +786,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "name"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 97,
+                                            lineNumber: 103,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 95,
+                                    lineNumber: 101,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -798,7 +803,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Email"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 101,
+                                            lineNumber: 107,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -811,14 +816,53 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "email"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 102,
+                                            lineNumber: 108,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 100,
+                                    lineNumber: 106,
                                     columnNumber: 15
+                                }, this),
+                                role === "teacher" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "space-y-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$label$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Label"], {
+                                            htmlFor: "documents",
+                                            children: "Optional: Upload required documents (images)"
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/login-modal.tsx",
+                                            lineNumber: 112,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
+                                            id: "documents",
+                                            type: "file",
+                                            accept: "image/*",
+                                            multiple: true,
+                                            onChange: handleDocsChange
+                                        }, void 0, false, {
+                                            fileName: "[project]/components/login-modal.tsx",
+                                            lineNumber: 113,
+                                            columnNumber: 19
+                                        }, this),
+                                        documents.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                            className: "text-xs text-muted-foreground",
+                                            children: [
+                                                documents.length,
+                                                " file(s) selected"
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/components/login-modal.tsx",
+                                            lineNumber: 115,
+                                            columnNumber: 21
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/components/login-modal.tsx",
+                                    lineNumber: 111,
+                                    columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "space-y-2",
@@ -828,7 +872,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 105,
+                                            lineNumber: 120,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -841,13 +885,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "new-password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 106,
+                                            lineNumber: 121,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 104,
+                                    lineNumber: 119,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -858,7 +902,7 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             children: "Confirm Password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 109,
+                                            lineNumber: 124,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$input$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Input"], {
@@ -871,13 +915,13 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                             autoComplete: "new-password"
                                         }, void 0, false, {
                                             fileName: "[project]/components/login-modal.tsx",
-                                            lineNumber: 110,
+                                            lineNumber: 125,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 108,
+                                    lineNumber: 123,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
@@ -886,34 +930,34 @@ function LoginModal({ open, onOpenChange, initialMode = "signin" }) {
                                     children: "Create Account"
                                 }, void 0, false, {
                                     fileName: "[project]/components/login-modal.tsx",
-                                    lineNumber: 113,
+                                    lineNumber: 128,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/components/login-modal.tsx",
-                            lineNumber: 80,
+                            lineNumber: 86,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/components/login-modal.tsx",
-                        lineNumber: 79,
+                        lineNumber: 85,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/components/login-modal.tsx",
-                lineNumber: 59,
+                lineNumber: 65,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "[project]/components/login-modal.tsx",
-            lineNumber: 58,
+            lineNumber: 64,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/components/login-modal.tsx",
-        lineNumber: 57,
+        lineNumber: 63,
         columnNumber: 5
     }, this);
 }
@@ -2838,61 +2882,37 @@ function CTA() {
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                     className: "flex flex-col gap-4 sm:flex-row justify-center",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                                            whileHover: {
-                                                scale: 1.05
-                                            },
-                                            whileTap: {
-                                                scale: 0.95
-                                            },
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                                                size: "lg",
-                                                className: "bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto",
-                                                children: [
-                                                    "Get Free Global Assessment",
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
-                                                        className: "ml-2 h-5 w-5"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/components/cta.tsx",
-                                                        lineNumber: 107,
-                                                        columnNumber: 19
-                                                    }, this)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/components/cta.tsx",
-                                                lineNumber: 105,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
+                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                                        whileHover: {
+                                            scale: 1.05
+                                        },
+                                        whileTap: {
+                                            scale: 0.95
+                                        },
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
+                                            size: "lg",
+                                            className: "bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto",
+                                            children: [
+                                                "Get Free Global Assessment",
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$right$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowRight$3e$__["ArrowRight"], {
+                                                    className: "ml-2 h-5 w-5"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/components/cta.tsx",
+                                                    lineNumber: 107,
+                                                    columnNumber: 19
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/components/cta.tsx",
-                                            lineNumber: 104,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
-                                            whileHover: {
-                                                scale: 1.05
-                                            },
-                                            whileTap: {
-                                                scale: 0.95
-                                            },
-                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$button$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Button"], {
-                                                size: "lg",
-                                                variant: "outline",
-                                                className: "border-accent/50 hover:bg-accent/20 px-8 text-lg bg-transparent w-full sm:w-auto",
-                                                children: "Schedule a Demo"
-                                            }, void 0, false, {
-                                                fileName: "[project]/components/cta.tsx",
-                                                lineNumber: 111,
-                                                columnNumber: 17
-                                            }, this)
-                                        }, void 0, false, {
-                                            fileName: "[project]/components/cta.tsx",
-                                            lineNumber: 110,
-                                            columnNumber: 15
+                                            lineNumber: 105,
+                                            columnNumber: 17
                                         }, this)
-                                    ]
-                                }, void 0, true, {
+                                    }, void 0, false, {
+                                        fileName: "[project]/components/cta.tsx",
+                                        lineNumber: 104,
+                                        columnNumber: 15
+                                    }, this)
+                                }, void 0, false, {
                                     fileName: "[project]/components/cta.tsx",
                                     lineNumber: 103,
                                     columnNumber: 13

@@ -107,15 +107,6 @@ export default function CTA() {
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-accent/50 hover:bg-accent/20 px-8 text-lg bg-transparent w-full sm:w-auto"
-                >
-                  Schedule a Demo
-                </Button>
-              </motion.div>
             </div>
           </motion.div>
         </motion.div>

@@ -25,6 +25,12 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
+  const [documents, setDocuments] = useState<File[]>([])
+
+  const handleDocsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files ? Array.from(e.target.files) : []
+    setDocuments(files)
+  }
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -46,7 +52,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     } else {
       toast({
         title: "Thanks for signing up!",
-        description: `Welcome, ${role === "teacher" ? "Assistant" : "Client"}. We’ll be in touch soon.`,
+        description: `Welcome, ${role === "teacher" ? "Assistant" : "Client"}. ${role === "teacher" && documents.length > 0 ? `${documents.length} document${documents.length > 1 ? "s" : ""} selected. ` : ""}We’ll be in touch soon.`,
       })
     }
     onOpenChange(false)
@@ -101,6 +107,15 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 <Label htmlFor="email-signup">Email</Label>
                 <Input id="email-signup" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="you@example.com" required autoComplete="email" />
               </div>
+              {role === "teacher" && (
+                <div className="space-y-2">
+                  <Label htmlFor="documents">Optional: Upload required documents (images)</Label>
+                  <Input id="documents" type="file" accept="image/*" multiple onChange={handleDocsChange} />
+                  {documents.length > 0 && (
+                    <p className="text-xs text-muted-foreground">{documents.length} file(s) selected</p>
+                  )}
+                </div>
+              )}
               <div className="space-y-2">
                 <Label htmlFor="password-signup">Password</Label>
                 <Input id="password-signup" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="At least 6 characters" required autoComplete="new-password" />
