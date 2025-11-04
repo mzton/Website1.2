@@ -12,9 +12,6 @@ export default function Hero() {
   // Background image carousel for the right-side visual
   const heroImages = [
     "/filipino-professionals-having-video-conference-wit.jpg",
-    "/diverse-filipino-professionals-working-in-modern-o.jpg",
-    "/ads/food_advertise_2.jpg",
-    "/ads/IT.jpg",
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
@@ -55,13 +52,6 @@ export default function Hero() {
                 onClick={() => setLoginOpen(true)}
               >
                 Request Free Consultation
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-accent/50 hover:bg-accent/10 px-8 text-lg font-medium text-accent bg-transparent w-full sm:w-auto"
-              >
-                Schedule Demo
               </Button>
             </div>
           </motion.div>

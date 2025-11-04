@@ -12,6 +12,7 @@ const LanguageMenu = dynamic(() => import("./language-menu"), { ssr: false })
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
+  const [modalMode, setModalMode] = useState<"signin" | "signup">("signup")
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -38,7 +39,10 @@ export default function Header() {
           <button
             type="button"
             className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
-            onClick={() => setLoginOpen(true)}
+            onClick={() => {
+              setModalMode("signup")
+              setLoginOpen(true)
+            }}
           >
             Contact
           </button>
@@ -53,7 +57,10 @@ export default function Header() {
           <Button
             size="sm"
             className="bg-primary hover:bg-primary/90 font-sans"
-            onClick={() => setLoginOpen(true)}
+            onClick={() => {
+              setModalMode("signup")
+              setLoginOpen(true)
+            }}
           >
             Request Consultation
           </Button>
@@ -89,6 +96,7 @@ export default function Header() {
               className="text-sm font-sans text-muted-foreground transition hover:text-foreground text-left"
               onClick={() => {
                 setIsOpen(false)
+                setModalMode("signup")
                 setLoginOpen(true)
               }}
             >
@@ -100,6 +108,7 @@ export default function Header() {
               className="w-full bg-primary hover:bg-primary/90 font-sans"
               onClick={() => {
                 setIsOpen(false)
+                setModalMode("signup")
                 setLoginOpen(true)
               }}
             >
@@ -110,7 +119,7 @@ export default function Header() {
       )}
 
       {/* Login Modal */}
-      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} initialMode={modalMode} />
     </header>
   )
 }

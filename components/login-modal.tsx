@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
@@ -31,6 +31,13 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     const files = e.target.files ? Array.from(e.target.files) : []
     setDocuments(files)
   }
+
+  // Keep mode in sync with the trigger intent when modal opens
+  useEffect(() => {
+    if (open) {
+      setMode(initialMode)
+    }
+  }, [initialMode, open])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
