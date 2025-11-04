@@ -68,12 +68,12 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "ads-1",
-        image: "/ads/food_advertise_2.jpg",
+        image: "/ads/socmed.jpg",
         alt: "Product ad",
       },
       {
         id: "ads-2",
-        image: "/ads/IT.jpg",
+        image: "/ads/IT.jpg", 
         alt: "Social ad",
       },
       {
@@ -98,7 +98,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-7",
-        image: "/ads/food_advertise.png",
+        image: "/ads/brand.png",
         alt: "Product display",
       },
       {
