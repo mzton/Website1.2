@@ -101,6 +101,11 @@ const categories: CarouselCategory[] = [
         image: "/ads/food_advertise.png",
         alt: "Product display",
       },
+      {
+        id: "ads-8",
+        image: "/ads/ads (2).png",
+        alt: "Product display",
+      },
     ],
   },
   {
@@ -155,7 +160,7 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "email-1",
-        image: "/email/email-template.jpg",
+        image: "/email/newsletter.png",
         alt: "Email template",
       },
       {

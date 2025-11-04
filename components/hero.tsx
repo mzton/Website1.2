@@ -3,8 +3,11 @@
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Image from "next/image"
+import { useState } from "react"
+import LoginModal from "@/components/login-modal"
 
 export default function Hero() {
+  const [loginOpen, setLoginOpen] = useState(false)
   return (
     <section className="relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
       <div className="absolute inset-0 -z-10">
@@ -34,7 +37,11 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col gap-4 sm:flex-row items-start">
-              <Button size="lg" className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold">
+              <Button
+                size="lg"
+                className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold"
+                onClick={() => setLoginOpen(true)}
+              >
                 Request Free Consultation
               </Button>
               <Button
@@ -81,6 +88,7 @@ export default function Hero() {
           </motion.div>
         </div>
       </div>
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </section>
   )
 }

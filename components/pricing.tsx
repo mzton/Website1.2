@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Check } from "lucide-react"
 import { motion } from "framer-motion"
+import { useState } from "react"
+import LoginModal from "@/components/login-modal"
 
 const plans = [
   {
@@ -39,6 +41,7 @@ const plans = [
 ]
 
 export default function Pricing() {
+  const [loginOpen, setLoginOpen] = useState(false)
   return (
     <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -75,7 +78,11 @@ export default function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button className="mt-auto" variant={plan.highlighted ? "default" : "outline"}>
+                <Button
+                  className="mt-auto"
+                  variant={plan.highlighted ? "default" : "outline"}
+                  onClick={() => setLoginOpen(true)}
+                >
                   Request Consultation
                 </Button>
               </Card>
@@ -83,6 +90,7 @@ export default function Pricing() {
           ))}
         </div>
       </div>
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </section>
   )
 }

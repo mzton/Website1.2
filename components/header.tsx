@@ -5,11 +5,13 @@ import { Menu, X } from "lucide-react"
 import { useState } from "react"
 import dynamic from "next/dynamic"
 import { ThemeToggle } from "./theme-toggle"
+import LoginModal from "@/components/login-modal"
 
 const LanguageMenu = dynamic(() => import("./language-menu"), { ssr: false })
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
+  const [loginOpen, setLoginOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -47,7 +49,11 @@ export default function Header() {
 
           <LanguageMenu className="gap-2 font-sans bg-transparent" align="end" />
 
-          <Button size="sm" className="bg-primary hover:bg-primary/90 font-sans">
+          <Button
+            size="sm"
+            className="bg-primary hover:bg-primary/90 font-sans"
+            onClick={() => setLoginOpen(true)}
+          >
             Request Consultation
           </Button>
         </div>
@@ -81,12 +87,22 @@ export default function Header() {
               Contact
             </a>
             <LanguageMenu className="w-full gap-2 justify-start font-sans bg-transparent" align="start" />
-            <Button size="sm" className="w-full bg-primary hover:bg-primary/90 font-sans">
+            <Button
+              size="sm"
+              className="w-full bg-primary hover:bg-primary/90 font-sans"
+              onClick={() => {
+                setIsOpen(false)
+                setLoginOpen(true)
+              }}
+            >
               Request Consultation
             </Button>
           </div>
         </div>
       )}
+
+      {/* Login Modal */}
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </header>
   )
 }
