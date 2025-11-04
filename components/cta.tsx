@@ -14,7 +14,7 @@ export default function CTA() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-primary/5 to-background/50 p-12 overflow-hidden"
+          className="rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-primary/5 to-background/50 p-8 sm:p-12 overflow-hidden"
         >
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -83,7 +83,7 @@ export default function CTA() {
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="rounded-2xl border border-accent/40 bg-gradient-to-r from-primary/20 via-accent/15 to-primary/10 p-12 text-center overflow-hidden relative"
+          className="rounded-2xl border border-accent/40 bg-gradient-to-r from-primary/20 via-accent/15 to-primary/10 p-8 sm:p-12 text-center overflow-hidden relative"
         >
           <div className="absolute inset-0 -z-10">
             <div className="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
@@ -102,7 +102,7 @@ export default function CTA() {
             </p>
             <div className="flex flex-col gap-4 sm:flex-row justify-center">
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button size="lg" className="bg-accent hover:bg-accent/90 px-8 text-lg font-semibold">
+                <Button size="lg" className="bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto">
                   Get Free Global Assessment
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -111,7 +111,7 @@ export default function CTA() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-accent/50 hover:bg-accent/20 px-8 text-lg bg-transparent"
+                  className="border-accent/50 hover:bg-accent/20 px-8 text-lg bg-transparent w-full sm:w-auto"
                 >
                   Schedule a Demo
                 </Button>

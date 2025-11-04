@@ -296,9 +296,9 @@ export default function ImageCarousel() {
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Carousel Display */}
-        <div className="mb-16">
+        <div className="mb-12 sm:mb-16">
           <div
-            className="h-[450px] flex items-center justify-center"
+            className="h-[300px] sm:h-[450px] flex items-center justify-center"
             style={{
               perspective: `${DEPTH * 2}px`,
             }}
@@ -335,7 +335,7 @@ export default function ImageCarousel() {
               <button
                 key={category.id}
                 onClick={() => setActiveCategory(category.id)}
-                className={`pb-4 text-lg font-semibold transition-all relative ${
+                className={`pb-4 text-base sm:text-lg font-semibold transition-all relative shrink-0 ${
                   activeCategory === category.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
