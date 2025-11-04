@@ -3,29 +3,119 @@
 import { Card } from "@/components/ui/card"
 import { Star } from "lucide-react"
 import { motion } from "framer-motion"
+import Image from "next/image"
+import { useEffect, useRef, useState } from "react"
 
 const results = [
   {
-    metric: "180%",
-    title: "Growth in Global Leads",
-    company: "Korean Tech Startup",
-    quote: "We finally had a voice in the global market.",
+    metric: "$5K in new sales",
+    title: "New Sales Generated",
+    company: "Alex Kim",
+    quote: "From a regular glasses they created a marketing designed glasses",
+    images: ["/reviews/before5.jpg", "/reviews/after5.png"],
   },
   {
-    metric: "4",
-    title: "European Distributors Signed",
-    company: "Japanese Food Brand",
-    quote: "Distribution expanded to markets we never thought possible.",
+    metric: "$48K in promo sales",
+    title: "Cap Campaign Sales",
+    company: "Jamie Reyes",
+    quote: "From a simple product shot to high-impact promo artwork",
+    images: ["/reviews/before13.jpg", "/reviews/after13.png"],
   },
   {
-    metric: "3x",
-    title: "Partnership Success Rate",
-    company: "Korean Service Company",
-    quote: "Our partnership pipeline is now global, not regional.",
+    metric: "320 units sold",
+    title: "Rattan Storage Promo Sales",
+    company: "Mia Santos",
+    quote: "From in-store snapshot to clean, conversion-ready product ad",
+    images: ["/reviews/before15.jpg", "/reviews/after15.png"],
+  },
+  {
+    metric: "€18K in accessory sales",
+    title: "Clutch Campaign Revenue",
+    company: "Chris Bautista",
+    quote: "From catalog shot to premium brand visual",
+    images: ["/reviews/before18.jpg", "/reviews/after18.png"],
+  },
+  {
+    metric: "1,500 units sold",
+    title: "Backpack Campaign Sales",
+    company: "Rafael Tan",
+    quote: "From home photo to polished 50% OFF promo",
+    images: ["/reviews/before6.jpg", "/reviews/after6.png"],
+  },
+  {
+    metric: "$36K in footwear sales",
+    title: "Monk Strap Promo Revenue",
+    company: "Daniel Cho",
+    quote: "From casual table shot to studio-grade product ad",
+    images: ["/reviews/before11.jpg", "/reviews/after11.png"],
+  },
+  {
+    metric: "2.2x engagement",
+    title: "Aloha Tee Promo Artwork",
+    company: "Store Owner",
+    quote: "From raw product shot to eye-catching sale graphic",
+    images: ["/reviews/before7.jpg", "/reviews/after7.png"],
+  },
+  {
+    metric: "20% OFF campaign",
+    title: "Vintage Polo Sale Banner",
+    company: "Store Owner",
+    quote: "From plain photo to polished discount promo",
+    images: ["/reviews/before8.jpg", "/reviews/after8.png"],
+  },
+  {
+  metric: "40% OFF campaign",
+  title: "Michael Kors Handbag Promo",
+  company: "Store Owner",
+  quote: "From casual snapshot to luxury sale design",
+  images: ["/reviews/before14.jpg", "/reviews/after14.png"],
+  },
+  {
+  metric: "10% OFF campaign",
+  title: "Teal & White Curtain Sale Banner",
+  company: "Store Owner",
+  quote: "From everyday shot to elegant home décor promotion",
+  images: ["/reviews/before19.jpg", "/reviews/after19.png"],
   },
 ]
 
 export default function Testimonials() {
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const [isHovered, setIsHovered] = useState(false)
+  const [isUserInteracting, setIsUserInteracting] = useState(false)
+  const interactionTimeoutRef = useRef<number | undefined>(undefined)
+
+  // Mark interaction and unpause after a short delay
+  const markInteraction = () => {
+    setIsUserInteracting(true)
+    if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
+    interactionTimeoutRef.current = window.setTimeout(() => {
+      setIsUserInteracting(false)
+    }, 1500)
+  }
+
+  // Auto-advance one card at a time at intervals; pause on hover/interaction
+  useEffect(() => {
+    const el = scrollRef.current
+    if (!el) return
+
+    if (isHovered || isUserInteracting) return
+
+    const id = window.setInterval(() => {
+      if (!el) return
+      const first = el.firstElementChild as HTMLElement | null
+      const step = first ? first.offsetWidth + 24 : 360
+
+      if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 5) {
+        // Jump back instantly to start to create loop
+        el.scrollTo({ left: 0, behavior: 'auto' })
+      } else {
+        el.scrollBy({ left: step, behavior: 'smooth' })
+      }
+    }, 2500)
+
+    return () => window.clearInterval(id)
+  }, [isHovered, isUserInteracting])
   return (
     <section id="results" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -41,15 +131,36 @@ export default function Testimonials() {
           <p className="text-lg text-muted-foreground">Proven results from companies just like yours</p>
         </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-3">
+        {/* Controls removed per request */}
+
+        {/* Horizontal carousel of results */}
+        <div className="-mx-4 sm:-mx-6 lg:-mx-8">
+          <div
+            ref={scrollRef}
+            className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 no-scrollbar px-3 sm:px-4"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            onPointerDown={() => {
+              setIsUserInteracting(true)
+              if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
+            }}
+            onPointerUp={markInteraction}
+            onWheel={markInteraction}
+            onTouchStart={() => {
+              setIsUserInteracting(true)
+              if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
+            }}
+            onTouchEnd={markInteraction}
+          >
           {results.map((result, index) => (
             <motion.div
               key={result.metric}
               initial={{ opacity: 0, x: -80 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: index * 0.15, ease: "easeOut" }}
+              className="snap-start"
             >
-              <Card className="border-accent/30 bg-gradient-to-br from-card/80 to-background/80 backdrop-blur p-8 overflow-hidden hover:border-accent/60 transition-all hover:shadow-lg hover:shadow-accent/20 h-full flex flex-col">
+              <Card className="min-w-[300px] sm:min-w-[360px] lg:min-w-[420px] border-accent/30 bg-gradient-to-br from-card/80 to-background/80 backdrop-blur p-8 overflow-hidden hover:border-accent/60 transition-all hover:shadow-lg hover:shadow-accent/20 h-full flex flex-col">
                 <div className="mb-6">
                   <div className="inline-flex items-center gap-1 mb-3">
                     {[...Array(5)].map((_, i) => (
@@ -59,6 +170,29 @@ export default function Testimonials() {
                   <div className="text-3xl font-bold text-primary mb-2">{result.metric}</div>
                   <p className="font-semibold text-foreground">{result.title}</p>
                 </div>
+
+                {/* Before/After image slot */}
+                <div className="grid grid-cols-2 gap-2 mb-2">
+                  {[0,1].map((i) => (
+                    <div key={i} className="relative h-36 w-full overflow-hidden rounded-lg border border-border/30 bg-muted/10">
+                      <Image
+                        src={(result as any).images?.[i] || "/placeholder.jpg"}
+                        alt={`${i === 0 ? "Before" : "After"} - ${result.title}`}
+                        fill
+                        className="object-cover"
+                      />
+                      <span className="absolute top-2 left-2 rounded-md border bg-background/70 px-2 py-1 text-[10px] tracking-wide">
+                        {i === 0 ? "Before" : "After"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                { (result as any).beforeAfterCaption && (
+                  <p className="mb-3 text-xs italic text-muted-foreground">
+                    {(result as any).beforeAfterCaption}
+                  </p>
+                )}
+
                 <div className="border-t border-border/40 pt-4 space-y-3 flex-grow">
                   <p className="text-xs font-semibold text-accent uppercase tracking-wide">{result.company}</p>
                   <p className="text-sm italic text-foreground">"{result.quote}"</p>
@@ -66,6 +200,7 @@ export default function Testimonials() {
               </Card>
             </motion.div>
           ))}
+          </div>
         </div>
       </div>
     </section>

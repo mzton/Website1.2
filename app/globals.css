@@ -142,6 +142,14 @@
 
 /* Added custom keyframe animations for horizontal sliding sections */
 @layer utilities {
+  /* Hide horizontal/vertical scrollbars but keep scrolling functional */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
   /* Hide Google Translate UI chrome and banner */
   .goog-te-banner-frame { display: none !important; visibility: hidden !important; height: 0 !important; }
   iframe.goog-te-banner-frame { display: none !important; visibility: hidden !important; height: 0 !important; }
