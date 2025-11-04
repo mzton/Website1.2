@@ -5,7 +5,9 @@ import Image from "next/image"
 
 interface CarouselItem {
   id: string
-  image: string
+  image?: string
+  video?: string
+  poster?: string
   alt: string
 }
 
@@ -158,52 +160,20 @@ const categories: CarouselCategory[] = [
     id: "emails",
     label: "Emails",
     items: [
-      {
-        id: "email-1",
-        image: "/email/newsletter.png",
-        alt: "Email template",
-      },
-      {
-        id: "email-2",
-        image: "/email/newsletter-design.jpg",
-        alt: "Newsletter design",
-      },
-      {
-        id: "email-3",
-        image: "/email/email-campaign.jpg",
-        alt: "Email campaign",
-      },
-      {
-        id: "email-4",
-        image: "/email/email-promotional-campaign.jpg",
-        alt: "Email promo",
-      },
-      {
-        id: "email-5",
-        image: "/email/newsletter-design-template.jpg",
-        alt: "Newsletter",
-      },
-      {
-        id: "email-6",
-        image: "/email/transactional-email-template.jpg",
-        alt: "Transactional email",
-      },
-      {
-        id: "email-7",
-        image: "/email/email-template.jpg",
-        alt: "Email design",
-      },
-      {
-        id: "email-8",
-        image: "/email/newsletter-design.jpg",
-        alt: "Newsletter template",
-      },
+      { id: "email-1", video: "/email/video1.mp4", poster: "/placeholder.jpg", alt: "Email video 1" },
+      { id: "email-2", video: "/email/video2.mp4", poster: "/placeholder.jpg", alt: "Email video 2" },
+      { id: "email-3", video: "/email/video3.mp4", poster: "/placeholder.jpg", alt: "Email video 3" },
+      { id: "email-4", video: "/email/video4.mp4", poster: "/placeholder.jpg", alt: "Email video 4" },
+      { id: "email-5", video: "/email/video5.mp4", poster: "/placeholder.jpg", alt: "Email video 5" },
+      { id: "email-6", video: "/email/video6.mp4", poster: "/placeholder.jpg", alt: "Email video 6" },
+      { id: "email-7", video: "/email/video7.mp4", poster: "/placeholder.jpg", alt: "Email video 7" },
+      { id: "email-8", video: "/email/video8.mp4", poster: "/placeholder.jpg", alt: "Email video 8" },
     ],
   },
 ]
 
 export default function ImageCarousel() {
-  const [activeCategory, setActiveCategory] = useState("ads")
+  const [activeCategory, setActiveCategory] = useState("emails")
   const [currentIndex, setCurrentIndex] = useState(0)
   const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
   
@@ -292,6 +262,20 @@ export default function ImageCarousel() {
     }
   }
 
+  const enterFullscreen = (video: HTMLVideoElement) => {
+    try {
+      const anyVideo = video as any
+      if (video.requestFullscreen) {
+        video.requestFullscreen()
+      } else if (anyVideo.webkitEnterFullscreen) {
+        anyVideo.webkitEnterFullscreen()
+      } else if (anyVideo.msRequestFullscreen) {
+        anyVideo.msRequestFullscreen()
+      }
+      video.play().catch(() => {})
+    } catch (_) {}
+  }
+
   return (
     <section className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -321,7 +305,21 @@ export default function ImageCarousel() {
                     ...getFixedItemStyle(index),
                   }}
                 >
-                    <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                    {item.video ? (
+                      <video
+                        src={item.video}
+                        poster={item.poster}
+                        className="absolute inset-0 w-full h-full object-cover cursor-pointer"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        onClick={(e) => enterFullscreen(e.currentTarget)}
+                      />
+                    ) : (
+                      <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                    )}
                 </div>
               ))}
             </div>
