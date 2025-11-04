@@ -1,4 +1,9 @@
+"use client"
+
 import { Facebook, Instagram } from "lucide-react"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import TermsContent from "@/components/legal/terms-content"
+import PrivacyContent from "@/components/legal/privacy-content"
 
 export default function Footer() {
   return (
@@ -56,37 +61,59 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Resources</h4>
+            <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Legal</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Case Studies
-                </a>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button type="button" className="font-sans transition hover:text-accent">
+                      Terms of Service
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Terms of Service</DialogTitle>
+                    </DialogHeader>
+                    <TermsContent />
+                  </DialogContent>
+                </Dialog>
               </li>
               <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Client Results
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Contact
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  FAQ
-                </a>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <button type="button" className="font-sans transition hover:text-accent">
+                      Privacy Policy
+                    </button>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                      <DialogTitle>Privacy Policy</DialogTitle>
+                    </DialogHeader>
+                    <PrivacyContent />
+                  </DialogContent>
+                </Dialog>
               </li>
             </ul>
           </div>
           <div>
             <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Connect</h4>
             <div className="flex gap-4">
-              <a href="#" className="font-sans text-muted-foreground transition hover:text-accent" title="Facebook">
+              <a
+                href="https://www.facebook.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-muted-foreground transition hover:text-accent"
+                title="Facebook"
+              >
                 <Facebook className="h-5 w-5" />
               </a>
-              <a href="#" className="font-sans text-muted-foreground transition hover:text-accent" title="Instagram">
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-muted-foreground transition hover:text-accent"
+                title="Instagram"
+              >
                 <Instagram className="h-5 w-5" />
               </a>
             </div>

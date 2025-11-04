@@ -24,7 +24,7 @@ const plans = [
       "Up to 80 hours/month",
       "Priority support",
     ],
-    highlighted: true,
+    highlighted: false,
   },
   {
     name: "Scale",
@@ -59,11 +59,9 @@ export default function Pricing() {
           {plans.map((plan) => (
             <motion.div key={plan.name} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
               <Card
-                className={`border p-8 h-full flex flex-col ${
-                  plan.highlighted
-                    ? "ring-1 ring-primary/30 bg-gradient-to-br from-primary/10 to-accent/10"
-                    : "bg-background"
-                }`}
+                className={`group border p-8 h-full flex flex-col bg-background transition
+                hover:ring-1 hover:ring-primary/30 hover:bg-gradient-to-br hover:from-primary/10 hover:to-accent/10
+                hover:shadow-lg hover:translate-y-[-2px]`}
               >
                 <div className="mb-2 text-sm text-muted-foreground">{plan.name}</div>
                 <div className="mb-4 text-2xl font-bold">{plan.price}</div>
@@ -75,7 +73,10 @@ export default function Pricing() {
                     </div>
                   ))}
                 </div>
-                <Button className="mt-auto" variant={plan.highlighted ? "default" : "outline"}>
+                <Button
+                  className="mt-auto transition group-hover:bg-primary group-hover:text-primary-foreground"
+                  variant="outline"
+                >
                   Request Consultation
                 </Button>
               </Card>

@@ -47,6 +47,15 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         >
           Korean
         </DropdownMenuItem>
+        <DropdownMenuItem
+          onClick={() => {
+            setLanguage("Japanese")
+            setGoogleTranslateLanguage("ja")
+          }}
+          className="font-sans"
+        >
+          Japanese
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   )

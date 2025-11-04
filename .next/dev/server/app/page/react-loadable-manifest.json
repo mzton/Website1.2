@@ -1,0 +1,10 @@
+{
+  "[project]/components/language-menu.tsx [app-client] (ecmascript, next/dynamic entry)": {
+    "id": "[project]/components/language-menu.tsx [app-client] (ecmascript, next/dynamic entry)",
+    "files": [
+      "static/chunks/node_modules_ef23a363._.js",
+      "static/chunks/components_aa053609._.js",
+      "static/chunks/components_language-menu_tsx_d609aafd._.js"
+    ]
+  }
+}

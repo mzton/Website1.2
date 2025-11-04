@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 
 interface CarouselItem {
@@ -83,7 +83,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-4",
-        image: "/ads/doctor.png",
+        image: "/ads/model_advertisement.png",
         alt: "Doctor ad",
       },
       {
@@ -93,12 +93,17 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-6",
-        image: "/ads/zoom.png",
+        image: "/ads/model_advertisment2.png",
         alt: "Instagram ad",
       },
       {
         id: "ads-7",
         image: "/ads/food_advertise.png",
+        alt: "Product display",
+      },
+      {
+        id: "ads-8",
+        image: "/ads/ig.jpg",
         alt: "Product display",
       },
     ],
@@ -200,32 +205,61 @@ const categories: CarouselCategory[] = [
 export default function ImageCarousel() {
   const [activeCategory, setActiveCategory] = useState("ads")
   const [currentIndex, setCurrentIndex] = useState(0)
+  const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
+  
+  // Configuration constants
+  const ITEM_WIDTH = 224 // Matches w-56 (which is 224px)
+  const VISIBLE_ITEMS = 8 // Total intended slots around the cylinder
+  const DEPTH = 400 // Perspective depth for the center/wrapper
+  const RADIUS_SCALE = 1.5 // Widen the cylinder by scaling the computed radius
 
   const activeItems = categories.find((cat) => cat.id === activeCategory)?.items || []
+  const itemCount = activeItems.length
+  
+  // Use the larger of the two counts to determine the number of slots
+  const slots = Math.max(itemCount, VISIBLE_ITEMS)
+
+  // 1. Calculate the fixed angle step and cylinder radius
+  const { angleStep, radius } = useMemo(() => {
+    const calculatedAngleStep = 360 / slots
+    
+    // Calculate Radius (R) needed for items to touch edge-to-edge
+    // R = (Item Width / 2) / tan(Angle / 2)
+    const calculatedRadius = Math.round(
+      ((ITEM_WIDTH / 2) / Math.tan((Math.PI / 180) * (calculatedAngleStep / 2))) * RADIUS_SCALE
+    )
+    // If the count is low, we may need a larger radius to spread them out
+    return { angleStep: calculatedAngleStep, radius: calculatedRadius }
+  }, [slots, ITEM_WIDTH])
+
 
   useEffect(() => {
     setCurrentIndex(0)
   }, [activeCategory])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % activeItems.length)
-    }, 1500) // Increased from 1000ms to 1500ms for slower, smoother rotation
+  // Remove step-based rotation; use continuous CSS animation on wrapper instead
 
-    return () => clearInterval(interval)
-  }, [activeItems.length])
-
-  const getRotationStyle = (index: number) => {
-    const position = (index - currentIndex + activeItems.length) % activeItems.length
-    const angle = -position * 90
-    const zIndex = 50 - position * 2
-    const scale = position === 0 ? 1 : 0.75 + Math.cos((position * Math.PI) / activeItems.length) * 0.15
-    const opacity = 0.9 - position * 0.08
+  // 2. Style to FIX the item position in 3D space
+  const getFixedItemStyle = (index: number) => {
+    const rotationY = index * angleStep
+    // Uniform scale/opacity so no item is emphasized
+    const scale = 0.9
+    const opacity = 0.95
 
     return {
-      transform: `rotateY(${angle}deg) translateZ(400px) scale(${scale})`,
-      zIndex,
+      transform: `rotateY(${rotationY}deg) translateZ(${radius}px) scale(${scale})`,
       opacity,
+      zIndex: 50,
+    }
+  }
+
+  // 3. Style to ROTATE the entire carousel wrapper (continuous spin)
+  const getWrapperStyle = () => {
+    return {
+      // Use a CSS variable so keyframes can reference current radius
+      ["--radius" as any]: `${radius}px`,
+      transformStyle: "preserve-3d",
+      animation: `rotateRing ${ROTATION_SPEED_S}s linear infinite`,
     }
   }
 
@@ -237,34 +271,35 @@ export default function ImageCarousel() {
           <div
             className="h-[450px] flex items-center justify-center"
             style={{
-              perspective: "1000px",
+              perspective: `${DEPTH * 2}px`,
             }}
           >
+            {/* The carousel wrapper with rotation applied */}
             <div
               className="relative w-full h-full flex items-center justify-center"
               style={{
-                transformStyle: "preserve-3d",
+                ...getWrapperStyle(),
               }}
             >
-              {activeItems.map((item, index) => (
-                <div
-                  key={item.id}
-                  className="absolute w-40 h-[210px] transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20" // reduced from w-80 h-[420px] to w-40 h-[210px] (half size) and duration from 1500ms to 1000ms for smoother animation
-                  style={{
-                    ...getRotationStyle(index),
-                    transformStyle: "preserve-3d",
-                  }}
-                >
-                  <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
-                </div>
-              ))}
+                {/* Render actual items with fixed positions */}
+                {activeItems.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className="absolute w-56 h-[260px] duration-2000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
+                    style={{
+                      ...getFixedItemStyle(index),
+                    }}
+                  >
+                    <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
+                  </div>
+                ))}
             </div>
           </div>
         </div>
 
         {/* Category Tabs */}
         <div className="border-b border-border">
-          <div className="flex gap-8 md:gap-16">
+          <div className="flex gap-8 md:gap-16 justify-center">
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -284,10 +319,9 @@ export default function ImageCarousel() {
       </div>
 
       <style jsx>{`
-        @supports (perspective: 1000px) {
-          div[style*='perspective'] {
-            perspective: 1000px;
-          }
+        @keyframes rotateRing {
+          0%   { transform: translateZ(calc(var(--radius) * -1)) rotateY(0deg); }
+          100% { transform: translateZ(calc(var(--radius) * -1)) rotateY(-360deg); }
         }
       `}</style>
     </section>

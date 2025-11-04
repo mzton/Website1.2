@@ -14,7 +14,7 @@ export default function GoogleTranslate() {
       new google.translate.TranslateElement(
         {
           pageLanguage: "en",
-          includedLanguages: "en,ko",
+          includedLanguages: "en,ko,ja",
           autoDisplay: false,
         },
         "google_translate_element"
@@ -33,7 +33,7 @@ export default function GoogleTranslate() {
 }
 
 // Utility to programmatically change language via the widget combo
-export function setGoogleTranslateLanguage(lang: "en" | "ko") {
+export function setGoogleTranslateLanguage(lang: "en" | "ko" | "ja") {
   const combo = document.querySelector<HTMLSelectElement>(".goog-te-combo")
   if (combo) {
     combo.value = lang
