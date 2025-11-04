@@ -93,30 +93,25 @@ export default function Features() {
                     setHoveredIndex(idx)
                     const v = videoRefs.current[idx]
                     if (v) {
-                      v.currentTime = 0
                       v.muted = true
                       v.play().catch(() => {})
                     }
                   }}
                   onMouseLeave={() => {
-                    const v = videoRefs.current[idx]
-                    if (v) {
-                      v.pause()
-                    }
                     setHoveredIndex(null)
                   }}
                 >
-                  <div className="relative mb-4 h-40 w-full overflow-hidden rounded-lg">
+                  <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg">
                     <video
                       ref={(el) => (videoRefs.current[idx] = el)}
                       src={previewVideos[idx]}
                       poster="/placeholder.jpg"
                       muted
+                      autoPlay
+                      loop
                       playsInline
                       preload="auto"
-                      className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ${
-                        hoveredIndex === idx ? "opacity-100" : "opacity-0"
-                      }`}
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
                     />
                   </div>
                   <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/40 group-hover:to-accent/40 transition-all">

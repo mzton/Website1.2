@@ -27,9 +27,6 @@ export default function Header() {
           <a href="#services" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
             Services
           </a>
-          <a href="#results" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-            Proof
-          </a>
           <a href="#solution" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
             Solution
           </a>
@@ -81,9 +78,6 @@ export default function Header() {
           <div className="flex flex-col gap-4 px-4 py-4">
             <a href="#services" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
               Services
-            </a>
-            <a href="#results" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-              Proof
             </a>
             <a href="#solution" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
               Solution
