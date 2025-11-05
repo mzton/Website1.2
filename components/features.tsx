@@ -36,10 +36,10 @@ export default function Features() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const previewVideos = [
-    "/video/globalcom.mp4",
-    "/video/service2.mp4",
-    "/video/salesmarket.mp4",
-    "/video/globalstrat.mp4",
+    "/video/GlobalCommunication.mp4",
+    "/video/SocMedMarketing.mp4",
+    "/video/SalesAndMarket.mp4",
+    "/video/GlobalStratAndPlan.mp4",
   ]
   const containerVariants = {
     hidden: { opacity: 0 },
