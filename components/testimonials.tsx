@@ -74,25 +74,12 @@ const results = [
 
 export default function Testimonials() {
   const scrollRef = useRef<HTMLDivElement | null>(null)
-  const [isHovered, setIsHovered] = useState(false)
-  const [isUserInteracting, setIsUserInteracting] = useState(false)
-  const interactionTimeoutRef = useRef<number | undefined>(undefined)
-
-  // Mark interaction and unpause after a short delay
-  const markInteraction = () => {
-    setIsUserInteracting(true)
-    if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
-    interactionTimeoutRef.current = window.setTimeout(() => {
-      setIsUserInteracting(false)
-    }, 1500)
-  }
+  // Auto-play should never pause on hover or interaction
 
   // Auto-advance one card at a time at intervals; pause on hover/interaction
   useEffect(() => {
     const el = scrollRef.current
     if (!el) return
-
-    if (isHovered || isUserInteracting) return
 
     const id = window.setInterval(() => {
       if (!el) return
@@ -108,7 +95,7 @@ export default function Testimonials() {
     }, 2500)
 
     return () => window.clearInterval(id)
-  }, [isHovered, isUserInteracting])
+  }, [])
   return (
     <section id="results" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -131,19 +118,6 @@ export default function Testimonials() {
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-2 no-scrollbar px-3 sm:px-4"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            onPointerDown={() => {
-              setIsUserInteracting(true)
-              if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
-            }}
-            onPointerUp={markInteraction}
-            onWheel={markInteraction}
-            onTouchStart={() => {
-              setIsUserInteracting(true)
-              if (interactionTimeoutRef.current) window.clearTimeout(interactionTimeoutRef.current)
-            }}
-            onTouchEnd={markInteraction}
           >
           {results.map((result, index) => (
             <motion.div
