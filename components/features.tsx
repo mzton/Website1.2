@@ -37,7 +37,7 @@ export default function Features() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
   const previewVideos = [
     "/video/GlobalCommunication.mp4",
-    "/video/SocMedMarketing.mp4",
+    "/video/socmed.mp4",
     "/video/SalesAndMarket.mp4",
     "/video/GlobalStratMarketing.mp4",
   ]
