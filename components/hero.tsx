@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
+import { Play, Pause, Volume2, VolumeX, SkipForward, SkipBack, Maximize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import Image from "next/image"
@@ -9,20 +10,109 @@ import LoginModal from "@/components/login-modal"
 export default function Hero() {
   const fullText = "Your Product Needs More Than Visibility. It Needs a Voice."
 
-  // Background image carousel for the right-side visual
-  const heroImages = [
-    "/filipino-professionals-having-video-conference-wit.jpg",
+  // Background media for the right-side visual (now using video)
+  const heroMedia = [
+    { video: "/video/Hero.mp4", poster: "/filipino-professionals-having-video-conference-wit.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % heroImages.length)
+      setBgIndex((prev) => (prev + 1) % heroMedia.length)
     }, 5000) // change background every 5s
     return () => clearInterval(interval)
   }, [])
 
   const [loginOpen, setLoginOpen] = useState(false)
+  // Custom video controls state
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [isMuted, setIsMuted] = useState(true)
+  const [volume, setVolume] = useState(0.6)
+  const [progress, setProgress] = useState(0)
+  const [duration, setDuration] = useState(0)
+  const [rate, setRate] = useState(1)
+
+  // Attach the ref to the currently visible video when background index changes
+  useEffect(() => {
+    const active = document.querySelector<HTMLVideoElement>("video.opacity-100")
+    if (active) {
+      videoRef.current = active
+      active.muted = isMuted
+      active.volume = volume
+      active.playbackRate = rate
+    }
+  }, [bgIndex])
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+    const onTime = () => setProgress(v.currentTime)
+    const onMeta = () => setDuration(v.duration || 0)
+    v.addEventListener("timeupdate", onTime)
+    v.addEventListener("loadedmetadata", onMeta)
+    // keep properties in sync
+    v.muted = isMuted
+    v.volume = volume
+    v.playbackRate = rate
+    return () => {
+      v.removeEventListener("timeupdate", onTime)
+      v.removeEventListener("loadedmetadata", onMeta)
+    }
+  }, [isMuted, volume, rate])
+
+  const togglePlay = () => {
+    const v = videoRef.current
+    if (!v) return
+    if (v.paused) {
+      v.play()
+      setIsPlaying(true)
+    } else {
+      v.pause()
+      setIsPlaying(false)
+    }
+  }
+  const skip = (delta: number) => {
+    const v = videoRef.current
+    if (!v) return
+    const next = Math.max(0, Math.min((v.duration || 0), v.currentTime + delta))
+    v.currentTime = next
+    setProgress(next)
+  }
+  const toggleMute = () => {
+    const v = videoRef.current
+    if (!v) return
+    v.muted = !v.muted
+    setIsMuted(v.muted)
+  }
+  const handleVolume = (val: number) => {
+    const v = videoRef.current
+    if (!v) return
+    v.volume = val
+    setVolume(val)
+    if (val > 0) {
+      v.muted = false
+      setIsMuted(false)
+    }
+  }
+  const handleSeek = (val: number) => {
+    const v = videoRef.current
+    if (!v) return
+    v.currentTime = val
+    setProgress(val)
+  }
+  const changeRate = (val: number) => {
+    const v = videoRef.current
+    if (!v) return
+    v.playbackRate = val
+    setRate(val)
+  }
+  const fmt = (s: number) => {
+    if (!isFinite(s)) return "0:00"
+    const m = Math.floor(s / 60)
+    const sec = Math.floor(s % 60)
+    return `${m}:${sec.toString().padStart(2, "0")}`
+  }
   return (
     <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
       <div className="absolute inset-0 -z-10">
@@ -65,18 +155,86 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative block"
           >
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden border border-accent/30 shadow-2xl">
-              {heroImages.map((src, i) => (
-                <Image
-                  key={src}
-                  src={src}
-                  alt="Hero background"
-                  fill
-                  priority={i === 0}
-                  className={`object-cover absolute inset-0 transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
-                />
+            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl group">
+              {heroMedia.map((item, i) => (
+                item.video ? (
+                  <video
+                    key={item.video}
+                    src={item.video}
+                    poster={item.poster}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    // Custom controls overlay; hide native controls
+                    ref={i === bgIndex ? videoRef : undefined}
+                    className={`object-cover absolute -inset-px w-full h-full transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
+                  />
+                ) : (
+                  <Image
+                    key={(item as any).image}
+                    src={(item as any).image}
+                    alt="Hero background"
+                    fill
+                    priority={i === 0}
+                    className={`object-cover absolute -inset-px transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
+                  />
+                )
               ))}
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent"></div>
+              {/* Custom controls overlay */}
+              <div className="absolute bottom-0 inset-x-0 z-10 p-3 opacity-0 group-hover:opacity-100 focus-within:opacity-100 transition-opacity">
+                <div className="bg-gradient-to-t from-black/60 to-transparent rounded-b-2xl px-3 py-2 text-white">
+                  <div className="flex flex-wrap items-center gap-3 max-w-full">
+                    {/* Left cluster: play/pause and skip */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button onClick={togglePlay} className="p-2 rounded bg-white/10 hover:bg-white/20" aria-label={isPlaying ? "Pause" : "Play"}>
+                        {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                      </button>
+                      <button onClick={() => skip(-10)} className="p-2 rounded bg-white/10 hover:bg-white/20" aria-label="Skip back 10 seconds">
+                        <SkipBack className="w-4 h-4" />
+                      </button>
+                      <button onClick={() => skip(10)} className="p-2 rounded bg-white/10 hover:bg-white/20" aria-label="Skip forward 10 seconds">
+                        <SkipForward className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Center: seek bar with time (takes remaining space) */}
+                    <div className="flex-1 min-w-0 flex items-center gap-2">
+                      <input
+                        type="range"
+                        min={0}
+                        max={duration || 0}
+                        step={0.1}
+                        value={progress}
+                        onChange={(e) => handleSeek(parseFloat(e.target.value))}
+                        className="w-full min-w-0 h-1 rounded bg-white/20 accent-white"
+                        aria-label="Seek"
+                      />
+                      <div className="text-xs whitespace-nowrap">
+                        {fmt(progress)} / {fmt(duration)}
+                      </div>
+                    </div>
+
+                    {/* Right cluster: volume and speed chips */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button onClick={toggleMute} className="p-2 rounded bg-white/10 hover:bg-white/20" aria-label={isMuted ? "Unmute" : "Mute"}>
+                        {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+                      </button>
+                      <input
+                        type="range"
+                        min={0}
+                        max={1}
+                        step={0.05}
+                        value={volume}
+                        onChange={(e) => handleVolume(parseFloat(e.target.value))}
+                        className="w-24 h-1 rounded bg-white/20 accent-white"
+                        aria-label="Volume"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/15 to-transparent"></div>
             </div>
           </motion.div>
         </div>

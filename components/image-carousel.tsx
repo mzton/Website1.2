@@ -117,7 +117,7 @@ const categories: CarouselCategory[] = [
   },
   {
     id: "socials",
-    label: "Socials",
+    label: "SNS",
     items: [
       {
         id: "social-1",
