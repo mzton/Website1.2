@@ -1,51 +1,122 @@
-[00:00:04.316] Server  LOG      ✓ Ready in 2.6s
-[00:00:20.992] Server  LOG      ○ Compiling / ...
-[00:00:26.290] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:24.863] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+[00:00:01.517] Server  LOG      ✓ Ready in 950ms
+[00:00:10.467] Server  LOG      ○ Compiling / ...
+[00:00:12.922] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:59.421] Server  LOG      ✓ Compiled in 178ms
+[00:02:01.389] Server  LOG      ✓ Compiled in 119ms
+[00:02:20.027] Server  LOG      ✓ Compiled in 129ms
+[00:02:34.979] Server  LOG      ✓ Compiled in 117ms
+[00:02:39.307] Server  LOG      ✓ Compiled in 113ms
+[00:02:46.839] Server  LOG      ✓ Compiled in 108ms
+[00:02:47.948] Server  LOG      ✓ Compiled in 162ms
+[00:02:54.700] Server  LOG      ✓ Compiled in 107ms
+[00:05:34.146] Server  LOG      ✓ Compiled in 118ms
+[00:05:45.652] Server  LOG      ✓ Compiled in 104ms
+[00:05:49.424] Server  LOG      ✓ Compiled in 112ms
+[00:05:53.248] Server  LOG      ✓ Compiled in 127ms
+[00:06:08.092] Server  LOG      ✓ Compiled in 119ms
+[00:06:21.272] Server  LOG      ✓ Compiled in 138ms
+[00:06:32.555] Server  LOG      ✓ Compiled in 115ms
+[00:06:35.390] Server  LOG      ✓ Compiled in 112ms
+[00:06:39.716] Server  LOG      ✓ Compiled in 118ms
+[00:07:01.620] Server  LOG      ✓ Compiled in 107ms
+[00:07:04.043] Server  LOG      ✓ Compiled in 100ms
+[00:07:15.581] Server  LOG      ✓ Compiled in 99ms
+[00:07:18.219] Server  LOG      ✓ Compiled in 104ms
+[00:07:28.780] Server  LOG      ✓ Compiled in 108ms
+[00:07:34.477] Server  LOG      ✓ Compiled in 111ms
+[00:07:38.486] Server  LOG      ✓ Compiled in 98ms
+[00:07:46.311] Server  LOG      ✓ Compiled in 115ms
+[00:07:46.429] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. video-7
+[00:07:49.529] Server  LOG      ✓ Compiled in 111ms
+[00:08:03.868] Server  LOG      ✓ Compiled in 135ms
+[00:08:07.378] Server  LOG      ✓ Compiled in 104ms
+[00:08:11.831] Server  LOG      ✓ Compiled in 165ms
+[00:08:12.428] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. video-7
+[00:08:14.680] Server  LOG      ✓ Compiled in 119ms
+[00:08:20.343] Server  LOG      ✓ Compiled in 112ms
+[00:08:23.496] Server  LOG      ✓ Compiled in 131ms
+[00:08:24.433] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. video-7
+[00:08:28.285] Server  LOG      ✓ Compiled in 112ms
+[00:08:37.937] Server  LOG      ✓ Compiled in 94ms
+[00:08:41.893] Server  LOG      ✓ Compiled in 112ms
+[00:08:42.432] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. video-7
+[00:08:44.360] Server  LOG      ✓ Compiled in 216ms
+[00:08:49.414] Server  LOG      ✓ Compiled in 91ms
+[00:08:58.568] Server  LOG      ✓ Compiled in 99ms
+[00:09:03.102] Server  LOG      ✓ Compiled in 98ms
+[00:09:03.426] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. video-7
+[00:09:06.355] Server  LOG      ✓ Compiled in 98ms
+[00:09:14.491] Server  LOG      ✓ Compiled in 111ms
+[00:12:44.753] Server  LOG      ✓ Compiled in 154ms
+[00:13:10.778] Server  LOG      ✓ Compiled in 105ms
+[00:13:16.400] Server  LOG      ✓ Compiled in 100ms
+[00:13:25.670] Server  LOG      ✓ Compiled in 122ms
+[00:13:26.428] Browser ERROR   ./components/image-carousel.tsx:30:7
+Parsing ecmascript source code failed
+  28 |         alt: "Video content card",
+  29 |       },
+> 30 |       },
+     |       ^
+  31 |       {
+  32 |         id: "video-3",
+  33 |         image: "/video/cart.gif",
 
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+Expression expected
 
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:24.863] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:24.863] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:24.863] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:27.198] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:27.198] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:27.198] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:27.198] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:29.165] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:29.165] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:29.166] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:29.166] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:32.799] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:32.799] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:04:32.799] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
-
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
-
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:04:32.799] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+Import trace:
+  Server Component:
+    ./components/image-carousel.tsx
+    ./app/page.tsx
+[00:13:33.025] Server  LOG      ✓ Compiled in 106ms
+[00:13:35.000] Server  LOG      ✓ Compiled in 118ms
+[00:13:37.252] Server  LOG      ✓ Compiled in 137ms
+[00:13:39.773] Server  LOG      ✓ Compiled in 107ms
+[00:13:42.014] Server  LOG      ✓ Compiled in 112ms
+[00:13:44.322] Server  LOG      ✓ Compiled in 105ms
+[00:13:46.402] Server  LOG      ✓ Compiled in 95ms
+[00:13:49.085] Server  LOG      ✓ Compiled in 110ms
+[00:15:33.401] Server  LOG      ✓ Compiled in 98ms
+[00:15:36.727] Server  LOG      ✓ Compiled in 107ms
+[00:15:38.489] Server  LOG      ✓ Compiled in 110ms
+[00:15:40.915] Server  LOG      ✓ Compiled in 113ms
+[00:18:58.469] Server  LOG      ✓ Compiled in 153ms
+[00:20:44.950] Server  LOG      ✓ Compiled in 114ms
+[00:20:49.917] Server  LOG      ✓ Compiled in 109ms
+[00:20:50.426] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-7
+[00:20:53.682] Server  LOG      ✓ Compiled in 111ms
+[00:21:02.340] Server  LOG      ✓ Compiled in 175ms
+[00:21:03.529] Server  LOG      ✓ Compiled in 162ms
+[00:21:09.489] Server  LOG      ✓ Compiled in 105ms
+[00:21:10.438] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:21:12.736] Server  LOG      ✓ Compiled in 107ms
+[00:21:13.437] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:21:27.550] Server  LOG      ✓ Compiled in 187ms
+[00:21:28.431] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:21:40.973] Server  LOG      ✓ Compiled in 97ms
+[00:21:41.427] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:21:43.698] Server  LOG      ✓ Compiled in 113ms
+[00:21:44.430] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:22:01.724] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:22:06.432] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:22:42.986] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:22:46.595] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:06.851] Server  LOG      ✓ Compiled in 94ms
+[00:23:07.431] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:07.431] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:10.856] Server  LOG      ✓ Compiled in 128ms
+[00:23:11.426] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:17.671] Server  LOG      ✓ Compiled in 109ms
+[00:23:18.427] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:19.875] Server  LOG      ✓ Compiled in 110ms
+[00:23:20.435] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-8
+[00:23:49.447] Server  LOG      ✓ Compiled in 102ms
+[00:23:50.428] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. ads-9
+[00:23:52.140] Server  LOG      ✓ Compiled in 104ms
+[00:24:54.597] Server  LOG      ✓ Compiled in 109ms
+[00:24:56.967] Server  LOG      ✓ Compiled in 93ms
+[00:24:59.167] Server  LOG      ✓ Compiled in 161ms
+[00:42:05.463] Server  LOG      ✓ Compiled in 160ms
+[00:42:07.849] Server  LOG      ✓ Compiled in 93ms
+[00:42:20.586] Server  LOG      ✓ Compiled in 110ms
+[00:42:25.130] Server  LOG      ✓ Compiled in 93ms
+[00:42:29.563] Server  LOG      ✓ Compiled in 125ms

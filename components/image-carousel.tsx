@@ -24,43 +24,43 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "video-1",
-        image: "/video/video-marketing-content.jpg",
+        image: "/video/another.gif",
         alt: "Video content card",
       },
       {
         id: "video-2",
-        image: "/video/video-tutorial.png",
-        alt: "Video tutorial",
-      },
-      {
-        id: "video-3",
-        image: "/video/video-promo.jpg",
+        image: "/video/cart.gif",
         alt: "Video promotion",
       },
       {
-        id: "video-4",
-        image: "/video/video-marketing-campaign.jpg",
+        id: "video-3",
+        image: "/video/product1.gif",
         alt: "Video campaign",
       },
       {
-        id: "video-5",
-        image: "/video/video-showcase-demo.jpg",
-        alt: "Video showcase",
-      },
-      {
-        id: "video-6",
-        image: "/video/video-testimonial.jpg",
+        id: "video-4",
+        image: "/video/productsale.gif",
         alt: "Video testimonial",
       },
       {
+        id: "video-5",
+        image: "/video/reel.gif",
+        alt: "Video content",
+      },
+      {
+        id: "video-6",
+        image: "/video/reel1.gif",
+        alt: "Video content",
+      },
+      {
         id: "video-7",
-        image: "/video/video-marketing-content.jpg",
+        image: "/video/skincare.gif",
         alt: "Video content",
       },
       {
         id: "video-8",
-        image: "/video/video-tutorial.png",
-        alt: "Video guide",
+        image: "/video/skincare1.gif",
+        alt: "Video content",
       },
     ],
   },
@@ -70,17 +70,17 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "ads-1",
-        image: "/ads/socmed.jpg",
+        image: "/ads/brand.png",
         alt: "Product ad",
       },
       {
         id: "ads-2",
-        image: "/ads/IT.jpg", 
+        image: "/ads/socmed1.gif", 
         alt: "Social ad",
       },
       {
         id: "ads-3",
-        image: "/ads/fasion_advertise2.jpg",
+        image: "/ads/phone.jpg",
         alt: "Banner ad",
       },
       {
@@ -90,7 +90,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-5",
-        image: "/ads/fasion_advertise1.jpg",
+        image: "/ads/add.gif",
         alt: "Facebook ad",
       },
       {
@@ -100,12 +100,17 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-7",
-        image: "/ads/brand.png",
+        image: "/ads/ig.jpg",
         alt: "Product display",
       },
       {
         id: "ads-8",
-        image: "/ads/ig.jpg",
+        image: "/ads/socmed2.gif",
+        alt: "Product display",
+      },
+      {
+        id: "ads-9",
+        image: "/ads/socmed.png",
         alt: "Product display",
       },
     ],
