@@ -39,7 +39,7 @@ export default function Features() {
     "/video/GlobalCommunication.mp4",
     "/video/SocMedMarketing.mp4",
     "/video/SalesAndMarket.mp4",
-    "/video/GlobalStratAndPlan.mp4",
+    "/video/GlobalStratMarketing.mp4",
   ]
   const containerVariants = {
     hidden: { opacity: 0 },

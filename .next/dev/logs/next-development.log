@@ -1,62 +1,7 @@
-[00:00:01.697] Server  LOG      ✓ Ready in 1110ms
-[00:00:06.450] Server  LOG      ○ Compiling / ...
-[00:00:09.938] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:25.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:40:21.256] Server  LOG      ✓ Compiled in 247ms
-[00:40:23.390] Server  LOG      ✓ Compiled in 126ms
-[00:40:26.961] Server  LOG      ✓ Compiled in 115ms
-[00:40:29.615] Server  LOG      ✓ Compiled in 103ms
-[00:40:31.147] Server  LOG      ✓ Compiled in 101ms
-[00:43:04.039] Server  LOG      ✓ Compiled in 228ms
-[00:43:07.443] Server  LOG      ✓ Compiled in 113ms
-[00:43:12.117] Server  LOG      ✓ Compiled in 103ms
-[00:45:02.265] Server  LOG      ✓ Compiled in 91ms
-[00:45:06.682] Server  LOG      ✓ Compiled in 130ms
-[00:52:24.391] Server  LOG      ✓ Compiled in 113ms
-[00:52:25.548] Server  LOG      ✓ Compiled in 175ms
-[00:59:44.344] Server  LOG      ✓ Compiled in 188ms
-[00:59:45.232] Browser ERROR   ./components/features.tsx:111:23
-Parsing ecmascript source code failed
-  109 |                       poster="/placeholder.jpg"
-  110 |                       muted= 
-> 111 |                       autoPlay
-      |                       ^^^^^^^^
-  112 |                       loop
-  113 |                       playsInline
-  114 |                       preload="auto"
-
-Expected '</', got 'autoPlay'
-
-Import trace:
-  Server Component:
-    ./components/features.tsx
-    ./app/page.tsx
-[00:59:51.228] Browser ERROR   ./components/features.tsx:110:30
-Parsing ecmascript source code failed
-  108 |                       src={previewVideos[idx]}
-  109 |                       poster="/placeholder.jpg"
-> 110 |                       muted= true
-      |                              ^^^^
-  111 |                       autoPlay
-  112 |                       loop
-  113 |                       playsInline
-
-Expected '</', got 'true'
-
-Import trace:
-  Server Component:
-    ./components/features.tsx
-    ./app/page.tsx
-[01:36:11.000] Server  LOG      ✓ Compiled in 133ms
-[01:36:13.553] Server  LOG      ✓ Compiled in 105ms
-[01:36:28.083] Server  LOG      ✓ Compiled in 122ms
-[01:37:11.092] Server  LOG      ✓ Compiled in 110ms
-[01:37:16.043] Server  LOG      ✓ Compiled in 484ms
-[01:37:33.538] Server  LOG      ✓ Compiled in 107ms
-[01:37:46.644] Server  LOG      ✓ Compiled in 111ms
-[01:42:33.047] Server  LOG      ✓ Compiled in 186ms
-[03:49:03.094] Server  LOG      ✓ Compiled in 161ms
-[03:49:06.448] Server  LOG      ✓ Compiled in 145ms
-[03:49:09.081] Server  LOG      ✓ Compiled in 158ms
-[03:49:12.323] Server  LOG      ✓ Compiled in 145ms
-[03:58:22.928] Server  LOG      ✓ Compiled in 173ms
+[00:00:02.042] Server  LOG      ✓ Ready in 1307ms
+[00:00:10.430] Server  LOG      ○ Compiling / ...
+[00:00:14.638] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:23.423] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:26.384] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:59.124] Server  LOG      ✓ Compiled in 192ms
+[00:11:41.483] Server  LOG      ✓ Compiled in 170ms
