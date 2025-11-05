@@ -7,7 +7,7 @@ import Image from "next/image"
 import LoginModal from "@/components/login-modal"
 
 export default function Hero() {
-  const fullText = "Your Global Ambition, Powered by Filipino Talent."
+  const fullText = "Your Product Needs More Than Visibility. It Needs a Voice."
 
   // Background image carousel for the right-side visual
   const heroImages = [
