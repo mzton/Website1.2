@@ -121,19 +121,18 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            className="text-left"
+            className="text-left flex flex-col justify-center h-64 sm:h-80 md:h-96"
           >
             <h1
-              className="mb-8 text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-foreground leading-tight text-balance min-h-[200px] sm:min-h-[240px] lg:min-h-[280px] flex items-start"
+              className="mb-6 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2rem,6vw,3.5rem)]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="block">{fullText}</span>
             </h1>
 
-
-            <p className="mb-12 text-lg text-muted-foreground sm:text-xl text-balance leading-relaxed max-w-2xl">
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
               For Korean and Japanese companies aiming for the world stage, we provide a dedicated, English-proficient
               team in the Philippines to act as your Global Department.
             </p>
