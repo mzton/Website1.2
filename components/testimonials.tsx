@@ -26,14 +26,14 @@ const results = [
     title: "Rattan Storage Promo Sales",
     company: "Mia Santos",
     quote: "From in-store snapshot to clean, conversion-ready product ad",
-    images: ["/reviews/before15.jpg", "/reviews/after15.png"],
+    images: ["/reviews/before18.jpg", "/reviews/after18.png"],
   },
   {
     metric: "€18K in accessory sales",
     title: "Clutch Campaign Revenue",
     company: "Chris Bautista",
     quote: "From catalog shot to premium brand visual",
-    images: ["/reviews/before18.jpg", "/reviews/after18.png"],
+    images: ["/reviews/before15.jpg", "/reviews/after15.png"],
   },
   {
     metric: "1,500 units sold",
@@ -69,13 +69,6 @@ const results = [
   company: "Emiko Tanaka",
   quote: "From casual snapshot to luxury sale design",
   images: ["/reviews/before14.jpg", "/reviews/after14.png"],
-  },
-  {
-  metric: "10% OFF campaign",
-  title: "Teal & White Curtain Sale Banner",
-  company: "Angel Marie",
-  quote: "From everyday shot to elegant home décor promotion",
-  images: ["/reviews/before19.jpg", "/reviews/after19.png"],
   },
 ]
 
