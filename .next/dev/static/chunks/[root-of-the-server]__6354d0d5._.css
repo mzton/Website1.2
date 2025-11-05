@@ -1169,6 +1169,10 @@
     height: calc(var(--spacing) * 48);
   }
 
+  .h-56 {
+    height: calc(var(--spacing) * 56);
+  }
+
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -1601,10 +1605,6 @@
     --tw-scroll-snap-strictness: mandatory;
   }
 
-  .snap-center {
-    scroll-snap-align: center;
-  }
-
   .snap-start {
     scroll-snap-align: start;
   }
@@ -1683,10 +1683,6 @@
 
   .justify-center {
     justify-content: center;
-  }
-
-  .justify-end {
-    justify-content: flex-end;
   }
 
   .justify-start {
@@ -3704,18 +3700,6 @@
   }
 
   @media (hover: hover) {
-    .hover\:bg-accent\/10:hover {
-      background-color: var(--accent);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .hover\:bg-accent\/10:hover {
-        background-color: color-mix(in oklab, var(--accent) 10%, transparent);
-      }
-    }
-  }
-
-  @media (hover: hover) {
     .hover\:bg-accent\/90:hover {
       background-color: var(--accent);
     }
@@ -5192,6 +5176,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:h-60 {
+      height: calc(var(--spacing) * 60);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:h-80 {
       height: calc(var(--spacing) * 80);
     }
@@ -5529,6 +5519,12 @@
   }
 
   @media (min-width: 64rem) {
+    .lg\:h-64 {
+      height: calc(var(--spacing) * 64);
+    }
+  }
+
+  @media (min-width: 64rem) {
     .lg\:min-h-\[280px\] {
       min-height: 280px;
     }
@@ -5543,12 +5539,6 @@
   @media (min-width: 64rem) {
     .lg\:grid-cols-3 {
       grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 64rem) {
-    .lg\:px-6 {
-      padding-inline: calc(var(--spacing) * 6);
     }
   }
 

@@ -76,13 +76,25 @@ export default function Header() {
       {isOpen && (
         <div className="border-t border-border/40 bg-card md:hidden">
           <div className="flex flex-col gap-4 px-4 py-4">
-            <a href="#services" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
+            <a
+              href="#services"
+              className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+            >
               Services
             </a>
-            <a href="#solution" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
+            <a
+              href="#solution"
+              className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+            >
               Solution
             </a>
-            <a href="#pricing" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
+            <a
+              href="#pricing"
+              className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
+              onClick={() => setIsOpen(false)}
+            >
               Pricing
             </a>
             <button

@@ -1,29 +1,33 @@
-[00:00:01.537] Server  LOG      ✓ Ready in 977ms
-[00:00:11.474] Server  LOG      ○ Compiling / ...
-[00:00:14.588] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:02:51.876] Server  LOG      ✓ Compiled in 585ms
-[00:03:13.458] Server  LOG      ✓ Compiled in 378ms
-[00:03:30.745] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:28.501] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:37.827] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:08:26.940] Server  LOG      ✓ Compiled in 317ms
-[00:08:41.041] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:08:48.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:14:10.106] Server  LOG      ✓ Compiled in 394ms
-[00:14:21.858] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:04.042] Server  LOG      ✓ Compiled in 118ms
-[00:20:23.230] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:38.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:46.142] Server  LOG      ✓ Compiled in 378ms
-[00:22:47.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:22:49.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:23:08.674] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:21.090] Server  LOG      ✓ Compiled in 195ms
-[00:29:42.375] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:31:10.095] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:32:55.720] Server  LOG      ✓ Compiled in 512ms
-[00:33:10.240] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:38:26.375] Server  LOG      ✓ Compiled in 115ms
-[00:38:35.043] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:38:59.736] Server  LOG      ✓ Compiled in 125ms
-[00:39:23.865] Server  LOG      ✓ Compiled in 140ms
+[00:00:02.433] Server  LOG      ✓ Ready in 1740ms
+[00:00:08.047] Server  LOG      ○ Compiling / ...
+[00:00:12.083] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:35.296] Server  LOG      ✓ Compiled in 296ms
+[00:02:53.447] Server  LOG      ✓ Compiled in 191ms
+[00:02:59.462] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:30.057] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:35:58.733] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:46.357] Server  LOG      ✓ Compiled in 170ms
+[00:40:46.512] Browser ERROR   uncaughtError: ReferenceError: useRef is not defined
+[00:40:59.138] Server  ERROR    ⨯ ReferenceError: useRef is not defined
+[00:40:59.240] Server  ERROR    ⨯ ReferenceError: useRef is not defined
+[00:40:59.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:00.051] Browser ERROR   uncaughtError: ReferenceError: useRef is not defined
+[00:41:51.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:32.117] Server  LOG      ✓ Compiled in 342ms
+[00:45:38.608] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:33.402] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog
+[00:46:33.402] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:46:33.402] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+
+If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+
+For more information, see https://radix-ui.com/primitives/docs/components/dialog
+[00:46:33.402] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
+[00:47:46.923] Server  LOG      ✓ Compiled in 248ms
+[00:47:56.107] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:52:37.577] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:54:24.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
