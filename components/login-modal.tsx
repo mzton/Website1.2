@@ -69,6 +69,11 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="w-full max-w-[92vw] sm:max-w-md p-6 sm:p-8 rounded-xl max-h-[85vh] sm:max-h-none overflow-y-auto">
+        {/* Accessible title for screen readers (visually hidden) */}
+        <DialogHeader className="sr-only">
+          <DialogTitle>{mode === "signin" ? "Sign In" : "Sign Up"}</DialogTitle>
+          <DialogDescription>Access your account</DialogDescription>
+        </DialogHeader>
         <Tabs value={mode} onValueChange={(v) => setMode(v as any)} className="w-full">
           <TabsList className="grid grid-cols-2 w-full">
             <TabsTrigger value="signin">Sign In</TabsTrigger>

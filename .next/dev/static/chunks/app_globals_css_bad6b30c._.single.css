@@ -1023,6 +1023,10 @@
     height: calc(var(--spacing) * 48);
   }
 
+  .h-56 {
+    height: calc(var(--spacing) * 56);
+  }
+
   .h-64 {
     height: calc(var(--spacing) * 64);
   }
@@ -5026,6 +5030,12 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:h-60 {
+      height: calc(var(--spacing) * 60);
+    }
+  }
+
+  @media (min-width: 40rem) {
     .sm\:h-80 {
       height: calc(var(--spacing) * 80);
     }
@@ -5359,6 +5369,12 @@
   @media (min-width: 64rem) {
     .lg\:-mx-8 {
       margin-inline: calc(var(--spacing) * -8);
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .lg\:h-64 {
+      height: calc(var(--spacing) * 64);
     }
   }
 

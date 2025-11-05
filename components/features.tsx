@@ -101,7 +101,8 @@ export default function Features() {
                     setHoveredIndex(null)
                   }}
                 >
-                  <div className="relative mb-4 h-48 w-full overflow-hidden rounded-lg">
+                  {/* Larger preview area for videos */}
+                  <div className="relative mb-6 h-56 sm:h-60 lg:h-64 w-full overflow-hidden rounded-lg">
                     <video
                       ref={(el) => (videoRefs.current[idx] = el)}
                       src={previewVideos[idx]}
@@ -114,10 +115,13 @@ export default function Features() {
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
                     />
                   </div>
-                  <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/40 group-hover:to-accent/40 transition-all">
-                    <Icon className="h-6 w-6 text-accent" />
+                  {/* Inline icon beside title */}
+                  <div className="mb-3 flex items-center gap-3">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/40 group-hover:to-accent/40 transition-all">
+                      <Icon className="h-5 w-5 text-accent" />
+                    </span>
+                    <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
                   </div>
-                  <h3 className="mb-3 text-xl font-semibold text-foreground">{feature.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
                 </Card>
               </motion.div>
