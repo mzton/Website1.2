@@ -1,34 +1,62 @@
-[00:00:02.433] Server  LOG      ✓ Ready in 1740ms
-[00:00:08.047] Server  LOG      ○ Compiling / ...
-[00:00:12.083] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:35.296] Server  LOG      ✓ Compiled in 296ms
-[00:02:53.447] Server  LOG      ✓ Compiled in 191ms
-[00:02:59.462] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:30.057] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:35:58.733] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:40:46.357] Server  LOG      ✓ Compiled in 170ms
-[00:40:46.512] Browser ERROR   uncaughtError: ReferenceError: useRef is not defined
-[00:40:59.138] Server  ERROR    ⨯ ReferenceError: useRef is not defined
-[00:40:59.240] Server  ERROR    ⨯ ReferenceError: useRef is not defined
-[00:40:59.707] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:41:00.051] Browser ERROR   uncaughtError: ReferenceError: useRef is not defined
-[00:41:51.940] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:45:32.117] Server  LOG      ✓ Compiled in 342ms
-[00:45:38.608] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:46:33.402] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+[00:00:01.697] Server  LOG      ✓ Ready in 1110ms
+[00:00:06.450] Server  LOG      ○ Compiling / ...
+[00:00:09.938] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:25.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:21.256] Server  LOG      ✓ Compiled in 247ms
+[00:40:23.390] Server  LOG      ✓ Compiled in 126ms
+[00:40:26.961] Server  LOG      ✓ Compiled in 115ms
+[00:40:29.615] Server  LOG      ✓ Compiled in 103ms
+[00:40:31.147] Server  LOG      ✓ Compiled in 101ms
+[00:43:04.039] Server  LOG      ✓ Compiled in 228ms
+[00:43:07.443] Server  LOG      ✓ Compiled in 113ms
+[00:43:12.117] Server  LOG      ✓ Compiled in 103ms
+[00:45:02.265] Server  LOG      ✓ Compiled in 91ms
+[00:45:06.682] Server  LOG      ✓ Compiled in 130ms
+[00:52:24.391] Server  LOG      ✓ Compiled in 113ms
+[00:52:25.548] Server  LOG      ✓ Compiled in 175ms
+[00:59:44.344] Server  LOG      ✓ Compiled in 188ms
+[00:59:45.232] Browser ERROR   ./components/features.tsx:111:23
+Parsing ecmascript source code failed
+  109 |                       poster="/placeholder.jpg"
+  110 |                       muted= 
+> 111 |                       autoPlay
+      |                       ^^^^^^^^
+  112 |                       loop
+  113 |                       playsInline
+  114 |                       preload="auto"
 
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+Expected '</', got 'autoPlay'
 
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:46:33.402] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:46:33.402] Browser ERROR   `DialogContent` requires a `DialogTitle` for the component to be accessible for screen reader users.
+Import trace:
+  Server Component:
+    ./components/features.tsx
+    ./app/page.tsx
+[00:59:51.228] Browser ERROR   ./components/features.tsx:110:30
+Parsing ecmascript source code failed
+  108 |                       src={previewVideos[idx]}
+  109 |                       poster="/placeholder.jpg"
+> 110 |                       muted= true
+      |                              ^^^^
+  111 |                       autoPlay
+  112 |                       loop
+  113 |                       playsInline
 
-If you want to hide the `DialogTitle`, you can wrap it with our VisuallyHidden component.
+Expected '</', got 'true'
 
-For more information, see https://radix-ui.com/primitives/docs/components/dialog
-[00:46:33.402] Browser WARN    Warning: Missing `Description` or `aria-describedby={undefined}` for {DialogContent}.
-[00:47:46.923] Server  LOG      ✓ Compiled in 248ms
-[00:47:56.107] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:52:37.577] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:54:24.371] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[02:01:23.543] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+Import trace:
+  Server Component:
+    ./components/features.tsx
+    ./app/page.tsx
+[01:36:11.000] Server  LOG      ✓ Compiled in 133ms
+[01:36:13.553] Server  LOG      ✓ Compiled in 105ms
+[01:36:28.083] Server  LOG      ✓ Compiled in 122ms
+[01:37:11.092] Server  LOG      ✓ Compiled in 110ms
+[01:37:16.043] Server  LOG      ✓ Compiled in 484ms
+[01:37:33.538] Server  LOG      ✓ Compiled in 107ms
+[01:37:46.644] Server  LOG      ✓ Compiled in 111ms
+[01:42:33.047] Server  LOG      ✓ Compiled in 186ms
+[03:49:03.094] Server  LOG      ✓ Compiled in 161ms
+[03:49:06.448] Server  LOG      ✓ Compiled in 145ms
+[03:49:09.081] Server  LOG      ✓ Compiled in 158ms
+[03:49:12.323] Server  LOG      ✓ Compiled in 145ms
+[03:58:22.928] Server  LOG      ✓ Compiled in 173ms
