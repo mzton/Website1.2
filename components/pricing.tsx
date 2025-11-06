@@ -22,13 +22,13 @@ const plans = [
       {
         type: "gallery",
         label: "Social Media Posts",
-        images: ["/pricing/sns.png", "/pricing/anadawan.png", "/pricing/a4.png"],
+        images: ["/pricing/sns.png", "/pricing/anadawan.png", "/pricing/ig1.png"],
         description: "Transform product photos into scroll-stopping content"
       },
       {
         type: "gallery",
         label: "Content Variety",
-        images: ["/pricing/sns6.png", "/pricing/sns7.png", "/pricing/snspost.png"],
+        images: ["/pricing/sale1.png", "/pricing/sns7.png", "/pricing/a5.png"],
         description: "Stories, posts, ads - all professionally designed"
       },
       {
@@ -63,19 +63,19 @@ const plans = [
       {
         type: "gallery",
         label: "Product Listings",
-        images: ["/reviews/after13.png", "/reviews/after11.png", "/reviews/after15.png"],
+        images: ["/pricing/ok4.png", "/pricing/k5.png", "/pricing/ok1.png"],
         description: "Optimize listings for higher conversion rates"
       },
       {
         type: "mockup",
         label: "Live Chat Support",
-        image: "/video/cart.gif",
+        image: "/pricing/livechat.png",
         description: "Real-time customer support during Korean hours"
       },
       {
         type: "gallery",
         label: "Multi-Platform Management",
-        images: ["/reviews/after6.png", "/reviews/after11.png", "/reviews/after15.png"],
+        images: ["/pricing/y1.png", "/reviews/after11.png", "/reviews/after15.png"],
         description: "Amazon, Shopee, and beyond"
       }
     ],
@@ -110,7 +110,7 @@ const plans = [
       {
         type: "gallery",
         label: "Professional Materials",
-        images: ["/reviews/after7.png", "/reviews/after8.png", "/reviews/after14.png"],
+        images: ["/reviews/after7.png", "/reviews/after8.png"],
         description: "Pitch decks, proposals, and trade show materials"
       },
       {
@@ -223,10 +223,10 @@ export default function VisualPricing() {
 
                           {/* Gallery Preview */}
                           {showcase.type === "gallery" && (
-                            <div className="grid grid-cols-3 gap-1 p-2">
+                            <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-1 p-2`}>
                               {showcase.images?.map((img, i) => (
-                                <div key={i} className="relative h-20 rounded overflow-hidden">
-                                  <NextImage src={img} alt={`Example ${i+1}`} fill className="object-cover" />
+                                <div key={i} className="relative h-20 rounded overflow-hidden bg-muted">
+                                  <NextImage src={img} alt={`Example ${i+1}`} fill className="object-contain" />
                                 </div>
                               ))}
                             </div>
@@ -386,10 +386,10 @@ export default function VisualPricing() {
                     {/* Expanded Content */}
 
                     {showcase.type === "gallery" && (
-                      <div className="grid md:grid-cols-3 gap-4">
+                      <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
                         {showcase.images?.map((img, i) => (
-                          <div key={i} className="relative aspect-square rounded-lg overflow-hidden">
-                            <NextImage src={img} alt={`Example ${i+1}`} fill className="object-cover" />
+                          <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-muted">
+                            <NextImage src={img} alt={`Example ${i+1}`} fill className="object-contain" />
                           </div>
                         ))}
                       </div>
