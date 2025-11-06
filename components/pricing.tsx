@@ -45,8 +45,6 @@ const plans = [
       { text: "Catalogue & ad design", icon: "image" },
       { text: "Weekly performance reports", icon: "trend" },
     ],
-    ctaText: "Start Creating Content",
-    ctaVariant: "outline",
     highlighted: false,
   },
   {
@@ -88,13 +86,7 @@ const plans = [
       { text: "Live chat (Korean office hours)", icon: "message" },
       { text: "Product listing optimization", icon: "image" },
     ],
-    ctaText: "Grow Your Sales",
-    ctaVariant: "default",
-    highlighted: true,
-    roi: {
-      title: "Increase sales by just $5,000/mo",
-      subtitle: "and you've covered the investment 5x over"
-    }
+    highlighted: false,
   },
   {
     name: "Enterprise Growth",
@@ -134,8 +126,6 @@ const plans = [
       { text: "Partnership negotiation support", icon: "message" },
       { text: "Enterprise priority support", icon: "shield" },
     ],
-    ctaText: "Build My Global Team",
-    ctaVariant: "default",
     highlighted: false,
     performanceGuarantee: "Dedicated team working exclusively on your growth"
   },
