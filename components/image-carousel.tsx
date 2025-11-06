@@ -71,27 +71,27 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "ads-1",
-        image: "/ads/img1.png",
+        image: "/ads/sns1 (2).png",
         alt: "Product ad",
       },
       {
         id: "ads-2",
-        image: "/ads/img2.png", 
+        image: "/ads/sns7.png", 
         alt: "Social ad",
       },
       {
         id: "ads-3",
-        image: "/ads/img3.png",
+        image: "/ads/sns8.png",
         alt: "Banner ad",
       },
       {
         id: "ads-4",
-        image: "/ads/img4.png",
+        image: "/ads/sns9.png",
         alt: "Doctor ad",
       },
       {
         id: "ads-5",
-        image: "/ads/img5.png",
+        image: "/ads/add.gif",
         alt: "Facebook ad",
       },
       {
@@ -101,7 +101,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-7",
-        image: "/ads/img6.png",
+        image: "/ads/ig.jpg",
         alt: "Product display",
       },
       {
@@ -111,7 +111,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-9",
-        image: "/ads/img7.png",
+        image: "/ads/socmed.png",
         alt: "Product display",
       },
     ],
@@ -122,22 +122,22 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "social-1",
-        image: "/social/sns12.png",
+        image: "/social/sns10.png",
         alt: "Instagram post",
       },
       {
         id: "social-2",
-        image: "/social/sns13.png",
+        image: "/social/sns11.png",
         alt: "Social content",
       },
       {
         id: "social-3",
-        image: "/social/sns14.png",
+        image: "/social/sns8.png",
         alt: "TikTok video",
       },
       {
         id: "social-4",
-        image: "/social/sns15.png",
+        image: "/social/sns17.png",
         alt: "Instagram carousel",
       },
       {
@@ -148,17 +148,17 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "social-6",
-        image: "/social/sns17.png",
+        image: "/social/sns15.png",
         alt: "LinkedIn post",
       },
       {
         id: "social-7",
-        image: "/social/sns19.png",
+        image: "/social/sns14.png",
         alt: "Instagram reel",
       },
       {
         id: "social-8",
-        image: "/social/sns20.png",
+        image: "/social/sns13.png",
         alt: "Social reel",
       },
     ],
@@ -313,7 +313,7 @@ export default function ImageCarousel() {
               {activeItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className="absolute duration-2000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20 bg-background"
+                  className="absolute duration-2000 ease-in-out rounded-3xl overflow-hidden shadow-2xl border border-border/20"
                   style={{
                     width: `${itemWidth}px`,
                     height: `${itemHeight}px`,
@@ -324,7 +324,7 @@ export default function ImageCarousel() {
                       <video
                         src={item.video}
                         poster={item.poster}
-                        className="absolute inset-0 w-full h-full object-contain object-center bg-black/20 cursor-pointer"
+                        className="absolute inset-0 w-full h-full object-cover cursor-pointer"
                         autoPlay
                         muted
                         loop
@@ -333,7 +333,7 @@ export default function ImageCarousel() {
                         onClick={(e) => enterFullscreen(e.currentTarget)}
                       />
                     ) : (
-                      <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-contain object-center" />
+                      <Image src={item.image || "/placeholder.svg"} alt={item.alt} fill className="object-cover" />
                     )}
                 </div>
               ))}
