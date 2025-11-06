@@ -158,7 +158,7 @@ export default function VisualPricing() {
   const [activePreview, setActivePreview] = useState<{planIndex: number, showcaseIndex: number} | null>(null)
 
   return (
-    <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
+    <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20 scroll-mt-28">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 text-center">

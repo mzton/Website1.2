@@ -1,29 +1,31 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
-import { Play, Pause, Volume2, VolumeX, SkipForward, SkipBack, Maximize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
-import Image from "next/image"
 import LoginModal from "@/components/login-modal"
+import { Play, Pause, Volume2, VolumeX, SkipForward, SkipBack, TrendingUp, Mail, MessageSquare, ArrowRight, Globe, CheckCircle } from "lucide-react"
+import Image from "next/image"
+
 
 export default function Hero() {
-  const fullText = "Your Company Needs More Than Visibility. It Needs a Voice."
+  const fullText = "Your Product Deserves a Global Stage."
 
-  // Background media for the right-side visual (now using video)
+  const [loginOpen, setLoginOpen] = useState(false)
+
+  // Background media for the right-side visual (video with poster)
   const heroMedia = [
-    { video: "/video/herovideo1.mp4", poster: "/filipino-professionals-having-video-conference-wit.jpg" },
+    { video: "/video/Hero.mp4", poster: "/placeholder.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroMedia.length)
-    }, 5000) // change background every 5s
+    }, 5000)
     return () => clearInterval(interval)
   }, [])
 
-  const [loginOpen, setLoginOpen] = useState(false)
   // Custom video controls state
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(true)
@@ -31,7 +33,6 @@ export default function Hero() {
   const [volume, setVolume] = useState(0.6)
   const [progress, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
-  const [rate, setRate] = useState(1)
 
   // Attach the ref to the currently visible video when background index changes
   useEffect(() => {
@@ -40,7 +41,6 @@ export default function Hero() {
       videoRef.current = active
       active.muted = isMuted
       active.volume = volume
-      active.playbackRate = rate
     }
   }, [bgIndex])
 
@@ -54,12 +54,11 @@ export default function Hero() {
     // keep properties in sync
     v.muted = isMuted
     v.volume = volume
-    v.playbackRate = rate
     return () => {
       v.removeEventListener("timeupdate", onTime)
       v.removeEventListener("loadedmetadata", onMeta)
     }
-  }, [isMuted, volume, rate])
+  }, [isMuted, volume])
 
   const togglePlay = () => {
     const v = videoRef.current
@@ -101,12 +100,6 @@ export default function Hero() {
     v.currentTime = val
     setProgress(val)
   }
-  const changeRate = (val: number) => {
-    const v = videoRef.current
-    if (!v) return
-    v.playbackRate = val
-    setRate(val)
-  }
   const fmt = (s: number) => {
     if (!isFinite(s)) return "0:00"
     const m = Math.floor(s / 60)
@@ -114,14 +107,14 @@ export default function Hero() {
     return `${m}:${sec.toString().padStart(2, "0")}`
   }
   return (
-    <section className="relative overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 pt-40 sm:pt-44 lg:pt-48 pb-12 sm:px-6 lg:px-8 scroll-mt-40 sm:scroll-mt-44 lg:scroll-mt-48">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
       </div>
 
       <div className="mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             className="text-left flex flex-col justify-center h-64 sm:h-80 md:h-96"
           >
@@ -132,12 +125,8 @@ export default function Hero() {
               <span className="block">{fullText}</span>
             </h1>
 
-            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
-              For Korean and Japanese companies aiming for the world stage, we provide a dedicated, English-proficient
-              team in the Philippines to act as your Global Department.
-            </p>
-
-            <div className="flex flex-col gap-4 sm:flex-row items-start">
+            {/* CTA moved up below the headline */}
+            <div className="flex flex-col gap-4 sm:flex-row items-start mb-8">
               <Button
                 size="lg"
                 className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold w-full sm:w-auto"
@@ -146,6 +135,17 @@ export default function Hero() {
                 Request Free Consultation
               </Button>
             </div>
+
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
+              You've spent years perfecting your product. Your technology is world-class. Your service is exceptional.
+              But when that email from a European buyer arrives...
+              When that LinkedIn message from a potential partner comes in...
+              When that exhibition leads to a follow-up conversation...
+              The English barrier suddenly feels like a glass ceiling between you and the world.
+            </p>
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-1xl">
+              "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
+            </p>
           </motion.div>
 
           <motion.div
@@ -214,7 +214,7 @@ export default function Hero() {
                       </div>
                     </div>
 
-                    {/* Right cluster: volume and speed chips */}
+                    {/* Right cluster: volume */}
                     <div className="flex items-center gap-2 flex-shrink-0">
                       <button onClick={toggleMute} className="p-2 rounded bg-white/10 hover:bg-white/20" aria-label={isMuted ? "Unmute" : "Mute"}>
                         {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
@@ -238,17 +238,74 @@ export default function Hero() {
           </motion.div>
         </div>
 
+      <div id="barrier" className="section min-h-screen bg-gradient-to-br from-background via-background to-muted/30 py-20 px-4 mt-24 sm:mt-28 md:mt-32 scroll-mt-28">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            The Silent Barrier
+          </h2>
+          <p className="text-xl text-muted-foreground">Every day, opportunities pass by...</p>
+        </div>
+
+        {/* Visual problem scenarios */}
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            { icon: Mail, title: "Unanswered Emails", color: "from-red-600 to-red-700" },
+            { icon: MessageSquare, title: "Lost Conversations", color: "from-orange-600 to-orange-700" },
+            { icon: TrendingUp, title: "Missed Deals", color: "from-amber-600 to-amber-700" }
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="relative group cursor-pointer"
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br opacity-20 group-hover:opacity-30 transition-opacity rounded-2xl blur-xl" 
+                   style={{ background: `linear-gradient(135deg, ${item.color})` }}></div>
+              <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-border transition-all transform hover:scale-105 duration-300">
+                <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center mb-6 mx-auto transform group-hover:rotate-12 transition-transform`}>
+                  <item.icon className="w-10 h-10 text-foreground" />
+                </div>
+                <h3 className="text-xl font-bold text-foreground text-center mb-3">{item.title}</h3>
+                <div className="h-1 w-16 bg-gradient-to-r from-red-500 to-amber-500 mx-auto rounded-full"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Emotional impact visualization */}
+        <div className="mt-16 text-center">
+          <div className="inline-block bg-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-border/50">
+            <p className="text-2xl text-muted-foreground mb-4">
+              Language shouldn't limit greatness
+            </p>
+            <div className="flex items-center justify-center gap-4">
+              <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
+                <div className="w-1/4 h-full bg-red-500 rounded-full animate-pulse"></div>
+              </div>
+              <ArrowRight className="w-6 h-6 text-primary" />
+              <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
+                <div className="w-full h-full bg-green-500 rounded-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
         {/* Global Impact Section - Full Width */}
         <div className="mt-24 pt-16 border-t border-border/40">
           <div className="text-center">
             <p className="mb-12 text-sm font-semibold text-accent uppercase tracking-wide">Global Impact</p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-4xl mx-auto">
               {[
-                { stat: "180%", label: "Lead Growth" },
-                { stat: "4", label: "New Partners" },
-                { stat: "3x", label: "Faster Sales" },
+                { stat: "180%", label: "Lead Growth", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
+                { stat: "4", label: "New Partners", icon: Globe, color: "from-blue-500 to-cyan-600" },
+                { stat: "3x", label: "Faster Sales", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
               ].map((item) => (
                 <motion.div key={item.stat} whileHover={{ scale: 1.05 }} className="text-center">
+                  <div className={`mx-auto mb-3 w-12 h-12 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center`}>
+                    <item.icon className="w-6 h-6 text-primary-foreground" />
+                  </div>
                   <div className="text-4xl lg:text-5xl font-black text-primary mb-3">{item.stat}</div>
                   <p className="text-sm text-muted-foreground font-medium">{item.label}</p>
                 </motion.div>

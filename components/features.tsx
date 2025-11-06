@@ -61,7 +61,7 @@ export default function Features() {
   }
 
   return (
-    <section id="services" className="px-4 py-20 sm:px-6 lg:px-8 bg-card/30">
+    <section id="services" className="px-4 py-20 sm:px-6 lg:px-8 bg-card/30 scroll-mt-28">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, x: -100 }}
