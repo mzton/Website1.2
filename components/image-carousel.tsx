@@ -66,26 +66,26 @@ const categories: CarouselCategory[] = [
   },
   {
     id: "ads",
-    label: "Ads",
+    label: "Images",
     items: [
       {
         id: "ads-1",
-        image: "/ads/brand.png",
+        image: "/ads/sns1 (2).png",
         alt: "Product ad",
       },
       {
         id: "ads-2",
-        image: "/ads/socmed1.gif", 
+        image: "/ads/sns7.png", 
         alt: "Social ad",
       },
       {
         id: "ads-3",
-        image: "/ads/phone.jpg",
+        image: "/ads/sns8.png",
         alt: "Banner ad",
       },
       {
         id: "ads-4",
-        image: "/ads/model_advertisement.png",
+        image: "/ads/sns9.png",
         alt: "Doctor ad",
       },
       {
@@ -121,42 +121,42 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "social-1",
-        image: "/social/Socials1.png",
+        image: "/social/sns10.png",
         alt: "Instagram post",
       },
       {
         id: "social-2",
-        video: "/social/Socials2.mp4",
+        image: "/social/sns11.png",
         alt: "Social content",
       },
       {
         id: "social-3",
-        video: "/social/Socials3.mp4",
+        image: "/social/sns8.png",
         alt: "TikTok video",
       },
       {
         id: "social-4",
-        video: "/social/Socials4.mp4",
+        image: "/social/sns17.png",
         alt: "Instagram carousel",
       },
       {
         id: "social-5",
-        video: "/social/Socials5.mp4",
+        image: "/social/sns16.png",
         alt: "TikTok content",
       },
       {
         id: "social-6",
-        video: "/social/Socials6.mp4",
+        image: "/social/sns15.png",
         alt: "LinkedIn post",
       },
       {
         id: "social-7",
-        video: "/social/Socials7.mp4",
+        image: "/social/sns14.png",
         alt: "Instagram reel",
       },
       {
         id: "social-8",
-        video: "/social/Socials8.mp4",
+        image: "/social/sns13.png",
         alt: "Social reel",
       },
     ],
@@ -165,14 +165,14 @@ const categories: CarouselCategory[] = [
     id: "emails",
     label: "Emails",
     items: [
-      { id: "email-1", video: "/email/video1.mp4", poster: "/placeholder.jpg", alt: "Email video 1" },
-      { id: "email-2", video: "/email/video2.mp4", poster: "/placeholder.jpg", alt: "Email video 2" },
-      { id: "email-3", video: "/email/video3.mp4", poster: "/placeholder.jpg", alt: "Email video 3" },
-      { id: "email-4", video: "/email/video4.mp4", poster: "/placeholder.jpg", alt: "Email video 4" },
-      { id: "email-5", video: "/email/video5.mp4", poster: "/placeholder.jpg", alt: "Email video 5" },
-      { id: "email-6", video: "/email/video6.mp4", poster: "/placeholder.jpg", alt: "Email video 6" },
-      { id: "email-7", video: "/email/video7.mp4", poster: "/placeholder.jpg", alt: "Email video 7" },
-      { id: "email-8", video: "/email/video8.mp4", poster: "/placeholder.jpg", alt: "Email video 8" },
+      { id: "email-1", image: "/email/email1.png", poster: "/placeholder.png", alt: "Email 1" },
+      { id: "email-2", image: "/email/email2.png", poster: "/placeholder.png", alt: "Email 2" },
+      { id: "email-3", image: "/email/email3.png", poster: "/placeholder.png", alt: "Email 3" },
+      { id: "email-4", image: "/email/email4.png", poster: "/placeholder.png", alt: "Email 4" },
+      { id: "email-5", image: "/email/email5.png", poster: "/placeholder.png", alt: "Email 5" },
+      { id: "email-6", image: "/email/email6.png", poster: "/placeholder.png", alt: "Email 6" },
+      { id: "email-7", image: "/email/email7.png", poster: "/placeholder.png", alt: "Email 7" },
+      { id: "email-8", image: "/email/email8.png", poster: "/placeholder.png", alt: "Email 8" },
     ],
   },
 ]
