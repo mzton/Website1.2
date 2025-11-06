@@ -9,32 +9,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/80 backdrop-blur px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 mb-12">
-          <div>
-            <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Services</h4>
-            <ul className="space-y-3 text-sm text-muted-foreground">
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  English Communication
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Social Media & Content
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Sales Development
-                </a>
-              </li>
-              <li>
-                <a href="#" className="font-sans transition hover:text-accent">
-                  Global Strategy
-                </a>
-              </li>
-            </ul>
-          </div>
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 mb-12">
           <div>
             <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Company</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">

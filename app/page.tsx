@@ -16,9 +16,10 @@ export default function Home() {
       <ImageCarousel />
       <Features />
       <Solution />
+      <CTA />
       <Testimonials />
       <Pricing />
-      <CTA />
+      
       <Footer />
     </main>
   )

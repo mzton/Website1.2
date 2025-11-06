@@ -1,4 +1,4 @@
-  import type React from "react"
+import type React from "react"
 import type { Metadata } from "next"
 import { Nunito, Inter } from "next/font/google"
 import "./globals.css"
@@ -9,10 +9,46 @@ import GoogleTranslate from "@/components/google-translate"
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
-export const metadata: Metadata = { 
-  title: "BOOSTK - Your Global Business Team",
-  description: "Connect Korean and Japanese companies with English-speaking Filipino professionals",
-    generator: 'v0.app'
+export const metadata: Metadata = {
+  title: {
+    default: "BOOSTK - Your Global Business Team",
+    template: "%s | BOOSTK",
+  },
+  description:
+    "Connect Korean and Japanese companies with English-speaking Filipino professionals.",
+  applicationName: "BOOSTK",
+  keywords: [
+    "global department",
+    "outsourcing",
+    "social media",
+    "sales enablement",
+    "English professionals",
+  ],
+  authors: [{ name: "BOOSTK" }],
+  creator: "BOOSTK",
+  metadataBase: new URL("http://localhost:3000"),
+  openGraph: {
+    title: "BOOSTK - Your Global Business Team",
+    description:
+      "Build your global brand presence and sales with English-speaking Filipino professionals.",
+    url: "/",
+    siteName: "BOOSTK",
+    images: [{ url: "/placeholder.jpg", width: 1200, height: 630, alt: "BOOSTK" }],
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BOOSTK - Your Global Business Team",
+    description:
+      "Global content, sales, and support delivered by English-speaking Filipino professionals.",
+    images: ["/placeholder.jpg"],
+  },
+  generator: "v0.app",
+}
+
+export const viewport = {
+  themeColor: "#111827",
 }
 
 export default function RootLayout({
