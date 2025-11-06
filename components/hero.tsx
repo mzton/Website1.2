@@ -8,7 +8,7 @@ import Image from "next/image"
 import LoginModal from "@/components/login-modal"
 
 export default function Hero() {
-  const fullText = "Your Product Needs More Than Visibility. It Needs a Voice."
+  const fullText = "Your Company Needs More Than Visibility. It Needs a Voice."
 
   // Background media for the right-side visual (now using video)
   const heroMedia = [

@@ -1,4 +1,4 @@
-import type React from "react"
+  import type React from "react"
 import type { Metadata } from "next"
 import { Nunito, Inter } from "next/font/google"
 import "./globals.css"
@@ -9,7 +9,7 @@ import GoogleTranslate from "@/components/google-translate"
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
 
-export const metadata: Metadata = {
+export const metadata: Metadata = { 
   title: "BOOSTK - Your Global Business Team",
   description: "Connect Korean and Japanese companies with English-speaking Filipino professionals",
     generator: 'v0.app'

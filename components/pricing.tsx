@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Check, Megaphone, ShoppingCart, Briefcase, Shield } from "lucide-react"
+import { Check, Megaphone, ShoppingCart, Briefcase, Shield, Play, Image, FileText, MessageSquare, TrendingUp } from "lucide-react"
 import { useState } from "react"
-import LoginModal from "@/components/login-modal"
+import NextImage from "next/image"
 
 const plans = [
   {
@@ -18,14 +18,32 @@ const plans = [
       icon: "📢",
       text: "Consistent, professional English content across all channels"
     },
+    visualShowcase: [
+      {
+        type: "gallery",
+        label: "Social Media Posts",
+        images: ["/pricing/sns.png", "/pricing/anadawan.png", "/pricing/a4.png"],
+        description: "Transform product photos into scroll-stopping content"
+      },
+      {
+        type: "gallery",
+        label: "Content Variety",
+        images: ["/pricing/sns6.png", "/pricing/sns7.png", "/pricing/snspost.png"],
+        description: "Stories, posts, ads - all professionally designed"
+      },
+      {
+        type: "video",
+        label: "Video Production",
+        thumbnail: "/pricing/snsyt.png",
+        description: "Professional video editing for YouTube & social"
+      }
+    ],
     features: [
-      "Social media content creation (Facebook, Instagram, TikTok)",
-      "Email marketing content",
-      "YouTube & news outlet content",
-      "Video production & editing",
-      "Image creation (catalogues, ads, presentations)",
-      "Weekly performance report",
-      "Email support",
+      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Email marketing campaigns", icon: "file" },
+      { text: "Video production & editing", icon: "play" },
+      { text: "Catalogue & ad design", icon: "image" },
+      { text: "Weekly performance reports", icon: "trend" },
     ],
     ctaText: "Start Creating Content",
     ctaVariant: "outline",
@@ -43,15 +61,32 @@ const plans = [
       icon: "🛒",
       text: "Complete e-commerce management with live customer support"
     },
+    visualShowcase: [
+      {
+        type: "gallery",
+        label: "Product Listings",
+        images: ["/reviews/after13.png", "/reviews/after11.png", "/reviews/after15.png"],
+        description: "Optimize listings for higher conversion rates"
+      },
+      {
+        type: "mockup",
+        label: "Live Chat Support",
+        image: "/video/cart.gif",
+        description: "Real-time customer support during Korean hours"
+      },
+      {
+        type: "gallery",
+        label: "Multi-Platform Management",
+        images: ["/reviews/after6.png", "/reviews/after11.png", "/reviews/after15.png"],
+        description: "Amazon, Shopee, and beyond"
+      }
+    ],
     features: [
-      "Everything in Content & Presence, plus:",
-      "Online marketplace management (Amazon, Shopee)",
-      "Market research & competitor analysis",
-      "Live chat support during Korean office hours",
-      "Product listing optimization",
-      "Customer inquiry management",
-      "Inventory & order coordination support",
-      "Priority response time",
+      { text: "Everything in Content & Presence", icon: "check" },
+      { text: "Marketplace management (Amazon, Shopee)", icon: "cart" },
+      { text: "Market research & competitor analysis", icon: "trend" },
+      { text: "Live chat (Korean office hours)", icon: "message" },
+      { text: "Product listing optimization", icon: "image" },
     ],
     ctaText: "Grow Your Sales",
     ctaVariant: "default",
@@ -73,15 +108,31 @@ const plans = [
       icon: "🚀",
       text: "2-person dedicated team finding buyers and closing deals"
     },
+    visualShowcase: [
+      {
+        type: "process",
+        label: "Partnership Pipeline",
+        steps: ["Research", "Outreach", "Negotiate", "Close"],
+        description: "From prospect to partnership in 30-60 days"
+      },
+      {
+        type: "gallery",
+        label: "Professional Materials",
+        images: ["/reviews/after7.png", "/reviews/after8.png", "/reviews/after14.png"],
+        description: "Pitch decks, proposals, and trade show materials"
+      },
+      {
+        type: "team",
+        label: "Your Dedicated Team",
+        description: "2 specialists working full-time on your growth"
+      }
+    ],
     features: [
-      "Everything in Sales & Commerce, plus:",
-      "Active buyer prospecting & outreach",
-      "2 dedicated business development specialists",
-      "Partnership negotiation support",
-      "B2B relationship management",
-      "Trade show & event coordination",
-      "Enterprise-level priority support",
-      "Custom reporting & strategy sessions",
+      { text: "Everything in Sales & Commerce", icon: "check" },
+      { text: "Active buyer prospecting", icon: "trend" },
+      { text: "2 dedicated BD specialists", icon: "briefcase" },
+      { text: "Partnership negotiation support", icon: "message" },
+      { text: "Enterprise priority support", icon: "shield" },
     ],
     ctaText: "Build My Global Team",
     ctaVariant: "default",
@@ -90,92 +141,58 @@ const plans = [
   },
 ]
 
-// trustSignals removed as section was deleted
+const iconMap = {
+  image: Image,
+  file: FileText,
+  play: Play,
+  trend: TrendingUp,
+  check: Check,
+  cart: ShoppingCart,
+  message: MessageSquare,
+  briefcase: Briefcase,
+  shield: Shield,
+}
 
-const successMetrics = [
-  { value: "300+", label: "Content pieces created monthly" },
-  { value: "24/5", label: "Live chat coverage" },
-  { value: "50+", label: "Businesses served" },
-]
-
-const serviceBreakdown = [
-  {
-    category: "Social Media Management",
-    starter: ["FB, IG, TikTok content", "3-5 posts per week"],
-    growth: ["FB, IG, TikTok content", "Daily posting", "Email marketing"],
-    enterprise: ["Full social strategy", "Daily posting + stories", "Influencer coordination"]
-  },
-  {
-    category: "Content Creation",
-    starter: ["Video editing", "Image design", "Basic templates"],
-    growth: ["Professional video production", "Custom graphics", "Product photography editing"],
-    enterprise: ["Premium video production", "Brand photoshoots", "Animated content"]
-  },
-  {
-    category: "E-commerce Support",
-    starter: ["—"],
-    growth: ["Amazon & Shopee management", "Product listing optimization", "Order coordination"],
-    enterprise: ["Multi-platform strategy", "Inventory forecasting", "Logistics coordination"]
-  },
-  {
-    category: "Customer Communication",
-    starter: ["Email support"],
-    growth: ["Live chat (KR office hours)", "Email & social DMs", "24h response time"],
-    enterprise: ["Priority live support", "Dedicated account managers", "Instant response"]
-  },
-  {
-    category: "Business Development",
-    starter: ["—"],
-    growth: ["Market research", "Competitor tracking"],
-    enterprise: ["Active buyer outreach", "Partnership development", "Trade show support"]
-  },
-]
-
-export default function Pricing() {
+export default function VisualPricing() {
   const [loginOpen, setLoginOpen] = useState(false)
-  const [showComparison, setShowComparison] = useState(false)
+  const [activePreview, setActivePreview] = useState<{planIndex: number, showcaseIndex: number} | null>(null)
 
   return (
     <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20">
-      <div className="mx-auto max-w-7xl text-center">
-        
-          
+      <div className="mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="mb-16 text-center">
           <p className="text-sm uppercase tracking-widest text-muted-foreground">Pricing</p>
-          <h2 className="mt-3 text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground text-balance mx-auto max-w-5xl">
-            Your Product Needs More Than Visibility. It Needs a Voice.
+          <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+            See What You Get
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            English-speaking Filipino professionals who create content, manage sales, and build relationships for your global business
-          </p>
-          <p className="mt-3 mb-10 text-muted-foreground max-w-3xl mx-auto">
-            Cancel anytime • No long-term contracts • Start in 7 days
+            Not just services—real deliverables you can see and measure
           </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-3 mb-16">
-          {plans.map((plan) => {
+        {/* Pricing Cards with Visual Previews */}
+        <div className="grid gap-12 lg:grid-cols-3">
+          {plans.map((plan, planIndex) => {
             const Icon = plan.icon
             
             return (
               <div key={plan.name} className="relative">
                 <Card
-                  className={`group border p-8 h-full flex flex-col bg-background transition-all duration-300
+                  className={`border p-6 bg-background transition-all duration-300
                   ${plan.highlighted 
                     ? 'ring-2 ring-primary/60 shadow-xl' 
-                    : 'hover:ring-1 hover:ring-primary/30 hover:shadow-xl'
-                  }
-                  hover:translate-y-[-4px]`}
+                    : 'hover:ring-1 hover:ring-primary/30 hover:shadow-lg'
+                  }`}
                 >
                   {/* Badge */}
                   {plan.badge && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-medium whitespace-nowrap shadow-lg">
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-medium shadow-lg z-10">
                       {plan.badge}
                     </div>
                   )}
 
-                  {/* Icon & Name */}
+                  {/* Header */}
                   <div className="flex items-center gap-3 mb-2">
                     <div className={`p-2 rounded-lg ${plan.highlighted ? 'bg-primary/10' : 'bg-muted'}`}>
                       <Icon className={`h-5 w-5 ${plan.highlighted ? 'text-primary' : 'text-muted-foreground'}`} />
@@ -183,164 +200,232 @@ export default function Pricing() {
                     <div className="text-lg font-semibold">{plan.name}</div>
                   </div>
 
-                  {/* Subtitle */}
                   <div className="text-sm text-muted-foreground mb-4">{plan.subtitle}</div>
 
                   {/* Pricing */}
-                  <div className="mb-6">
+                  <div className="mb-4">
                     <div className="flex items-baseline gap-2">
-                      <span className="text-4xl font-bold">{plan.price}</span>
+                      <span className="text-3xl font-bold">{plan.price}</span>
                       <span className="text-muted-foreground">{plan.period}</span>
                     </div>
                   </div>
 
                   {/* Best For */}
-                  <div className="mb-6 p-3 bg-muted/50 rounded-lg">
-                    <div className="text-xs text-muted-foreground mb-1">Best for:</div>
-                    <div className="text-sm font-medium">{plan.bestFor}</div>
+                  <div className="mb-4 p-3 bg-muted/50 rounded-lg text-sm">
+                    <span className="text-xs text-muted-foreground">Best for: </span>
+                    <span className="font-medium">{plan.bestFor}</span>
                   </div>
 
-                  {/* Outcome */}
-                  <div className="mb-6 p-4 bg-primary/5 rounded-lg border border-primary/10">
-                    <div className="flex items-start gap-3">
-                      <span className="text-2xl">{plan.outcome.icon}</span>
-                      <div className="text-sm font-medium text-foreground">{plan.outcome.text}</div>
-                    </div>
+                  {/* Visual Showcase - Interactive Preview Area */}
+                  <div className="mb-6 space-y-3">
+                    <div className="text-sm font-semibold mb-2">What You'll Get:</div>
+                    {plan.visualShowcase.map((showcase, showcaseIndex) => {
+                      const isExpandable = showcase.type === "gallery"
+                      return (
+                      <div 
+                        key={showcaseIndex}
+                        className={`relative group ${isExpandable ? 'cursor-pointer' : 'cursor-default'}`}
+                        onClick={isExpandable ? () => setActivePreview({planIndex, showcaseIndex}) : undefined}
+                      >
+                        {/* Preview Card */}
+                        <div className="border rounded-lg overflow-hidden bg-muted/30 hover:bg-muted/50 transition">
+                          
+
+                          {/* Gallery Preview */}
+                          {showcase.type === "gallery" && (
+                            <div className="grid grid-cols-3 gap-1 p-2">
+                              {showcase.images?.map((img, i) => (
+                                <div key={i} className="relative h-20 rounded overflow-hidden">
+                                  <NextImage src={img} alt={`Example ${i+1}`} fill className="object-cover" />
+                                </div>
+                              ))}
+                            </div>
+                          )}
+
+                          {/* Video Preview */}
+                          {showcase.type === "video" && (
+                            <div className="relative h-32 p-2">
+                              <NextImage src={showcase.thumbnail || ""} alt="Video" fill className="object-cover rounded" />
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="bg-black/50 rounded-full p-3">
+                                  <Play className="h-6 w-6 text-white fill-white" />
+                                </div>
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Mockup Preview */}
+                          {showcase.type === "mockup" && (
+                            <div className="relative h-32 p-2">
+                              <NextImage src={showcase.image || ""} alt="Mockup" fill className="object-cover rounded" />
+                            </div>
+                          )}
+
+                          {/* Process Preview */}
+                          {showcase.type === "process" && (
+                            <div className="p-4">
+                              <div className="flex items-center justify-between gap-2">
+                                {showcase.steps?.map((step, i) => (
+                                  <div key={i} className="flex flex-col items-center flex-1">
+                                    <div className="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center text-xs font-bold mb-1">
+                                      {i+1}
+                                    </div>
+                                    <div className="text-[10px] text-center">{step}</div>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Team Preview */}
+                          {showcase.type === "team" && (
+                            <div className="p-4 flex items-center justify-center gap-2">
+                              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <Briefcase className="h-6 w-6 text-primary" />
+                              </div>
+                              <div className="text-2xl">+</div>
+                              <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center">
+                                <Briefcase className="h-6 w-6 text-primary" />
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Label & Description */}
+                          <div className="p-3 pt-2 border-t">
+                            <div className="text-xs font-semibold mb-1">{showcase.label}</div>
+                            <div className="text-[11px] text-muted-foreground">{showcase.description}</div>
+                          </div>
+                        </div>
+
+                        {/* Hover Indicator */}
+                        {isExpandable && (
+                          <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
+                            <div className="bg-primary text-primary-foreground text-[10px] px-2 py-1 rounded">
+                              Click to expand
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                      )
+                    })}
                   </div>
 
-                  {/* ROI Highlight (for Growth tier) */}
+                  {/* ROI/Guarantee Boxes */}
                   {plan.roi && (
-                    <div className="mb-6 p-4 bg-green-500/10 rounded-lg border border-green-500/20">
-                      <div className="text-sm font-semibold text-green-700 dark:text-green-400">
+                    <div className="mb-4 p-3 bg-green-500/10 rounded-lg border border-green-500/20">
+                      <div className="text-xs font-semibold text-green-700 dark:text-green-400">
                         {plan.roi.title}
                       </div>
-                      <div className="text-xs text-green-600 dark:text-green-500 mt-1">
+                      <div className="text-[11px] text-green-600 dark:text-green-500 mt-1">
                         {plan.roi.subtitle}
                       </div>
                     </div>
                   )}
 
-                  {/* Performance Guarantee (for Enterprise tier) */}
                   {plan.performanceGuarantee && (
-                    <div className="mb-6 p-4 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                    <div className="mb-4 p-3 bg-blue-500/10 rounded-lg border border-blue-500/20">
                       <div className="flex items-start gap-2">
-                        <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                        <div className="text-sm font-medium text-blue-700 dark:text-blue-400">
+                        <Shield className="h-4 w-4 text-blue-600 flex-shrink-0 mt-0.5" />
+                        <div className="text-xs font-medium text-blue-700 dark:text-blue-400">
                           {plan.performanceGuarantee}
                         </div>
                       </div>
                     </div>
                   )}
 
-                  {/* Features */}
-                  <div className="space-y-3 mb-8 flex-grow">
-                    {plan.features.map((feature, idx) => (
-                      <div key={idx} className="flex items-start gap-3">
-                        <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{feature}</span>
-                      </div>
-                    ))}
+                  {/* Features List (Compact) */}
+                  <div className="mb-6 space-y-2">
+                    <div className="text-sm font-semibold mb-2">Also Includes:</div>
+                    {plan.features.map((feature, idx) => {
+                      const FeatureIcon = iconMap[feature.icon as keyof typeof iconMap]
+                      return (
+                        <div key={idx} className="flex items-start gap-2">
+                          <FeatureIcon className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-xs text-muted-foreground">{feature.text}</span>
+                        </div>
+                      )
+                    })}
                   </div>
 
-                  {/* CTA Button */}
+                  {/* CTA */}
                   <Button
-                    className={`w-full transition-all duration-300 ${
-                      plan.highlighted 
-                        ? 'bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl' 
-                        : ''
-                    }`}
-                    variant={plan.ctaVariant}
+                    className={`w-full ${plan.highlighted ? 'shadow-lg' : ''}`}
+                    variant={plan.ctaVariant as any}
                     size="lg"
                     onClick={() => setLoginOpen(true)}
                   >
                     {plan.ctaText}
                   </Button>
 
-                  {/* Additional Info */}
-                  <div className="mt-4 text-center text-xs text-muted-foreground">
+                  <div className="mt-3 text-center text-xs text-muted-foreground">
                     Cancel anytime • No setup fees
                   </div>
                 </Card>
               </div>
             )
           })}
-          </div>
         </div>
 
-        {/* Comparison Toggle */}
-        <div className="mx-auto max-w-7xl text-center mb-8">
-          <Button 
-            variant="outline" 
-            onClick={() => setShowComparison(!showComparison)}
+        {/* Expanded Preview Modal */}
+        {activePreview && plans[activePreview.planIndex].visualShowcase[activePreview.showcaseIndex].type === 'gallery' && (
+          <div 
+            className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+            onClick={() => setActivePreview(null)}
           >
-            {showComparison ? 'Hide' : 'Show'} Detailed Comparison
-          </Button>
-        </div>
+            <div 
+              className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto p-8"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {(() => {
+                const showcase = plans[activePreview.planIndex].visualShowcase[activePreview.showcaseIndex]
+                return (
+                  <>
+                    <div className="flex items-start justify-between mb-6">
+                      <div>
+                        <h3 className="text-2xl font-bold mb-2">{showcase.label}</h3>
+                        <p className="text-muted-foreground">{showcase.description}</p>
+                      </div>
+                      <button 
+                        onClick={() => setActivePreview(null)}
+                        className="text-muted-foreground hover:text-foreground text-2xl"
+                      >
+                        ✕
+                      </button>
+                    </div>
 
-        {/* Comparison Table */}
-        {showComparison && (
-          <div className="mx-auto max-w-7xl mb-16 overflow-x-auto bg-background rounded-xl border p-6">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-4 px-4 font-semibold">Service Category</th>
-                  <th className="text-left py-4 px-4 font-semibold">Content & Presence</th>
-                  <th className="text-left py-4 px-4 font-semibold">Sales & Commerce</th>
-                  <th className="text-left py-4 px-4 font-semibold">Enterprise Growth</th>
-                </tr>
-              </thead>
-              <tbody>
-                {serviceBreakdown.map((row, idx) => (
-                  <tr key={idx} className="border-b last:border-0">
-                    <td className="py-4 px-4 font-medium">{row.category}</td>
-                    <td className="py-4 px-4">
-                      <ul className="space-y-1">
-                        {row.starter.map((item, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">{item}</li>
+                    {/* Expanded Content */}
+
+                    {showcase.type === "gallery" && (
+                      <div className="grid md:grid-cols-3 gap-4">
+                        {showcase.images?.map((img, i) => (
+                          <div key={i} className="relative aspect-square rounded-lg overflow-hidden">
+                            <NextImage src={img} alt={`Example ${i+1}`} fill className="object-cover" />
+                          </div>
                         ))}
-                      </ul>
-                    </td>
-                    <td className="py-4 px-4">
-                      <ul className="space-y-1">
-                        {row.growth.map((item, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">{item}</li>
-                        ))}
-                      </ul>
-                    </td>
-                    <td className="py-4 px-4">
-                      <ul className="space-y-1">
-                        {row.enterprise.map((item, i) => (
-                          <li key={i} className="text-sm text-muted-foreground">{item}</li>
-                        ))}
-                      </ul>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      </div>
+                    )}
+                  </>
+                )
+              })()}
+            </div>
           </div>
         )}
 
-        {/* Success Metrics */}
-        <div className="mx-auto max-w-7xl mb-16 p-8 bg-muted/30 rounded-2xl border">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-bold mb-2">What We Deliver</h3>
-            <p className="text-muted-foreground">Real numbers from our operations</p>
+        {/* Login Modal Placeholder */}
+        {loginOpen && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setLoginOpen(false)}>
+            <div className="bg-background p-8 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+              <h3 className="text-2xl font-bold mb-4">Let's Get Started</h3>
+              <p className="text-muted-foreground mb-6">
+                Schedule a call to see more examples and discuss your needs.
+              </p>
+              <Button className="w-full" size="lg" onClick={() => setLoginOpen(false)}>
+                Request Consultation
+              </Button>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {successMetrics.map((metric, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">{metric.value}</div>
-                <div className="text-sm text-muted-foreground">{metric.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Removed trust signals and FAQ teaser as requested */}
-
-      {/* Login Modal (shared component) */}
-      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} initialMode="signup" />
+        )}
+      </div>
     </section>
   )
 }
