@@ -38,7 +38,7 @@ export default function Features() {
   const previewVideos = [
     "/video/GlobalCommunication.mp4",
     "/video/socmed.mp4",
-    "/video/SalesAndMarket.mp4",
+    "/video/ShoppingPlat.mp4",
     "/video/GlobalStratMarketing.mp4",
   ]
   const containerVariants = {
