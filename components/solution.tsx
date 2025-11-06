@@ -13,7 +13,7 @@ export default function Solution() {
   ]
 
   return (
-    <section id="solution" className="relative px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-primary/5">
+    <section id="solution" className="relative px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-primary/5 scroll-mt-28">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
