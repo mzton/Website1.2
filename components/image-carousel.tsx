@@ -67,6 +67,7 @@ const categories: CarouselCategory[] = [
   {
     id: "ads",
     label: "Images",
+    label: "Images",
     items: [
       {
         id: "ads-1",
@@ -142,6 +143,7 @@ const categories: CarouselCategory[] = [
       {
         id: "social-5",
         image: "/social/sns16.png",
+        image: "/social/sns16.png",
         alt: "TikTok content",
       },
       {
@@ -165,6 +167,14 @@ const categories: CarouselCategory[] = [
     id: "emails",
     label: "Emails",
     items: [
+      { id: "email-1", image: "/email/email1.png", poster: "/placeholder.png", alt: "Email 1" },
+      { id: "email-2", image: "/email/email2.png", poster: "/placeholder.png", alt: "Email 2" },
+      { id: "email-3", image: "/email/email3.png", poster: "/placeholder.png", alt: "Email 3" },
+      { id: "email-4", image: "/email/email4.png", poster: "/placeholder.png", alt: "Email 4" },
+      { id: "email-5", image: "/email/email5.png", poster: "/placeholder.png", alt: "Email 5" },
+      { id: "email-6", image: "/email/email6.png", poster: "/placeholder.png", alt: "Email 6" },
+      { id: "email-7", image: "/email/email7.png", poster: "/placeholder.png", alt: "Email 7" },
+      { id: "email-8", image: "/email/email8.png", poster: "/placeholder.png", alt: "Email 8" },
       { id: "email-1", image: "/email/email1.png", poster: "/placeholder.png", alt: "Email 1" },
       { id: "email-2", image: "/email/email2.png", poster: "/placeholder.png", alt: "Email 2" },
       { id: "email-3", image: "/email/email3.png", poster: "/placeholder.png", alt: "Email 3" },
