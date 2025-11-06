@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Check, Megaphone, ShoppingCart, Briefcase, Shield } from "lucide-react"
 import { useState } from "react"
+import LoginModal from "@/components/login-modal"
 
 const plans = [
   {
@@ -338,49 +339,8 @@ export default function Pricing() {
 
         {/* Removed trust signals and FAQ teaser as requested */}
 
-      {/* Login Modal */}
-      {loginOpen && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setLoginOpen(false)}>
-          <div className="bg-background p-8 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
-            <h3 className="text-2xl font-bold mb-4">Let's Build Your Global Presence</h3>
-            <p className="text-muted-foreground mb-6">
-              Tell us about your business and we'll show you how we can help.
-            </p>
-            <div className="space-y-4">
-              <input 
-                type="text" 
-                placeholder="Your Name" 
-                className="w-full p-3 border rounded-lg bg-background"
-              />
-              <input 
-                type="email" 
-                placeholder="Business Email" 
-                className="w-full p-3 border rounded-lg bg-background"
-              />
-              <input 
-                type="text" 
-                placeholder="Company Name" 
-                className="w-full p-3 border rounded-lg bg-background"
-              />
-              <select className="w-full p-3 border rounded-lg bg-background">
-                <option value="">Which plan interests you?</option>
-                <option value="content">Content & Presence ($299)</option>
-                <option value="sales">Sales & Commerce ($999)</option>
-                <option value="enterprise">Enterprise Growth ($2,599)</option>
-              </select>
-              <Button className="w-full" size="lg">
-                Request Consultation
-              </Button>
-            </div>
-            <button 
-              onClick={() => setLoginOpen(false)}
-              className="mt-4 text-sm text-muted-foreground hover:text-foreground w-full"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+      {/* Login Modal (shared component) */}
+      <LoginModal open={loginOpen} onOpenChange={setLoginOpen} initialMode="signup" />
     </section>
   )
 }
