@@ -101,7 +101,7 @@ const categories: CarouselCategory[] = [
       },
       {
         id: "ads-7",
-        image: "/ads/img6.png",
+        image: "/ads/model_advertisement.png",
         alt: "Product display",
       },
       {

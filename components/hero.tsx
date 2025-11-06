@@ -12,7 +12,7 @@ export default function Hero() {
 
   // Background media for the right-side visual (now using video)
   const heroMedia = [
-    { video: "/video/Hero.mp4", poster: "/filipino-professionals-having-video-conference-wit.jpg" },
+    { video: "/video/herovideo1.mp4", poster: "/filipino-professionals-having-video-conference-wit.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
@@ -154,7 +154,7 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative block"
           >
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl group">
+            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden shadow-2xl group bg-background">
               {heroMedia.map((item, i) => (
                 item.video ? (
                   <video
@@ -167,7 +167,7 @@ export default function Hero() {
                     playsInline
                     // Custom controls overlay; hide native controls
                     ref={i === bgIndex ? videoRef : undefined}
-                    className={`object-cover absolute -inset-px w-full h-full transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
+                    className={`object-contain object-center absolute inset-0 w-full h-full transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
                   />
                 ) : (
                   <Image
@@ -176,7 +176,7 @@ export default function Hero() {
                     alt="Hero background"
                     fill
                     priority={i === 0}
-                    className={`object-cover absolute -inset-px transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
+                    className={`object-contain object-center absolute inset-0 transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}
                   />
                 )
               ))}
