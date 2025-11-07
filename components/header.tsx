@@ -19,7 +19,12 @@ export default function Header() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <div className="flex items-center notranslate" translate="no">
-          <span className="text-xl font-bold text-foreground" translate="no">BOOSTK</span>
+          <span
+            className="text-xl font-bold bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-transparent"
+            translate="no"
+          >
+            BOOSTK
+          </span>
         </div>
 
         {/* Desktop Navigation */}

@@ -9,13 +9,13 @@ import Image from "next/image"
 
 
 export default function Hero() {
-  const fullText = "Your Product Deserves a Global Stage."
+  const fullText = "Speak Local. Sell Global."
 
   const [loginOpen, setLoginOpen] = useState(false)
 
   // Background media for the right-side visual (video with poster)
   const heroMedia = [
-    { video: "/video/Hero.mp4", poster: "/placeholder.jpg" },
+    { video: "/video/herovideo1.mp4", poster: "/placeholder.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
@@ -145,7 +145,7 @@ export default function Hero() {
             className="text-left flex flex-col"
           >
             <h1
-              className="mb-6 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2rem,6vw,3.5rem)]"
+              className="mb-4 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2.5rem,9vw,5.75rem)]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="block">{fullText}</span>
@@ -163,11 +163,7 @@ export default function Hero() {
             </div>
 
             <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
-              You've spent years perfecting your product. Your technology is world-class. Your service is exceptional.
-              But when that email from a European buyer arrives...
-              When that LinkedIn message from a potential partner comes in...
-              When that exhibition leads to a follow-up conversation...
-              The English barrier suddenly feels like a glass ceiling between you and the world.
+              Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities.
             </p>
           </motion.div>
 
