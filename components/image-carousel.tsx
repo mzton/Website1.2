@@ -122,43 +122,43 @@ const categories: CarouselCategory[] = [
     items: [
       {
         id: "social-1",
-        image: "/social/sns12.png",
+        image: "/social/sns24.png",
         alt: "Instagram post",
       },
       {
         id: "social-2",
-        image: "/social/sns13.png",
+        image: "/social/sns25.png",
         alt: "Social content",
       },
       {
         id: "social-3",
-        image: "/social/sns14.png",
+        image: "/social/sns15.png",
         alt: "TikTok video",
       },
       {
         id: "social-4",
-        image: "/social/sns15.png",
+        image: "/social/sns16.png",
         alt: "Instagram carousel",
       },
       {
         id: "social-5",
-        image: "/social/sns16.png",
+        image: "/social/sns19.png",
 
         alt: "TikTok content",
       },
       {
         id: "social-6",
-        image: "/social/sns17.png",
+        image: "/social/sns21.png",
         alt: "LinkedIn post",
       },
       {
         id: "social-7",
-        image: "/social/sns19.png",
+        image: "/social/sns22.png",
         alt: "Instagram reel",
       },
       {
         id: "social-8",
-        image: "/social/sns20.png",
+        image: "/social/sns23.png",
         alt: "Social reel",
       },
     ],
