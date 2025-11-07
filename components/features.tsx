@@ -79,7 +79,11 @@ const featuresKo = [
     ],
     solution: "BOOSTK가 글로벌 시장을 위한 영어 친화 콘텐츠를 제작합니다.",
     color: "from-purple-500 to-pink-600",
+<<<<<<< HEAD
     video: "/video/socialmedia.mp4",
+=======
+    video: "/video/social.mp4",
+>>>>>>> f5220f1c82e6b206ce720867d8e254e67490b395
   },
   {
     icon: TrendingUp,
@@ -107,7 +111,8 @@ const featuresKo = [
   },
 ]
 
-export default function Features() {
+type FeaturesProps = { language?: "English" | "Korean" }
+export default function Features({ language }: FeaturesProps) {
   // Solutions are shown by default for all cards
   const [revealed] = useState<boolean[]>(
     Array.from({ length: featuresEn.length }, () => true)
@@ -120,9 +125,27 @@ export default function Features() {
     } catch {
       setAppLanguage(null)
     }
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "appLanguage") {
+        setAppLanguage(e.newValue)
+      }
+    }
+    const onLanguageChange = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent<string>).detail
+        setAppLanguage(detail)
+      } catch {}
+    }
+    window.addEventListener("storage", onStorage)
+    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
+    return () => {
+      window.removeEventListener("storage", onStorage)
+      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
+    }
   }, [])
 
-  const features = appLanguage === "Korean" ? featuresKo : featuresEn
+  const effectiveLanguage = language ?? (appLanguage === "Korean" ? "Korean" : "English")
+  const features = effectiveLanguage === "Korean" ? featuresKo : featuresEn
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -152,13 +175,13 @@ export default function Features() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
-              {appLanguage === "Korean" ? "영어 장벽을 가장 크게 느끼는 곳은 어디인가요?" : "Where Do You Feel the English Barrier Most?"}
+            <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>
+              {effectiveLanguage === "Korean" ? "영어 장벽을 가장 크게 느끼는 곳은 어디인가요?" : "Where Do You Feel the English Barrier Most?"}
             </span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
-              {appLanguage === "Korean" ? "글로벌 성장을 막는 격차를 스스로 진단해 보세요" : "Self-diagnose the gap stopping your global growth"}
+            <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>
+              {effectiveLanguage === "Korean" ? "글로벌 성장을 막는 격차를 스스로 진단해 보세요" : "Self-diagnose the gap stopping your global growth"}
             </span>
           </p>
         </motion.div>
@@ -181,7 +204,11 @@ export default function Features() {
                     <span className={`inline-flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br ${feature.color} transition-transform group-hover:scale-105 shadow-sm`}>
                       <Icon className="h-5 w-5 text-primary-foreground" />
                     </span>
-                    <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
+                    <h3 className="text-xl font-semibold text-foreground">
+                      <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
+                        {feature.title}
+                      </span>
+                    </h3>
                   </div>
 
                   {/* Questions always visible */}
@@ -208,7 +235,13 @@ export default function Features() {
                     {/* Optional video demo */}
                     {feature.video && (
                       <div className="mt-4 rounded-xl border border-accent/40 bg-background/60 p-3">
-                        <div className="text-xs font-semibold text-muted-foreground mb-2">Demo</div>
+                        <div className="text-xs font-semibold text-muted-foreground mb-2">
+                          {appLanguage === "Korean" ? (
+                            <span className="notranslate" translate="no">데모</span>
+                          ) : (
+                            "Demo"
+                          )}
+                        </div>
                         <video
                           className="w-full rounded-lg shadow-sm pointer-events-none"
                           src={feature.video}

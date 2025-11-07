@@ -21,8 +21,18 @@ export default function Hero({ language }: HeroProps) {
         setAppLanguage(e.newValue === "English" ? "English" : "Korean")
       }
     }
+    const onLanguageChange = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent<"English" | "Korean">).detail
+        setAppLanguage(detail === "Korean" ? "Korean" : "English")
+      } catch {}
+    }
     window.addEventListener("storage", onStorage)
-    return () => window.removeEventListener("storage", onStorage)
+    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
+    return () => {
+      window.removeEventListener("storage", onStorage)
+      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
+    }
   }, [])
 
   const effectiveLanguage = language ?? appLanguage
@@ -62,7 +72,7 @@ export default function Hero({ language }: HeroProps) {
 
   // Background media for the right-side visual (video with poster)
   const heroMedia = [
-    { video: "/video/herovideo1.mp4", poster: "/placeholder.jpg" },
+    { video: (effectiveLanguage === "Korean" ? "/video/VideoHero.mp4" : "/video/Hero.mp4"), poster: "/placeholder.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
@@ -231,7 +241,7 @@ export default function Hero({ language }: HeroProps) {
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="metadata"
                     onCanPlay={(e) => {
                       const v = e.currentTarget
                       // Ensure autoplay proceeds when ready

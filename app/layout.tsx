@@ -3,8 +3,8 @@ import type { Metadata } from "next"
 import { Nunito, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import Link from "next/link"
 import { Toaster } from "@/components/ui/toaster"
-import GoogleTranslate from "@/components/google-translate"
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -67,7 +67,10 @@ export default function RootLayout({
       </head>
       <body className={`${nunito.variable} ${inter.variable}`}>
         <ThemeProvider>
-          <GoogleTranslate />
+          {/* Hidden link to prefetch Korean route for faster toggling */}
+          <Link href="/ko" prefetch className="sr-only" aria-hidden>
+            Prefetch Korean Route
+          </Link>
           {children}
           <Toaster />
         </ThemeProvider>

@@ -11,19 +11,14 @@ import Pricing from "@/components/pricing"
 import Footer from "@/components/footer"
 
 export default function KoreanHome() {
-  // Ensure components render Korean strings by setting appLanguage
-  useEffect(() => {
-    try {
-      window.localStorage.setItem("appLanguage", "Korean")
-    } catch {}
-  }, [])
+  // Do not force localStorage; render Korean via explicit props only
 
   return (
     <main className="min-h-screen bg-background" lang="ko">
       <Header language="Korean" />
       <Hero language="Korean" />
       <ImageCarousel language="Korean" />
-      <Features />
+      <Features language="Korean" />
       <Solution language="Korean" />
       <Testimonials language="Korean" />
       <Pricing language="Korean" />

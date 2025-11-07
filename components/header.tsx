@@ -19,18 +19,38 @@ export default function Header({ language }: HeaderProps) {
   useEffect(() => {
     try {
       const stored = localStorage.getItem("appLanguage")
-      if (stored === "Korean") setAppLanguage("Korean")
+      if (!stored) {
+        // Persist English as the default language on first view
+        localStorage.setItem("appLanguage", "English")
+        setAppLanguage("English")
+      } else {
+        setAppLanguage(stored === "Korean" ? "Korean" : "English")
+      }
     } catch {}
     const onStorage = (e: StorageEvent) => {
       if (e.key === "appLanguage") {
         setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
       }
     }
+    const onLanguageChange = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent<"English" | "Korean">).detail
+        setAppLanguage(detail === "Korean" ? "Korean" : "English")
+      } catch {}
+    }
     window.addEventListener("storage", onStorage)
+    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
     return () => window.removeEventListener("storage", onStorage)
   }, [])
 
   const effectiveLanguage = language ?? appLanguage
+
+  // Reflect current page language in <html lang> for SEO/UX parity
+  useEffect(() => {
+    try {
+      document.documentElement.lang = effectiveLanguage === "Korean" ? "ko" : "en"
+    } catch {}
+  }, [effectiveLanguage])
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
