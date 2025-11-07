@@ -5,7 +5,7 @@ import Features from "@/components/features"
 import Solution from "@/components/solution"
 import Testimonials from "@/components/testimonials"
 import Pricing from "@/components/pricing"
-import CTA from "@/components/cta"
+import GlobalAdvantage from "@/components/global-advantage"
 import Footer from "@/components/footer"
 
 export default function Home() {
@@ -16,9 +16,9 @@ export default function Home() {
       <ImageCarousel />
       <Features />
       <Solution />
+      <GlobalAdvantage />
       <Testimonials />
       <Pricing />
-      <CTA />
       <Footer />
     </main>
   )

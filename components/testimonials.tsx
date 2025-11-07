@@ -1,7 +1,7 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Star } from "lucide-react"
+import { Star, MessageSquare, Users, Rocket } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useRef } from "react"
@@ -116,6 +116,7 @@ export default function Testimonials() {
   }, [])
 
   return (
+    <>
     <section id="results" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
@@ -181,5 +182,40 @@ export default function Testimonials() {
         </div>
       </div>
     </section>
+
+    {/* Simple 3-step process section */}
+    <section id="process" className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-20 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Simple. Fast. Effective.</h2>
+          <p className="text-xl text-muted-foreground">3 steps to global growth</p>
+        </div>
+
+        <div className="relative">
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary transform -translate-y-1/2 opacity-30"></div>
+
+          <div className="grid md:grid-cols-3 gap-8 relative z-10">
+            {[
+              { step: "1", icon: MessageSquare, title: "Chat", desc: "Tell us your story", color: "from-purple-500 to-pink-600" },
+              { step: "2", icon: Users, title: "Match", desc: "Meet your team", color: "from-blue-500 to-cyan-600" },
+              { step: "3", icon: Rocket, title: "Grow", desc: "Watch it happen", color: "from-green-500 to-emerald-600" },
+            ].map((process, index) => (
+              <div key={index} className="relative group">
+                <div className={`absolute inset-0 bg-gradient-to-br ${process.color} opacity-20 group-hover:opacity-30 transition-opacity rounded-2xl blur-xl`}></div>
+                <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-border transition-all transform hover:scale-105 duration-300 text-center">
+                  <div className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${process.color} rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg`}>{process.step}</div>
+                  <div className={`w-20 h-20 bg-gradient-to-br ${process.color} rounded-full flex items-center justify-center mx-auto mb-6 transform group-hover:rotate-12 transition-transform`}>
+                    <process.icon className="w-10 h-10 text-primary-foreground" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-foreground mb-3">{process.title}</h3>
+                  <p className="text-muted-foreground">{process.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+    </>
   )
 }
