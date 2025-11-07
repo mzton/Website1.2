@@ -3,14 +3,7 @@
 import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Megaphone, TrendingUp, Target, HelpCircle } from "lucide-react"
-import { motion, AnimatePresence } from "framer-motion"
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+import { motion } from "framer-motion"
 
 const featuresEn = [
   {
@@ -23,6 +16,7 @@ const featuresEn = [
     ],
     solution: "BOOSTK writes, designs, and communicates in fluent business English — for you.",
     color: "from-blue-500 to-cyan-600",
+    video: "/video/hello13.mp4",
   },
   {
     icon: Megaphone,
@@ -34,6 +28,7 @@ const featuresEn = [
     ],
     solution: "BOOSTK creates scroll-stopping, English-ready content for your global market.",
     color: "from-purple-500 to-pink-600",
+    video: "/video/socialmedia.mp4",
   },
   {
     icon: TrendingUp,
@@ -45,6 +40,7 @@ const featuresEn = [
     ],
     solution: "BOOSTK turns English into your sales advantage, not your weakness.",
     color: "from-green-500 to-emerald-600",
+    video: "/video/marketing.mp4",
   },
   {
     icon: Target,
@@ -56,6 +52,7 @@ const featuresEn = [
     ],
     solution: "BOOSTK builds your English strategy — from research to pitch.",
     color: "from-amber-500 to-orange-600",
+    video: "/video/planning.mp4",
   },
 ]
 
@@ -204,6 +201,26 @@ export default function Features() {
                       ))}
                     </motion.ul>
 
+                    {/* Optional video demo */}
+                    {feature.video && (
+                      <div className="mt-4 rounded-xl border border-accent/40 bg-background/60 p-3">
+                        <div className="text-xs font-semibold text-muted-foreground mb-2">Demo</div>
+                        <video
+                          className="w-full rounded-lg shadow-sm pointer-events-none"
+                          src={feature.video}
+                          autoPlay
+                          muted
+                          playsInline
+                          preload="metadata"
+                          poster="/placeholder.jpg"
+                          disablePictureInPicture
+                          controls={false}
+                          controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
+                          tabIndex={-1}
+                        />
+                      </div>
+                    )}
+
                     {/* Highlighted solution always visible */}
                     <div className="mt-4">
                       <motion.div
@@ -231,6 +248,8 @@ export default function Features() {
             )
           })}
         </motion.div>
+
+        {/* Removed stacked swipeable deck per request */}
       </div>
     </section>
   )
