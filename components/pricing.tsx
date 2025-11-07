@@ -9,7 +9,7 @@ import NextImage from "next/image"
 const plans = [
   {
     name: "Content & Presence",
-    price: "$299",
+    price: "$399",
     period: "/mo",
     subtitle: "Build your global brand visibility",
     bestFor: "Brands ready to speak English professionally",
