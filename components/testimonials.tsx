@@ -4,9 +4,9 @@ import { Card } from "@/components/ui/card"
 import { Star, MessageSquare, Users, Rocket } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
-const results = [
+const resultsEn = [
   {
     metric: "$5K in new sales",
     title: "New Sales Generated",
@@ -72,11 +72,96 @@ const results = [
   },
 ]
 
-export default function Testimonials() {
+const resultsKo = [
+  {
+    metric: "신규 매출 $5K",
+    title: "신규 매출 창출",
+    company: "Alex Kim",
+    quote: "일반 안경 사진을 마케팅용 디자인 이미지로 변환",
+    images: ["/reviews/before5.jpg", "/reviews/after5.png"],
+  },
+  {
+    metric: "프로모션 매출 $48K",
+    title: "모자 캠페인 매출",
+    company: "Jamie Reyes",
+    quote: "단순 제품 사진을 고충격 프로모 아트워크로 제작",
+    images: ["/reviews/before13.jpg", "/reviews/after13.png"],
+  },
+  {
+    metric: "320개 판매",
+    title: "라탄 수납 프로모 매출",
+    company: "Mia Santos",
+    quote: "매장 사진을 깔끔한 전환 최적화 광고로 변경",
+    images: ["/reviews/before18.jpg", "/reviews/after18.png"],
+  },
+  {
+    metric: "액세서리 매출 €18K",
+    title: "클러치 캠페인 매출",
+    company: "Chris Bautista",
+    quote: "카탈로그 사진을 프리미엄 브랜드 비주얼로 업그레이드",
+    images: ["/reviews/before15.jpg", "/reviews/after15.png"],
+  },
+  {
+    metric: "1,500개 판매",
+    title: "백팩 캠페인 매출",
+    company: "Rafael Tan",
+    quote: "가정 사진을 세련된 50% 할인 프로모로 제작",
+    images: ["/reviews/before6.jpg", "/reviews/after6.png"],
+  },
+  {
+    metric: "신발 매출 $36K",
+    title: "몽크 스트랩 프로모 매출",
+    company: "Daniel Cho",
+    quote: "캐주얼 테이블 사진을 스튜디오급 제품 광고로 제작",
+    images: ["/reviews/before11.jpg", "/reviews/after11.png"],
+  },
+  {
+    metric: "참여율 2.2배",
+    title: "알로하 티 프로모 아트워크",
+    company: "Sean Rivera",
+    quote: "원시 제품 사진을 시선 강탈 세일 그래픽으로 변경",
+    images: ["/reviews/before7.jpg", "/reviews/after7.png"],
+  },
+  {
+    metric: "20% 할인 캠페인",
+    title: "빈티지 폴로 세일 배너",
+    company: "Jasper Asmin",
+    quote: "평범한 사진을 정교한 할인 프로모로 제작",
+    images: ["/reviews/before8.jpg", "/reviews/after8.png"],
+  },
+  {
+    metric: "40% 할인 캠페인",
+    title: "마이클 코어스 핸드백 프로모",
+    company: "Emiko Tanaka",
+    quote: "일상 스냅샷을 럭셔리 세일 디자인으로 업그레이드",
+    images: ["/reviews/before14.jpg", "/reviews/after14.png"],
+  },
+]
+
+type TestimonialsProps = { language?: "English" | "Korean" }
+export default function Testimonials({ language }: TestimonialsProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null)
+  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("appLanguage")
+      if (stored === "Korean") setAppLanguage("Korean")
+    } catch {}
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "appLanguage") {
+        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
+      }
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [])
+
+  const effectiveLanguage = language ?? appLanguage
 
   // Create seamless infinite loop by duplicating items
-  const duplicatedResults = [...results, ...results]
+  const baseResults = effectiveLanguage === "Korean" ? resultsKo : resultsEn
+  const duplicatedResults = [...baseResults, ...baseResults]
 
   useEffect(() => {
     const el = scrollRef.current
@@ -126,9 +211,11 @@ export default function Testimonials() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            When Your Team Speaks English, Opportunity Arrives
+            {effectiveLanguage === "Korean" ? "팀이 영어로 소통하면 기회가 찾아옵니다" : "When Your Team Speaks English, Opportunity Arrives"}
           </h2>
-          <p className="text-lg text-muted-foreground">Proven results from companies just like yours</p>
+          <p className="text-lg text-muted-foreground">
+            {effectiveLanguage === "Korean" ? "당신과 같은 기업의 검증된 성과" : "Proven results from companies just like yours"}
+          </p>
         </motion.div>
 
         {/* Horizontal carousel of results */}
@@ -165,12 +252,12 @@ export default function Testimonials() {
                       <div key={i} className="relative h-36 w-full overflow-hidden rounded-lg border border-border/30 bg-muted/10">
                         <Image
                           src={result.images?.[i] || "/placeholder.jpg"}
-                          alt={`${i === 0 ? "Before" : "After"} - ${result.title}`}
+                          alt={`${i === 0 ? (effectiveLanguage === "Korean" ? "전" : "Before") : (effectiveLanguage === "Korean" ? "후" : "After")} - ${result.title}`}
                           fill
                           className="object-cover"
                         />
                         <span className="absolute top-2 left-2 rounded-md border bg-background/70 px-2 py-1 text-[10px] tracking-wide">
-                          {i === 0 ? "Before" : "After"}
+                          {i === 0 ? (effectiveLanguage === "Korean" ? "전" : "Before") : (effectiveLanguage === "Korean" ? "후" : "After")}
                         </span>
                       </div>
                     ))}
@@ -192,19 +279,29 @@ export default function Testimonials() {
     <section id="process" className="bg-gradient-to-br from-background via-background to-primary/5 py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Simple. Fast. Effective.</h2>
-          <p className="text-xl text-muted-foreground">3 steps to global growth</p>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            {effectiveLanguage === "Korean" ? "간단합니다. 빠릅니다. 효과적입니다." : "Simple. Fast. Effective."}
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            {effectiveLanguage === "Korean" ? "글로벌 성장을 위한 3단계" : "3 steps to global growth"}
+          </p>
         </div>
 
         <div className="relative">
           <div className="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-secondary transform -translate-y-1/2 opacity-30"></div>
 
           <div className="grid md:grid-cols-3 gap-8 relative z-10">
-            {[
-              { step: "1", icon: MessageSquare, title: "Chat", desc: "Tell us your story", color: "from-purple-500 to-pink-600" },
-              { step: "2", icon: Users, title: "Match", desc: "Meet your team", color: "from-blue-500 to-cyan-600" },
-              { step: "3", icon: Rocket, title: "Grow", desc: "Watch it happen", color: "from-green-500 to-emerald-600" },
-            ].map((process, index) => (
+            {(effectiveLanguage === "Korean"
+              ? [
+                  { step: "1", icon: MessageSquare, title: "상담", desc: "우리에게 이야기를 들려주세요", color: "from-purple-500 to-pink-600" },
+                  { step: "2", icon: Users, title: "매칭", desc: "당신의 팀을 만나보세요", color: "from-blue-500 to-cyan-600" },
+                  { step: "3", icon: Rocket, title: "성장", desc: "성과가 눈앞에 보입니다", color: "from-green-500 to-emerald-600" },
+                ]
+              : [
+                  { step: "1", icon: MessageSquare, title: "Chat", desc: "Tell us your story", color: "from-purple-500 to-pink-600" },
+                  { step: "2", icon: Users, title: "Match", desc: "Meet your team", color: "from-blue-500 to-cyan-600" },
+                  { step: "3", icon: Rocket, title: "Grow", desc: "Watch it happen", color: "from-green-500 to-emerald-600" },
+                ]).map((process, index) => (
               <div key={index} className="relative group">
                 <div className={`absolute inset-0 bg-gradient-to-br ${process.color} opacity-20 group-hover:opacity-30 transition-opacity rounded-2xl blur-xl`}></div>
                 <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-border transition-all transform hover:scale-105 duration-300 text-center">

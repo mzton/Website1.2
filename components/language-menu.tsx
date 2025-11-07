@@ -10,7 +10,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"
-import { setGoogleTranslateLanguage } from "./google-translate"
+import { useRouter } from "next/navigation"
 
 type LanguageMenuProps = {
   className?: string
@@ -19,6 +19,7 @@ type LanguageMenuProps = {
 
 export default function LanguageMenu({ className, align = "end" }: LanguageMenuProps) {
   const [language, setLanguage] = useState("English")
+  const router = useRouter()
 
   return (
     <DropdownMenu>
@@ -32,8 +33,8 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         <DropdownMenuItem
           onClick={() => {
             setLanguage("English")
-            setGoogleTranslateLanguage("en")
             try { localStorage.setItem("appLanguage", "English") } catch {}
+            router.push("/")
           }}
           className="font-sans"
         >
@@ -42,8 +43,8 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         <DropdownMenuItem
           onClick={() => {
             setLanguage("Korean")
-            setGoogleTranslateLanguage("ko")
             try { localStorage.setItem("appLanguage", "Korean") } catch {}
+            router.push("/ko")
           }}
           className="font-sans"
         >

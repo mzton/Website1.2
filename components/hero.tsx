@@ -8,7 +8,8 @@ import LoginModal from "@/components/login-modal"
 import Image from "next/image"
 
 
-export default function Hero() {
+type HeroProps = { language?: "English" | "Korean" }
+export default function Hero({ language }: HeroProps) {
   const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
   useEffect(() => {
     try {
@@ -24,17 +25,21 @@ export default function Hero() {
     return () => window.removeEventListener("storage", onStorage)
   }, [])
 
-  const fullText = appLanguage === "Korean" ? "지역적으로 말하고, 세계적으로 판매하세요." : "Speak Local. Sell Global."
-  const openingStatement = appLanguage === "Korean"
+  const effectiveLanguage = language ?? appLanguage
+
+  const fullText = effectiveLanguage === "Korean" ? "왜 아직도 국내마켓만 생각하세요글로벌 시장 비법이 있습니다" : "Speak Local. Sell Global."
+  const openingStatement = effectiveLanguage === "Korean"
     ? "왜 아직도 국내마켓만 생각하세요? 글로벌 시장 비법이 있습니다."
     : "Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities."
-  const quoteText = appLanguage === "Korean"
-    ? "귀사만 그런게 아닙니다, 한국 중소기업들 모두가 똑같은 상황입니다."
+  const quoteText = effectiveLanguage === "Korean"
+    ? "귀사만 그런게 아닙니다, 한국 중소기업들모두가 똑같은 상황입니다"
     : "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
 
-  const impactLine = appLanguage === "Korean"
+  const impactLine = effectiveLanguage === "Korean"
     ? "언어는 위대함을 제한해서는 안 됩니다."
     : "Language shouldn't limit greatness"
+
+  const ctaText = effectiveLanguage === "Korean" ? "무료 상담 신청" : "Request Free Consultation"
 
   const [loginOpen, setLoginOpen] = useState(false)
 
@@ -173,7 +178,7 @@ export default function Hero() {
               className="mb-4 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2.5rem,9vw,5.75rem)]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <span className={`block ${appLanguage === "Korean" ? "notranslate" : ""}`} translate={appLanguage === "Korean" ? "no" : undefined}>{fullText}</span>
+              <span className={`block ${effectiveLanguage === "Korean" ? "notranslate" : ""}`} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{fullText}</span>
             </h1>
 
             {/* CTA moved up below the headline */}
@@ -183,12 +188,12 @@ export default function Hero() {
                 className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold w-full sm:w-auto"
                 onClick={() => setLoginOpen(true)}
               >
-                Request Free Consultation
+                {ctaText}
               </Button>
             </div>
 
             <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
-              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{openingStatement}</span>
+              <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{openingStatement}</span>
             </p>
           </motion.div>
 
@@ -297,7 +302,7 @@ export default function Hero() {
         <div className="mt-16 text-center">
           <div className="inline-block bg-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-4">
-              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{impactLine}</span>
+              <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{impactLine}</span>
             </p>
             <div className="flex items-center justify-center gap-4">
               <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
@@ -316,13 +321,23 @@ export default function Hero() {
         {/* Global Impact Section - Full Width */}
         <div className="mt-24 pt-16 border-t border-border/40">
           <div className="text-center">
-            <p className="mb-12 text-sm font-semibold text-accent uppercase tracking-wide">Global Impact</p>
+            <p className="mb-12 text-sm font-semibold text-accent uppercase tracking-wide">
+              {effectiveLanguage === "Korean" ? "글로벌 임팩트" : "Global Impact"}
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-4xl mx-auto">
-              {[
-                { stat: "180%", label: "Lead Growth", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
-                { stat: "4", label: "New Partners", icon: Globe, color: "from-blue-500 to-cyan-600" },
-                { stat: "3x", label: "Faster Sales", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
-              ].map((item) => (
+              {(
+                effectiveLanguage === "Korean"
+                  ? [
+                      { stat: "180%", label: "리드 증가", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
+                      { stat: "4", label: "새로운 파트너", icon: Globe, color: "from-blue-500 to-cyan-600" },
+                      { stat: "3배", label: "더 빠른 매출", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
+                    ]
+                  : [
+                      { stat: "180%", label: "Lead Growth", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
+                      { stat: "4", label: "New Partners", icon: Globe, color: "from-blue-500 to-cyan-600" },
+                      { stat: "3x", label: "Faster Sales", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
+                    ]
+              ).map((item) => (
                 <motion.div key={item.stat} whileHover={{ scale: 1.05 }} className="text-center">
                   <div className={`mx-auto mb-3 w-12 h-12 rounded-full bg-gradient-to-br ${item.color} flex items-center justify-center`}>
                     <item.icon className="w-6 h-6 text-primary-foreground" />

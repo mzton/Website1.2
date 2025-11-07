@@ -1,16 +1,43 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Handshake, Check } from "lucide-react"
 import { motion } from "framer-motion"
 
-export default function Solution() {
-  const benefits = [
-    { label: "Marketing & Content Strategy", color: "from-purple-500 to-pink-600" },
-    { label: "Sales & Lead Generation", color: "from-green-500 to-emerald-600" },
-    { label: "Business Planning & Strategy", color: "from-amber-500 to-orange-600" },
-    { label: "Global Client Communication", color: "from-blue-500 to-cyan-600" },
-  ]
+type SolutionProps = { language?: "English" | "Korean" }
+export default function Solution({ language }: SolutionProps) {
+  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("appLanguage")
+      if (stored === "Korean") setAppLanguage("Korean")
+    } catch {}
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "appLanguage") {
+        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
+      }
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [])
+
+  const effectiveLanguage = language ?? appLanguage
+  const benefits = (
+    effectiveLanguage === "Korean"
+      ? [
+          { label: "마케팅·콘텐츠 전략", color: "from-purple-500 to-pink-600" },
+          { label: "영업·리드 생성", color: "from-green-500 to-emerald-600" },
+          { label: "비즈니스 기획·전략", color: "from-amber-500 to-orange-600" },
+          { label: "글로벌 고객 커뮤니케이션", color: "from-blue-500 to-cyan-600" },
+        ]
+      : [
+          { label: "Marketing & Content Strategy", color: "from-purple-500 to-pink-600" },
+          { label: "Sales & Lead Generation", color: "from-green-500 to-emerald-600" },
+          { label: "Business Planning & Strategy", color: "from-amber-500 to-orange-600" },
+          { label: "Global Client Communication", color: "from-blue-500 to-cyan-600" },
+        ]
+  )
 
   return (
     <section id="solution" className="relative px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-br from-background via-background to-primary/5 scroll-mt-28">
@@ -22,15 +49,17 @@ export default function Solution() {
           className="mb-16"
         >
           <div className="flex items-center gap-3 mb-6">
-            <span className="text-sm font-semibold text-accent uppercase tracking-widest">The Solution</span>
+            <span className="text-sm font-semibold text-accent uppercase tracking-widest">
+              {effectiveLanguage === "Korean" ? "해결책" : "The Solution"}
+            </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-black text-foreground tracking-tight mb-8 text-balance">
-            The Philippines — Your Global Business Headquarters.
+            {effectiveLanguage === "Korean" ? "필리핀 — 당신의 글로벌 비즈니스 본사." : "The Philippines — Your Global Business Headquarters."}
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl leading-relaxed">
-            We're not just another outsourcing company. Our English-proficient professionals in the Philippines act as
-            your in-house Global Department, handling all English-driven operations such as marketing, sales, business
-            planning, and client communication. You focus on your product. We'll handle your global communication.
+            {effectiveLanguage === "Korean"
+              ? "우리는 단순한 아웃소싱 회사가 아닙니다. 필리핀의 영어 전문 인력이 마케팅, 영업, 사업 기획, 고객 커뮤니케이션 등 영어 중심의 모든 업무를 담당하는 사내 글로벌 부서 역할을 합니다. 당신은 제품에 집중하세요. 우리는 글로벌 커뮤니케이션을 책임집니다."
+              : "We're not just another outsourcing company. Our English-proficient professionals in the Philippines act as your in-house Global Department, handling all English-driven operations such as marketing, sales, business planning, and client communication. You focus on your product. We'll handle your global communication."}
           </p>
         </motion.div>
 
@@ -72,15 +101,20 @@ export default function Solution() {
                   <Handshake className="w-8 h-8 text-primary-foreground" />
                 </div>
                 <div className="text-center space-y-3">
-                  <h3 className="text-xl font-black text-foreground">Partnership Model</h3>
+                  <h3 className="text-xl font-black text-foreground">
+                    {effectiveLanguage === "Korean" ? "파트너십 모델" : "Partnership Model"}
+                  </h3>
                   <p className="text-muted-foreground leading-relaxed">
-                    We're embedded in your business as a remote extension of your team, not a vendor. Your success is
-                    our success.
+                    {effectiveLanguage === "Korean"
+                      ? "우리는 단순한 공급업체가 아니라, 팀의 원격 확장으로서 당신의 비즈니스에 깊이 관여합니다. 당신의 성공이 곧 우리의 성공입니다."
+                      : "We're embedded in your business as a remote extension of your team, not a vendor. Your success is our success."}
                   </p>
                 </div>
                 <div className="pt-4 border-t border-border/50">
                   <p className="text-sm text-muted-foreground italic">
-                    "You focus on building the best product. We'll ensure the entire world can understand and buy it."
+                    {effectiveLanguage === "Korean"
+                      ? "당신은 최고의 제품을 만드는 데 집중하세요. 우리는 전 세계가 이해하고 구매할 수 있도록 만들겠습니다."
+                      : "You focus on building the best product. We'll ensure the entire world can understand and buy it."}
                   </p>
                 </div>
               </div>

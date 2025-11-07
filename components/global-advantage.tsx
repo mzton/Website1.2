@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import { CheckCircle } from "lucide-react"
 
-export default function GlobalAdvantage() {
+type GlobalAdvantageProps = { language?: "English" | "Korean" }
+export default function GlobalAdvantage({ language = "English" }: GlobalAdvantageProps) {
   return (
     <section id="why" className="px-4 py-20 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
@@ -22,15 +23,22 @@ export default function GlobalAdvantage() {
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
             >
               <h2 className="mb-8 text-4xl font-bold tracking-tight text-foreground">
-                Why the Philippines is Your Global Advantage
+                {language === "Korean" ? "필리핀은 당신의 글로벌 이점입니다" : "Why the Philippines is Your Global Advantage"}
               </h2>
               <div className="space-y-6">
-                {[
-                  { title: "#1 English-Speaking Workforce in Asia", subtitle: "Ranked by EF EPI Index" },
-                  { title: "1-Hour Time Zone Alignment", subtitle: "Perfect overlap with Korean & Japanese business hours" },
-                  { title: "1/3 the Cost of Western Talent", subtitle: "Same quality, dramatically lower overhead" },
-                  { title: "20+ Years of BPO Excellence", subtitle: "Proven track record serving global companies" },
-                ].map((item, i) => (
+                {(language === "Korean"
+                  ? [
+                      { title: "아시아 최고 영어 구사 인력", subtitle: "EF EPI 지수 기준" },
+                      { title: "1시간대 시간대 정렬", subtitle: "한국·일본 근무시간과 완벽한 겹침" },
+                      { title: "서구 인력 대비 1/3 비용", subtitle: "동일 품질, 압도적으로 낮은 비용" },
+                      { title: "20년 이상의 BPO 전문성", subtitle: "글로벌 기업을 위한 검증된 실적" },
+                    ]
+                  : [
+                      { title: "#1 English-Speaking Workforce in Asia", subtitle: "Ranked by EF EPI Index" },
+                      { title: "1-Hour Time Zone Alignment", subtitle: "Perfect overlap with Korean & Japanese business hours" },
+                      { title: "1/3 the Cost of Western Talent", subtitle: "Same quality, dramatically lower overhead" },
+                      { title: "20+ Years of BPO Excellence", subtitle: "Proven track record serving global companies" },
+                    ]).map((item, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, x: -30 }}

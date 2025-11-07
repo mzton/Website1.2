@@ -2,17 +2,35 @@
 
 import { Button } from "@/components/ui/button"
 import { Menu, X } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import { ThemeToggle } from "./theme-toggle"
 import LoginModal from "@/components/login-modal"
 
 const LanguageMenu = dynamic(() => import("./language-menu"), { ssr: false })
 
-export default function Header() {
+type HeaderProps = { language?: "English" | "Korean" }
+export default function Header({ language }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [modalMode, setModalMode] = useState<"signin" | "signup">("signup")
+  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("appLanguage")
+      if (stored === "Korean") setAppLanguage("Korean")
+    } catch {}
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "appLanguage") {
+        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
+      }
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [])
+
+  const effectiveLanguage = language ?? appLanguage
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -30,13 +48,13 @@ export default function Header() {
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
           <a href="#services" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-            Services
+            {effectiveLanguage === "Korean" ? "서비스" : "Services"}
           </a>
           <a href="#solution" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-            Solution
+            {effectiveLanguage === "Korean" ? "솔루션" : "Solution"}
           </a>
           <a href="#pricing" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-            Pricing
+            {effectiveLanguage === "Korean" ? "요금제" : "Pricing"}
           </a>
           <button
             type="button"
@@ -46,7 +64,7 @@ export default function Header() {
               setLoginOpen(true)
             }}
           >
-            Contact
+            {effectiveLanguage === "Korean" ? "문의하기" : "Contact"}
           </button>
         </div>
 
@@ -64,7 +82,7 @@ export default function Header() {
               setLoginOpen(true)
             }}
           >
-            Request Consultation
+            {effectiveLanguage === "Korean" ? "상담 요청" : "Request Consultation"}
           </Button>
         </div>
 
@@ -86,21 +104,21 @@ export default function Header() {
               className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
               onClick={() => setIsOpen(false)}
             >
-              Services
+              {effectiveLanguage === "Korean" ? "서비스" : "Services"}
             </a>
             <a
               href="#solution"
               className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
               onClick={() => setIsOpen(false)}
             >
-              Solution
+              {effectiveLanguage === "Korean" ? "솔루션" : "Solution"}
             </a>
             <a
               href="#pricing"
               className="text-sm font-sans text-muted-foreground transition hover:text-foreground"
               onClick={() => setIsOpen(false)}
             >
-              Pricing
+              {effectiveLanguage === "Korean" ? "요금제" : "Pricing"}
             </a>
             <button
               type="button"
@@ -111,7 +129,7 @@ export default function Header() {
                 setLoginOpen(true)
               }}
             >
-              Contact
+              {effectiveLanguage === "Korean" ? "문의하기" : "Contact"}
             </button>
             <LanguageMenu className="w-full gap-2 justify-start font-sans bg-transparent" align="start" />
             <Button
@@ -123,7 +141,7 @@ export default function Header() {
                 setLoginOpen(true)
               }}
             >
-              Request Consultation
+              {effectiveLanguage === "Korean" ? "상담 요청" : "Request Consultation"}
             </Button>
           </div>
         </div>

@@ -149,7 +149,7 @@ export default function Features() {
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
-              {appLanguage === "Korean" ? "영어 장벽을 가장 크게 느끼는 곳은 어디인가요?" : "Where Do You Feel the English Barrier Most?"}
+              {appLanguage === "Korean" ? "왜 아직도 국내마켓만 생각하세요 글로벌 시장 비법이 있습니다" : "Where Do You Feel the English Barrier Most?"}
             </span>
           </h2>
           <p className="text-lg text-muted-foreground">
