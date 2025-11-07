@@ -16,7 +16,6 @@ export default function Home() {
       <ImageCarousel />
       <Features />
       <Solution />
-      <CTA />
       <GlobalAdvantage />
       <Testimonials />
       <Pricing />
