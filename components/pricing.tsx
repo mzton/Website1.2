@@ -167,7 +167,7 @@ const iconMap = {
   shield: Shield,
 }
 
-export default function VisualPricing() {
+export default function VisualPricing({ language }: { language?: string }) {
   const [loginOpen, setLoginOpen] = useState(false)
   const [activePreview, setActivePreview] = useState<{planIndex: number, showcaseIndex: number} | null>(null)
   const [appLanguage, setAppLanguage] = useState<string | null>(null)
@@ -198,31 +198,34 @@ export default function VisualPricing() {
     window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
     return () => {
       window.removeEventListener("storage", onStorage)
-      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
+    window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
     }
   }, [])
+
+  // Allow explicit language override via prop with localStorage fallback
+  const effectiveLanguage = language ?? appLanguage
 
   // Korean translations for Pricing specifics
   const koPlans: Record<string, { name?: string; subtitle?: string; bestFor?: string; ctaText?: string; roiTitle?: string; roiSubtitle?: string }> = {
     "Content & Presence": {
-      name: "콘텐츠 & 프레즌스",
+      name: "글로벌 쇼설미디어로 출발",
       subtitle: "글로벌 브랜드 가시성 구축",
       bestFor: "전문적인 영어로 소통할 준비가 된 브랜드",
-      ctaText: "콘텐츠 제작 시작하기",
+      ctaText: "해외사업 기초 시작하기",
     },
     "Sales & Commerce": {
-      name: "영업 & 커머스",
+      name: "온라인 쇼핑몰 공략",
       subtitle: "전 세계 판매 완전 지원",
       bestFor: "국제 시장에서 적극적으로 판매하는 기업",
-      ctaText: "매출 성장시키기",
+      ctaText: "글로벌 전문 1인 구축플랜",
       roiTitle: "월 매출을 $5,000만 늘려도",
       roiSubtitle: "투자 비용을 5배 이상 회수합니다",
     },
     "Enterprise Growth": {
-      name: "엔터프라이즈 성장",
+      name: "글로벌 기업형업무",
       subtitle: "풀 파트너십 개발 팀",
       bestFor: "글로벌 시장으로 공격적으로 확장하는 기업",
-      ctaText: "글로벌 팀 구축하기",
+      ctaText: "글로벌 전문 2인 팀 구축플랜",
     },
   }
 
@@ -261,7 +264,7 @@ export default function VisualPricing() {
     "Video production & editing": "영상 제작 및 편집",
     "Catalogue & ad design": "카탈로그 및 광고 디자인",
     "Weekly performance reports": "주간 성과 보고서",
-    "Marketplace management (Amazon, Shopee, Lazada)": "마켓플레이스 관리 (아마존, 쇼피, 라자다)",
+    "Marketplace management (Amazon, Shopee, Lazada)": "해외쇼핑몰 입점,판매,관리(아마존,쇼피,라자다)",
     "Market research & competitor analysis": "시장 조사 및 경쟁사 분석",
     "Live chat (Korean office hours)": "실시간 채팅 (한국 근무시간)",
     "Product listing optimization": "상품 등록 최적화",
@@ -277,21 +280,21 @@ export default function VisualPricing() {
         {/* Header */}
         <div className="mb-16 text-center">
           <p className="text-sm uppercase tracking-widest text-muted-foreground">
-            {appLanguage === "Korean" ? (
+            {effectiveLanguage === "Korean" ? (
               <span className="notranslate" translate="no">요금제</span>
             ) : (
               "Pricing"
             )}
           </p>
           <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            {appLanguage === "Korean" ? (
+            {effectiveLanguage === "Korean" ? (
               <span className="notranslate" translate="no">일단 서비스를 받아보세요</span>
             ) : (
               "See What You Get"
             )}
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
-            {appLanguage === "Korean" ? (
+            {effectiveLanguage === "Korean" ? (
               <span className="notranslate" translate="no">단순한 서비스가 아닙니다 — 직접 보고 측정할 수 있는 실질적인 결과물</span>
             ) : (
               "Not just services—real deliverables you can see and measure"
@@ -316,7 +319,7 @@ export default function VisualPricing() {
                   {/* Badge */}
                   {plan.badge && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-4 py-1 rounded-full text-xs font-medium shadow-lg z-10">
-                      {appLanguage === "Korean" ? (
+                      {effectiveLanguage === "Korean" ? (
                         <span className="notranslate" translate="no">{koBadge[plan.badge] ?? plan.badge}</span>
                       ) : (
                         plan.badge
@@ -330,7 +333,7 @@ export default function VisualPricing() {
                       <Icon className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <div className="text-lg font-semibold">
-                      {appLanguage === "Korean" ? (
+                      {effectiveLanguage === "Korean" ? (
                         <span className="notranslate" translate="no">{koPlans[plan.name]?.name ?? plan.name}</span>
                       ) : (
                         plan.name
@@ -339,7 +342,7 @@ export default function VisualPricing() {
                   </div>
 
                   <div className="text-sm text-muted-foreground mb-4">
-                    {appLanguage === "Korean" ? (
+                    {effectiveLanguage === "Korean" ? (
                       <span className="notranslate" translate="no">{koPlans[plan.name]?.subtitle ?? plan.subtitle}</span>
                     ) : (
                       plan.subtitle
@@ -357,14 +360,14 @@ export default function VisualPricing() {
                   {/* Best For */}
                   <div className="mb-4 p-3 bg-muted/50 rounded-lg text-sm">
                     <span className="text-xs text-muted-foreground">
-                      {appLanguage === "Korean" ? (
+                      {effectiveLanguage === "Korean" ? (
                         <span className="notranslate" translate="no">추천 대상: </span>
                       ) : (
                         "Best for: "
                       )}
                     </span>
                     <span className="font-medium">
-                      {appLanguage === "Korean" ? (
+                      {effectiveLanguage === "Korean" ? (
                         <span className="notranslate" translate="no">{koPlans[plan.name]?.bestFor ?? plan.bestFor}</span>
                       ) : (
                         plan.bestFor
@@ -375,8 +378,8 @@ export default function VisualPricing() {
                   {/* Visual Showcase - Interactive Preview Area */}
                   <div className="mb-6 space-y-3">
                     <div className="text-sm font-semibold mb-2">
-                      {appLanguage === "Korean" ? (
-                        <span className="notranslate" translate="no">받게 되는 것:</span>
+                      {effectiveLanguage === "Korean" ? (
+                        <span className="notranslate" translate="no">글로벌 서비스품목:</span>
                       ) : (
                         "What You'll Get:"
                       )}
@@ -455,14 +458,14 @@ export default function VisualPricing() {
                           {/* Label & Description */}
                           <div className="p-3 pt-2 border-t">
                             <div className="text-xs font-semibold mb-1">
-                              {appLanguage === "Korean" ? (
+                              {effectiveLanguage === "Korean" ? (
                                 <span className="notranslate" translate="no">{koShowcaseLabel[showcase.label] ?? showcase.label}</span>
                               ) : (
                                 showcase.label
                               )}
                             </div>
                             <div className="text-[11px] text-muted-foreground">
-                              {appLanguage === "Korean" ? (
+                              {effectiveLanguage === "Korean" ? (
                                 <span className="notranslate" translate="no">{koShowcaseDesc[showcase.description] ?? showcase.description}</span>
                               ) : (
                                 showcase.description
@@ -475,7 +478,7 @@ export default function VisualPricing() {
                         {isExpandable && (
                           <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition">
                             <div className="bg-primary text-primary-foreground text-[10px] px-2 py-1 rounded">
-                              {appLanguage === "Korean" ? (
+                              {effectiveLanguage === "Korean" ? (
                                 <span className="notranslate" translate="no">클릭하여 확대</span>
                               ) : (
                                 "Click to expand"
@@ -492,14 +495,14 @@ export default function VisualPricing() {
                   {plan.roi && (
                     <div className="mb-4 p-3 bg-green-500/10 rounded-lg border border-green-500/20">
                       <div className="text-xs font-semibold text-green-700 dark:text-green-400">
-                        {appLanguage === "Korean" ? (
+                        {effectiveLanguage === "Korean" ? (
                           <span className="notranslate" translate="no">{koPlans[plan.name]?.roiTitle ?? plan.roi.title}</span>
                         ) : (
                           plan.roi.title
                         )}
                       </div>
                       <div className="text-[11px] text-green-600 dark:text-green-500 mt-1">
-                        {appLanguage === "Korean" ? (
+                        {effectiveLanguage === "Korean" ? (
                           <span className="notranslate" translate="no">{koPlans[plan.name]?.roiSubtitle ?? plan.roi.subtitle}</span>
                         ) : (
                           plan.roi.subtitle
@@ -522,8 +525,14 @@ export default function VisualPricing() {
                   {/* Features List (Compact) */}
                   <div className="mb-6 space-y-2">
                     <div className="text-sm font-semibold mb-2">
-                      {appLanguage === "Korean" ? (
-                        <span className="notranslate" translate="no">추가 포함:</span>
+                      {effectiveLanguage === "Korean" ? (
+                        <span className="notranslate" translate="no">
+                          {plan.name === "Content & Presence"
+                            ? "해외사업 마케팅 초기 플랜"
+                            : plan.name === "Enterprise Growth"
+                            ? "글로벌 2인 팀 구축플랜"
+                            : "글로벌 1인업무 구축플랜"}
+                        </span>
                       ) : (
                         "Also Includes:"
                       )}
@@ -534,8 +543,12 @@ export default function VisualPricing() {
                         <div key={idx} className="flex items-start gap-2">
                           <FeatureIcon className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
                           <span className="text-xs text-muted-foreground">
-                            {appLanguage === "Korean" ? (
-                              <span className="notranslate" translate="no">{koFeatures[feature.text] ?? feature.text}</span>
+                            {effectiveLanguage === "Korean" ? (
+                              <span className="notranslate" translate="no">
+                                {plan.name === "Enterprise Growth" && feature.text === "Weekly performance reports"
+                                  ? "글로벌 전문 2인 팀 구축플랜"
+                                  : (koFeatures[feature.text] ?? feature.text)}
+                              </span>
                             ) : (
                               feature.text
                             )}
@@ -556,12 +569,12 @@ export default function VisualPricing() {
                     size="lg"
                     onClick={() => setLoginOpen(true)}
                   >
-                    {appLanguage === "Korean" ? (
+                    {effectiveLanguage === "Korean" ? (
                       <span className="notranslate" translate="no">
                         {koPlans[plan.name]?.ctaText ??
-                          (plan.name === "Content & Presence" ? "콘텐츠 제작 시작하기" :
-                           plan.name === "Sales & Commerce" ? "매출 성장시키기" :
-                           plan.name === "Enterprise Growth" ? "글로벌 팀 구축하기" :
+                          (plan.name === "Content & Presence" ? "글로벌 쇼설미디어로 출발":
+                           plan.name === "Sales & Commerce" ? "글로벌 전문 1인 구축플랜" :
+                           plan.name === "Enterprise Growth" ? "글로벌 전문 2인 팀 구축플랜" :
                            plan.ctaText)}
                       </span>
                     ) : (
@@ -570,7 +583,7 @@ export default function VisualPricing() {
                   </Button>
 
                   <div className="mt-3 text-center text-xs text-muted-foreground">
-                    {appLanguage === "Korean" ? (
+                    {effectiveLanguage === "Korean" ? (
                       <span className="notranslate" translate="no">언제든지 취소 가능 • 초기 비용 없음</span>
                     ) : (
                       "Cancel anytime • No setup fees"
@@ -599,14 +612,14 @@ export default function VisualPricing() {
                     <div className="flex items-start justify-between mb-6">
                       <div>
                         <h3 className="text-2xl font-bold mb-2">
-                          {appLanguage === "Korean" ? (
+                          {effectiveLanguage === "Korean" ? (
                             <span className="notranslate" translate="no">{koShowcaseLabel[showcase.label] ?? showcase.label}</span>
                           ) : (
                             showcase.label
                           )}
                         </h3>
                         <p className="text-muted-foreground">
-                          {appLanguage === "Korean" ? (
+                          {effectiveLanguage === "Korean" ? (
                             <span className="notranslate" translate="no">{koShowcaseDesc[showcase.description] ?? showcase.description}</span>
                           ) : (
                             showcase.description
@@ -658,7 +671,7 @@ export default function VisualPricing() {
         <div className="max-w-4xl mx-auto text-center">
           <Heart className="w-24 h-24 mx-auto mb-8 animate-pulse text-pink-500" />
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
-            {appLanguage === "Korean" ? (
+            {effectiveLanguage === "Korean" ? (
               <span className="notranslate" translate="no">글로벌 시장개척 더이상 미루어서는 안됩니다.</span>
             ) : (
               "We Believe In You"
@@ -666,7 +679,7 @@ export default function VisualPricing() {
           </h2>
           <div className="bg-card/50 backdrop-blur-sm p-12 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-8 leading-relaxed">
-              {appLanguage === "Korean" ? (
+              {effectiveLanguage === "Korean" ? (
                 <span className="notranslate" translate="no">세계를 향한 작은 출발을 저희가 함께 하겠습니다.</span>
               ) : (
                 "We'll take the first small step toward the world together."

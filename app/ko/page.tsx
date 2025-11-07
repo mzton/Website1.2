@@ -26,7 +26,7 @@ export default function KoreanHome() {
       <Features />
       <Solution language="Korean" />
       <Testimonials language="Korean" />
-      <Pricing />
+      <Pricing language="Korean" />
       <Footer language="Korean" />
     </main>
   )

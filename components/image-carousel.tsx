@@ -179,8 +179,7 @@ const categories: CarouselCategory[] = [
   },
 ]
 
-type ImageCarouselProps = { language?: "English" | "Korean" }
-export default function ImageCarousel({ language = "English" }: ImageCarouselProps) {
+export default function ImageCarousel() {
   const [activeCategory, setActiveCategory] = useState("emails")
   const [currentIndex, setCurrentIndex] = useState(0)
   const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
@@ -345,13 +344,7 @@ export default function ImageCarousel({ language = "English" }: ImageCarouselPro
                   activeCategory === category.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {language === "Korean"
-                  ? (category.id === "videos" ? "비디오"
-                    : category.id === "ads" ? "이미지"
-                    : category.id === "socials" ? "SNS"
-                    : category.id === "emails" ? "이메일"
-                    : category.label)
-                  : category.label}
+                {category.label}
                 {activeCategory === category.id && (
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-full"></div>
                 )}
