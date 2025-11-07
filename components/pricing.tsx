@@ -14,6 +14,7 @@ const plans = [
     subtitle: "Build your global brand visibility",
     bestFor: "Brands ready to speak English professionally",
     icon: Megaphone,
+    color: "from-purple-500 to-pink-600",
     outcome: {
       icon: "📢",
       text: "Consistent, professional English content across all channels"
@@ -46,7 +47,7 @@ const plans = [
       { text: "Weekly performance reports", icon: "trend" },
     ],
     ctaText: "Start Creating Content",
-    ctaVariant: "outline",
+    ctaVariant: "default",
     highlighted: false,
   },
   {
@@ -57,6 +58,7 @@ const plans = [
     bestFor: "Companies actively selling in international markets",
     icon: ShoppingCart,
     badge: "Most Popular",
+    color: "from-green-500 to-emerald-600",
     outcome: {
       icon: "🛒",
       text: "Complete e-commerce management with live customer support"
@@ -108,6 +110,7 @@ const plans = [
     bestFor: "Businesses expanding aggressively into global markets",
     icon: Briefcase,
     badge: "Full-Service",
+    color: "from-blue-500 to-cyan-600",
     outcome: {
       icon: "🚀",
       text: "2-person dedicated team finding buyers and closing deals"
@@ -205,8 +208,8 @@ export default function VisualPricing() {
 
                   {/* Header */}
                   <div className="flex items-center gap-3 mb-2">
-                    <div className={`p-2 rounded-lg ${plan.highlighted ? 'bg-primary/10' : 'bg-muted'}`}>
-                      <Icon className={`h-5 w-5 ${plan.highlighted ? 'text-primary' : 'text-muted-foreground'}`} />
+                    <div className={`w-10 h-10 rounded-full bg-gradient-to-br ${plan.color ?? 'from-primary/30 to-accent/30'} flex items-center justify-center shadow-sm`}>
+                      <Icon className="h-5 w-5 text-primary-foreground" />
                     </div>
                     <div className="text-lg font-semibold">{plan.name}</div>
                   </div>
@@ -360,7 +363,11 @@ export default function VisualPricing() {
 
                   {/* CTA */}
                   <Button
-                    className={`w-full ${plan.highlighted ? 'shadow-lg' : ''}`}
+                    className={`w-full ${plan.highlighted ? 'shadow-lg' : ''} bg-gradient-to-r text-white 
+                      ${plan.name === 'Content & Presence' ? '!from-purple-500 !to-pink-600' : ''}
+                      ${plan.name === 'Sales & Commerce' ? '!from-green-500 !to-emerald-600' : ''}
+                      ${plan.name === 'Enterprise Growth' ? '!from-blue-500 !to-cyan-600' : ''}
+                      hover:!from-sky-500 hover:!to-blue-700`}
                     variant={plan.ctaVariant as any}
                     size="lg"
                     onClick={() => setLoginOpen(true)}

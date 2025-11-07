@@ -11,24 +11,28 @@ const features = [
     title: "Global Communication",
     description:
       "Professional emails, contracts, and client presentations. Your message lands perfectly in English, every time.",
+    color: "from-blue-500 to-cyan-600",
   },
   {
     icon: Megaphone,
     title: "Social & Content Strategy",
     description:
       "Instagram, LinkedIn, Facebook — professionally managed in English. High-impact posts that attract real buyers.",
+    color: "from-purple-500 to-pink-600",
   },
   {
     icon: TrendingUp,
     title: "Sales & Market Development",
     description:
       "Lead generation, buyer meetings, and email campaigns. Revenue-focused operations executed in fluent English.",
+    color: "from-green-500 to-emerald-600",
   },
   {
     icon: Target,
     title: "Global Strategy & Planning",
     description:
       "Market research, investor decks, partnership proposals. Strategic documents that attract capital and partnerships.",
+    color: "from-amber-500 to-orange-600",
   },
 ]
 
@@ -117,8 +121,8 @@ export default function Features() {
                   </div>
                   {/* Inline icon beside title */}
                   <div className="mb-3 flex items-center gap-3">
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br from-primary/20 to-accent/20 group-hover:from-primary/40 group-hover:to-accent/40 transition-all">
-                      <Icon className="h-5 w-5 text-accent" />
+                    <span className={`inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br ${feature.color} transition-transform group-hover:scale-105 shadow-sm`}>
+                      <Icon className="h-5 w-5 text-primary-foreground" />
                     </span>
                     <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
                   </div>

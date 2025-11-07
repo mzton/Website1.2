@@ -147,7 +147,12 @@ export default function Testimonials() {
                   <div className="mb-6">
                     <div className="inline-flex items-center gap-1 mb-3">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 fill-accent text-accent" />
+                        <div
+                          key={i}
+                          className="w-5 h-5 rounded-full bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center"
+                        >
+                          <Star className="h-3 w-3 text-primary-foreground fill-current" />
+                        </div>
                       ))}
                     </div>
                     <div className="text-3xl font-bold text-primary mb-2">{result.metric}</div>
