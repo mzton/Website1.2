@@ -133,7 +133,7 @@ export default function Hero() {
     return `${m}:${sec.toString().padStart(2, "0")}`
   }
   return (
-    <section className="relative overflow-hidden px-4 pt-40 sm:pt-44 lg:pt-48 pb-12 sm:px-6 lg:px-8 scroll-mt-40 sm:scroll-mt-44 lg:scroll-mt-48">
+    <section className="relative overflow-hidden px-4 pt-8 sm:pt-10 lg:pt-12 pb-12 sm:px-6 lg:px-8 scroll-mt-8 sm:scroll-mt-10 lg:scroll-mt-12">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
         <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
@@ -142,7 +142,7 @@ export default function Hero() {
       <div className="mx-auto max-w-6xl">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            className="text-left flex flex-col h-64 sm:h-80 md:h-96"
+            className="text-left flex flex-col"
           >
             <h1
               className="mb-6 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2rem,6vw,3.5rem)]"
