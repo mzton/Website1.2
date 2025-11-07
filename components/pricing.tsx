@@ -77,16 +77,20 @@ const plans = [
       {
         type: "gallery",
         label: "Multi-Platform Management",
-        images: ["/pricing/y1.png", "/reviews/after11.png", "/reviews/after15.png"],
+        images: ["/pricing/y1.png", "/pricing/y2.png", "/pricing/ebay.png"],
         description: "Amazon, Shopee, and beyond"
       }
     ],
     features: [
-      { text: "Everything in Content & Presence", icon: "check" },
       { text: "Marketplace management (Amazon, Shopee)", icon: "cart" },
       { text: "Market research & competitor analysis", icon: "trend" },
       { text: "Live chat (Korean office hours)", icon: "message" },
       { text: "Product listing optimization", icon: "image" },
+      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Email marketing campaigns", icon: "file" },
+      { text: "Video production & editing", icon: "play" },
+      { text: "Catalogue & ad design", icon: "image" },
+      { text: "Weekly performance reports", icon: "trend" },
     ],
     ctaText: "Grow Your Sales",
     ctaVariant: "default",
@@ -118,7 +122,7 @@ const plans = [
       {
         type: "gallery",
         label: "Professional Materials",
-        images: ["/reviews/after7.png", "/reviews/after8.png"],
+        images: ["/pricing/3rd.png", "/pricing/2nd.png"],
         description: "Pitch decks, proposals, and trade show materials"
       },
       {
@@ -128,16 +132,23 @@ const plans = [
       }
     ],
     features: [
-      { text: "Everything in Sales & Commerce", icon: "check" },
       { text: "Active buyer prospecting", icon: "trend" },
       { text: "2 dedicated BD specialists", icon: "briefcase" },
       { text: "Partnership negotiation support", icon: "message" },
       { text: "Enterprise priority support", icon: "shield" },
+      { text: "Marketplace management (Amazon, Shopee)", icon: "cart" },
+      { text: "Market research & competitor analysis", icon: "trend" },
+      { text: "Live chat (Korean office hours)", icon: "message" },
+      { text: "Product listing optimization", icon: "image" },
+      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Email marketing campaigns", icon: "file" },
+      { text: "Video production & editing", icon: "play" },
+      { text: "Catalogue & ad design", icon: "image" },
+      { text: "Weekly performance reports", icon: "trend" },
     ],
     ctaText: "Build My Global Team",
     ctaVariant: "default",
     highlighted: false,
-    performanceGuarantee: "Dedicated team working exclusively on your growth"
   },
 ]
 

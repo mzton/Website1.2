@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useState, useRef } from "react"
+import { Play, Pause, Volume2, VolumeX, SkipForward, SkipBack, Maximize } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import LoginModal from "@/components/login-modal"
@@ -28,7 +29,6 @@ export default function Hero() {
 
   // Custom video controls state
   const videoRef = useRef<HTMLVideoElement | null>(null)
-  const [isPlaying, setIsPlaying] = useState(true)
   const [isMuted, setIsMuted] = useState(true)
   const [volume, setVolume] = useState(0.6)
   const [progress, setProgress] = useState(0)
@@ -47,10 +47,6 @@ export default function Hero() {
   useEffect(() => {
     const v = videoRef.current
     if (!v) return
-    const onTime = () => setProgress(v.currentTime)
-    const onMeta = () => setDuration(v.duration || 0)
-    v.addEventListener("timeupdate", onTime)
-    v.addEventListener("loadedmetadata", onMeta)
     // keep properties in sync
     v.muted = isMuted
     v.volume = volume
@@ -60,24 +56,6 @@ export default function Hero() {
     }
   }, [isMuted, volume])
 
-  const togglePlay = () => {
-    const v = videoRef.current
-    if (!v) return
-    if (v.paused) {
-      v.play()
-      setIsPlaying(true)
-    } else {
-      v.pause()
-      setIsPlaying(false)
-    }
-  }
-  const skip = (delta: number) => {
-    const v = videoRef.current
-    if (!v) return
-    const next = Math.max(0, Math.min((v.duration || 0), v.currentTime + delta))
-    v.currentTime = next
-    setProgress(next)
-  }
   const toggleMute = () => {
     const v = videoRef.current
     if (!v) return
@@ -165,6 +143,12 @@ export default function Hero() {
                     muted
                     loop
                     playsInline
+                    preload="auto"
+                    onCanPlay={(e) => {
+                      const v = e.currentTarget
+                      // Ensure autoplay proceeds when ready
+                      v.play().catch(() => {})
+                    }}
                     // Custom controls overlay; hide native controls
                     ref={i === bgIndex ? videoRef : undefined}
                     className={`object-contain object-center absolute inset-0 w-full h-full transition-opacity duration-1000 ${i === bgIndex ? "opacity-100" : "opacity-0"}`}

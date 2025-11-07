@@ -86,7 +86,7 @@ export default function Features() {
           {features.map((feature, idx) => {
             const Icon = feature.icon
             return (
-              <motion.div key={feature.title} variants={itemVariants}>
+              <motion.div key={feature.title} variants={itemVariants as any}>
                 <Card
                   className="border-border/50 bg-background/50 backdrop-blur p-8 hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 cursor-pointer group"
                   onMouseEnter={() => {
@@ -111,7 +111,7 @@ export default function Features() {
                       autoPlay
                       loop
                       playsInline
-                      preload="auto"
+                      preload="metadata"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
                     />
                   </div>

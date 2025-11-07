@@ -31,7 +31,7 @@ export default function CTA() {
               <div className="space-y-6">
                 {[
                   {
-                    title: "#1 English-Speaking Workforce in Asia",
+                    title: "#2 English-Speaking Workforce in Asia",
                     subtitle: "Ranked by EF EPI Index",
                   },
                   {
@@ -81,42 +81,7 @@ export default function CTA() {
           </div>
         </motion.div>
 
-        {/* Final CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="rounded-2xl border border-accent/40 bg-gradient-to-r from-primary/20 via-accent/15 to-primary/10 p-8 sm:p-12 text-center overflow-hidden relative"
-        >
-          <div className="absolute inset-0 -z-10">
-            <div className="absolute top-0 left-1/4 w-64 h-64 bg-accent/10 rounded-full blur-3xl"></div>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-              Your Global Growth Starts Today
-            </h2>
-            <p className="mb-10 text-lg text-muted-foreground max-w-2xl mx-auto">
-              Stop struggling with English-speaking constraints. Start building a truly global business with Filipino
-              professionals who execute your vision.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row justify-center">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  size="lg"
-                  className="bg-accent hover:bg-accent/90 px-8 text-lg font-semibold w-full sm:w-auto"
-                  onClick={() => setLoginOpen(true)}
-                >
-                  Get Free Global Assessment
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
+        {/* Final CTA Section removed per request */}
       </div>
       <LoginModal open={loginOpen} onOpenChange={setLoginOpen} />
     </section>
