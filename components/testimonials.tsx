@@ -153,8 +153,18 @@ export default function Testimonials({ language }: TestimonialsProps) {
         setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
       }
     }
+    const onLanguageChange = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent<"English" | "Korean">).detail
+        setAppLanguage(detail === "Korean" ? "Korean" : "English")
+      } catch {}
+    }
     window.addEventListener("storage", onStorage)
-    return () => window.removeEventListener("storage", onStorage)
+    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
+    return () => {
+      window.removeEventListener("storage", onStorage)
+      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
+    }
   }, [])
 
   const effectiveLanguage = language ?? appLanguage

@@ -6,7 +6,39 @@ import { Check, Megaphone, ShoppingCart, Briefcase, Shield, Play, Image, FileTex
 import { useEffect, useState } from "react"
 import NextImage from "next/image"
 
-const plans = [
+// Type-safe definitions for visual showcase and plans
+type Showcase =
+  | { type: "gallery"; label: string; images: string[]; description: string }
+  | { type: "video"; label: string; thumbnail: string; description: string }
+  | { type: "mockup"; label: string; image: string; description: string }
+  | { type: "process"; label: string; steps: string[]; description: string }
+  | { type: "team"; label: string; description: string }
+
+type FeatureIcon = "image" | "file" | "play" | "trend" | "cart" | "message" | "briefcase" | "shield"
+type PlanFeature = { text: string; icon: FeatureIcon }
+
+type ROI = { title: string; subtitle: string }
+
+type Plan = {
+  name: string
+  price: string
+  period: string
+  subtitle: string
+  bestFor: string
+  icon: any
+  badge?: string
+  color: string
+  outcome: { icon: string; text: string }
+  visualShowcase: Showcase[]
+  features: PlanFeature[]
+  ctaText: string
+  ctaVariant: "default" | string
+  highlighted: boolean
+  roi?: ROI
+  performanceGuarantee?: string
+}
+
+const plans: Plan[] = [
   {
     name: "Content & Presence",
     price: "$399",
