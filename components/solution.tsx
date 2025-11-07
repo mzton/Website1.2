@@ -48,10 +48,13 @@ export default function Solution() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 hover:border-accent/50 transition-all"
+                className="group flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 hover:border-accent/50 transition-all cursor-pointer"
               >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center">
-                  <span className="text-accent font-bold">✓</span>
+                <div
+                  className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center transition-all ring-0 group-hover:ring-2 ring-accent/40 group-hover:from-primary/60 group-hover:to-accent/60 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-accent/20"
+                  aria-hidden="true"
+                >
+                  <span className="text-accent font-bold transition-colors group-hover:text-primary">✓</span>
                 </div>
                 <span className="text-foreground font-medium">{benefit}</span>
               </motion.div>

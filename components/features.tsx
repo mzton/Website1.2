@@ -1,9 +1,9 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Megaphone, TrendingUp, Target } from "lucide-react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 
 const features = [
   {
@@ -35,12 +35,63 @@ const features = [
 export default function Features() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
+  // Single fallback video per card (used if no set is provided)
   const previewVideos = [
-    "/video/GlobalCommunication.mp4",
-    "/video/socmed.mp4",
-    "/video/ShoppingPlat.mp4",
-    "/video/GlobalStratMarketing.mp4",
+    "/video/.mp4",
+    "/video/.mp4",
+    "/video/.mp4",
+    "/video/.mp4",
   ]
+
+  // Optional multiple videos per card that will rotate automatically.
+  // Use paths that exist under `public/` to avoid 404s.
+  const previewVideoSets: string[][] = [
+    [
+      "/video/talk2.mp4",
+      "/video/shakehands.mp4",
+    ],
+    [
+      "/video/social2.mp4",
+      "/video/social.mp4",
+    ],
+    [
+      "/video/market1.mp4",
+      "/video/marketing1.mp4",
+    ],
+    [
+      "/video/meeting.mp4",
+      "/video/plan.mp4",
+    ],
+  ]
+
+  // Track which source each card is currently showing
+  const [currentVideoIndex, setCurrentVideoIndex] = useState<number[]>(
+    Array.from({ length: features.length }, () => 0)
+  )
+
+  // Rotate videos every 5–8 seconds without touching other components
+  useEffect(() => {
+    let timeoutId: number
+    const MIN = 5000
+    const MAX = 8000
+
+    const schedule = () => {
+      const delay = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN
+      timeoutId = window.setTimeout(() => {
+        setCurrentVideoIndex((prev) =>
+          prev.map((i, idx) => {
+            const set = previewVideoSets[idx]
+            const len = Array.isArray(set) ? set.length : 0
+            return len > 1 ? (i + 1) % len : i
+          })
+        )
+        schedule()
+      }, delay)
+    }
+
+    schedule()
+    return () => clearTimeout(timeoutId)
+  }, [])
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -103,17 +154,25 @@ export default function Features() {
                 >
                   {/* Larger preview area for videos */}
                   <div className="relative mb-6 h-56 sm:h-60 lg:h-64 w-full overflow-hidden rounded-lg">
-                    <video
-                      ref={(el) => (videoRefs.current[idx] = el)}
-                      src={previewVideos[idx]}
-                      poster="/placeholder.jpg"
-                      muted
-                      autoPlay
-                      loop
-                      playsInline
-                      preload="metadata"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
-                    />
+                    <AnimatePresence mode="wait">
+                      <motion.video
+                        ref={(el) => (videoRefs.current[idx] = el)}
+                        // Use rotating set if available; otherwise fallback to single preview
+                        src={(previewVideoSets[idx] && previewVideoSets[idx][currentVideoIndex[idx]]) || previewVideos[idx]}
+                        key={currentVideoIndex[idx]}
+                        poster="/placeholder.jpg"
+                        muted
+                        autoPlay
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.6 }}
+                      />
+                    </AnimatePresence>
                   </div>
                   {/* Inline icon beside title */}
                   <div className="mb-3 flex items-center gap-3">
