@@ -9,7 +9,7 @@ export default function Footer() {
   return (
     <footer className="border-t border-border/40 bg-background/80 backdrop-blur px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 mb-12">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3 mb-12 justify-items-center text-center">
           <div>
             <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Company</h4>
             <ul className="space-y-3 text-sm text-muted-foreground">
@@ -72,7 +72,7 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="mb-4 font-semibold text-foreground text-sm uppercase tracking-wide">Connect</h4>
-            <div className="flex gap-4">
+            <div className="flex gap-4 justify-center">
               <a
                 href="https://www.facebook.com/"
                 target="_blank"

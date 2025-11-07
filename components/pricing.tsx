@@ -186,7 +186,7 @@ export default function VisualPricing() {
         </div>
 
         {/* Pricing Cards with Visual Previews */}
-        <div className="grid gap-12 lg:grid-cols-3">
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
           {plans.map((plan, planIndex) => {
             const Icon = plan.icon
             
@@ -247,9 +247,9 @@ export default function VisualPricing() {
 
                           {/* Gallery Preview */}
                           {showcase.type === "gallery" && (
-                            <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'grid-cols-2' : 'grid-cols-3'} gap-1 p-2`}>
+                            <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'} gap-1 p-2`}>
                               {showcase.images?.map((img, i) => (
-                                <div key={i} className="relative h-20 rounded overflow-hidden bg-muted">
+                                <div key={i} className="relative h-24 sm:h-28 md:h-32 rounded overflow-hidden bg-muted">
                                   <NextImage src={img} alt={`Example ${i+1}`} fill className="object-contain" />
                                 </div>
                               ))}
@@ -391,7 +391,7 @@ export default function VisualPricing() {
             onClick={() => setActivePreview(null)}
           >
             <div 
-              className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto p-8"
+              className="bg-background rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto p-4 sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
               {(() => {
@@ -414,7 +414,7 @@ export default function VisualPricing() {
                     {/* Expanded Content */}
 
                     {showcase.type === "gallery" && (
-                      <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'} gap-4`}>
+                      <div className={`grid ${showcase.images && showcase.images.length === 2 ? 'sm:grid-cols-2 md:grid-cols-2' : 'sm:grid-cols-2 md:grid-cols-3'} gap-4`}>
                         {showcase.images?.map((img, i) => (
                           <div key={i} className="relative aspect-square rounded-lg overflow-hidden bg-muted">
                             <NextImage src={img} alt={`Example ${i+1}`} fill className="object-contain" />
@@ -432,7 +432,7 @@ export default function VisualPricing() {
         {/* Login Modal Placeholder */}
         {loginOpen && (
           <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={() => setLoginOpen(false)}>
-            <div className="bg-background p-8 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-background p-6 sm:p-8 rounded-lg max-w-md w-full" onClick={(e) => e.stopPropagation()}>
               <h3 className="text-2xl font-bold mb-4">Let's Get Started</h3>
               <p className="text-muted-foreground mb-6">
                 Schedule a call to see more examples and discuss your needs.
