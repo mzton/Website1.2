@@ -439,7 +439,7 @@ export default function VisualPricing() {
       {/* Inspiration block (moved inside component, fixed markup) */}
       <div className="mt-24 py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <Heart className="w-24 h-24 text-primary mx-auto mb-8 animate-pulse" />
+          <Heart className="w-24 h-24 mx-auto mb-8 animate-pulse text-pink-500" />
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">We Believe In You</h2>
           <div className="bg-card/50 backdrop-blur-sm p-12 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-8 leading-relaxed">
