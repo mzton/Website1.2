@@ -1,101 +1,69 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useState } from "react"
 import { Card } from "@/components/ui/card"
-import { Mail, Megaphone, TrendingUp, Target } from "lucide-react"
+import { Mail, Megaphone, TrendingUp, Target, HelpCircle } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 const features = [
   {
     icon: Mail,
     title: "Global Communication",
-    description:
-      "Professional emails, contracts, and client presentations. Your message lands perfectly in English, every time.",
+    questions: [
+      "When you receive an English email, do you hesitate before replying?",
+      "Are your proposals written in clear, confident English that impresses buyers?",
+      "What if every message you send spoke perfectly to global clients?",
+    ],
+    solution: "BOOSTK writes, designs, and communicates in fluent business English — for you.",
     color: "from-blue-500 to-cyan-600",
   },
   {
     icon: Megaphone,
     title: "Social & Content Strategy",
-    description:
-      "Instagram, LinkedIn, Facebook — professionally managed in English. High-impact posts that attract real buyers.",
+    questions: [
+      "Do your social posts speak only to local audiences?",
+      "Are global buyers even seeing your content?",
+      "What if posts and visuals were written by an English-speaking team that knows your brand?",
+    ],
+    solution: "BOOSTK creates scroll-stopping, English-ready content for your global market.",
     color: "from-purple-500 to-pink-600",
   },
   {
     icon: TrendingUp,
     title: "Sales & Market Development",
-    description:
-      "Lead generation, buyer meetings, and email campaigns. Revenue-focused operations executed in fluent English.",
+    questions: [
+      "How many potential buyers have you lost because of unclear English?",
+      "Do you have someone who can meet international clients confidently?",
+      "What if your sales pipeline ran in English — generating revenue every month?",
+    ],
+    solution: "BOOSTK turns English into your sales advantage, not your weakness.",
     color: "from-green-500 to-emerald-600",
   },
   {
     icon: Target,
     title: "Global Strategy & Planning",
-    description:
-      "Market research, investor decks, partnership proposals. Strategic documents that attract capital and partnerships.",
+    questions: [
+      "Do you know how your competitors market in the U.S. or Europe?",
+      "Are your investor decks and proposals ready for international partners?",
+      "What if every document made investors and buyers say, ‘This looks global’?",
+    ],
+    solution: "BOOSTK builds your English strategy — from research to pitch.",
     color: "from-amber-500 to-orange-600",
   },
 ]
 
 export default function Features() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const videoRefs = useRef<(HTMLVideoElement | null)[]>([])
-  // Single fallback video per card (used if no set is provided)
-  const previewVideos = [
-    "/video/.mp4",
-    "/video/.mp4",
-    "/video/.mp4",
-    "/video/.mp4",
-  ]
-
-  // Optional multiple videos per card that will rotate automatically.
-  // Use paths that exist under `public/` to avoid 404s.
-  const previewVideoSets: string[][] = [
-    [
-      "/video/talk2.mp4",
-      "/video/shakehands.mp4",
-    ],
-    [
-      "/video/social2.mp4",
-      "/video/social.mp4",
-    ],
-    [
-      "/video/market1.mp4",
-      "/video/marketing1.mp4",
-    ],
-    [
-      "/video/meeting.mp4",
-      "/video/plan.mp4",
-    ],
-  ]
-
-  // Track which source each card is currently showing
-  const [currentVideoIndex, setCurrentVideoIndex] = useState<number[]>(
-    Array.from({ length: features.length }, () => 0)
+  // Solutions are shown by default for all cards
+  const [revealed] = useState<boolean[]>(
+    Array.from({ length: features.length }, () => true)
   )
-
-  // Rotate videos every 5–8 seconds without touching other components
-  useEffect(() => {
-    let timeoutId: number
-    const MIN = 5000
-    const MAX = 8000
-
-    const schedule = () => {
-      const delay = Math.floor(Math.random() * (MAX - MIN + 1)) + MIN
-      timeoutId = window.setTimeout(() => {
-        setCurrentVideoIndex((prev) =>
-          prev.map((i, idx) => {
-            const set = previewVideoSets[idx]
-            const len = Array.isArray(set) ? set.length : 0
-            return len > 1 ? (i + 1) % len : i
-          })
-        )
-        schedule()
-      }, delay)
-    }
-
-    schedule()
-    return () => clearTimeout(timeoutId)
-  }, [])
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -125,10 +93,10 @@ export default function Features() {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            Your Complete Global Operating System
+            Where Do You Feel the English Barrier Most?
           </h2>
           <p className="text-lg text-muted-foreground">
-            Every function your international business needs—without building a team
+            Self-diagnose the gap stopping your global growth
           </p>
         </motion.div>
 
@@ -143,49 +111,55 @@ export default function Features() {
             return (
               <motion.div key={feature.title} variants={itemVariants as any}>
                 <Card
-                  className="border-border/50 bg-background/50 backdrop-blur p-8 hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20 cursor-pointer group"
-                  onMouseEnter={() => {
-                    setHoveredIndex(idx)
-                    const v = videoRefs.current[idx]
-                    if (v) {
-                      v.muted = true
-                      v.play().catch(() => {})
-                    }
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredIndex(null)
-                  }}
+                  className="h-full flex flex-col border-border/50 bg-background/50 backdrop-blur p-8 hover:border-accent/50 transition-all hover:shadow-lg hover:shadow-accent/20"
                 >
-                  {/* Larger preview area for videos */}
-                  <div className="relative mb-6 h-56 sm:h-60 lg:h-64 w-full overflow-hidden rounded-lg">
-                    <AnimatePresence mode="wait">
-                      <motion.video
-                        ref={(el) => (videoRefs.current[idx] = el)}
-                        // Use rotating set if available; otherwise fallback to single preview
-                        src={(previewVideoSets[idx] && previewVideoSets[idx][currentVideoIndex[idx]]) || previewVideos[idx]}
-                        key={currentVideoIndex[idx]}
-                        poster="/placeholder.jpg"
-                        muted
-                        autoPlay
-                        loop
-                        playsInline
-                        preload="metadata"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-200 group-hover:scale-105"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6 }}
-                      />
-                    </AnimatePresence>
-                  </div>
-                  {/* Inline icon beside title */}
-                  <div className="mb-3 flex items-center gap-3">
-                    <span className={`inline-flex h-8 w-8 items-center justify-center rounded-md bg-gradient-to-br ${feature.color} transition-transform group-hover:scale-105 shadow-sm`}>
+                  {/* Header with icon and title */}
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className={`inline-flex h-9 w-9 items-center justify-center rounded-md bg-gradient-to-br ${feature.color} transition-transform group-hover:scale-105 shadow-sm`}>
                       <Icon className="h-5 w-5 text-primary-foreground" />
                     </span>
                     <h3 className="text-xl font-semibold text-foreground">{feature.title}</h3>
                   </div>
-                  <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+
+                  {/* Questions always visible */}
+                  <div className="relative flex-1">
+                    <motion.ul
+                      key={`questions-${idx}`}
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.35 }}
+                      className="space-y-3 list-none"
+                    >
+                      {(features[idx] as any).questions.map((q: string) => (
+                        <li key={q} className="flex items-start gap-3">
+                          <span className={`mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-sm bg-gradient-to-br ${feature.color} shadow-sm`}>
+                            <span className="text-primary-foreground text-xs leading-none">?</span>
+                          </span>
+                          <span className="text-muted-foreground">{q}</span>
+                        </li>
+                      ))}
+                    </motion.ul>
+
+                    {/* Highlighted solution always visible */}
+                    <div className="mt-4">
+                      <motion.div
+                        key={`solution-${idx}`}
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35 }}
+                        className="rounded-xl p-4 bg-gradient-to-br from-accent/15 to-transparent border border-accent/50 shadow-sm"
+                      >
+                        <div className="flex items-start gap-3">
+                          <span className={`inline-flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br ${feature.color} shadow-sm flex-shrink-0`}>
+                            <span className="text-primary-foreground text-xs">✓</span>
+                          </span>
+                          <p className="text-foreground/95 font-medium">
+                            {(features[idx] as any).solution}
+                          </p>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
                 </Card>
               </motion.div>
             )
