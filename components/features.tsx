@@ -79,11 +79,7 @@ const featuresKo = [
     ],
     solution: "BOOSTK가 글로벌 시장을 위한 영어 친화 콘텐츠를 제작합니다.",
     color: "from-purple-500 to-pink-600",
-<<<<<<< HEAD
     video: "/video/socialmedia.mp4",
-=======
-    video: "/video/social.mp4",
->>>>>>> f5220f1c82e6b206ce720867d8e254e67490b395
   },
   {
     icon: TrendingUp,
