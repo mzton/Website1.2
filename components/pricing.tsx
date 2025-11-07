@@ -40,7 +40,7 @@ const plans = [
       }
     ],
     features: [
-      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Social media content (Facebook, Instagram, TikTok)", icon: "image" },
       { text: "Email marketing campaigns", icon: "file" },
       { text: "Video production & editing", icon: "play" },
       { text: "Catalogue & ad design", icon: "image" },
@@ -84,11 +84,11 @@ const plans = [
       }
     ],
     features: [
-      { text: "Marketplace management (Amazon, Shopee)", icon: "cart" },
+      { text: "Marketplace management (Amazon, Shopee, Lazada)", icon: "cart" },
       { text: "Market research & competitor analysis", icon: "trend" },
       { text: "Live chat (Korean office hours)", icon: "message" },
       { text: "Product listing optimization", icon: "image" },
-      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Social media content (Facebook, Instagram, TikTok)", icon: "image" },
       { text: "Email marketing campaigns", icon: "file" },
       { text: "Video production & editing", icon: "play" },
       { text: "Catalogue & ad design", icon: "image" },
@@ -139,11 +139,11 @@ const plans = [
       { text: "2 dedicated BD specialists", icon: "briefcase" },
       { text: "Partnership negotiation support", icon: "message" },
       { text: "Enterprise priority support", icon: "shield" },
-      { text: "Marketplace management (Amazon, Shopee)", icon: "cart" },
+      { text: "Marketplace management (Amazon, Shopee, Lazada)", icon: "cart" },
       { text: "Market research & competitor analysis", icon: "trend" },
       { text: "Live chat (Korean office hours)", icon: "message" },
       { text: "Product listing optimization", icon: "image" },
-      { text: "Social media content (FB, IG, TikTok)", icon: "image" },
+      { text: "Social media content (Facebook, Instagram, TikTok)", icon: "image" },
       { text: "Email marketing campaigns", icon: "file" },
       { text: "Video production & editing", icon: "play" },
       { text: "Catalogue & ad design", icon: "image" },
