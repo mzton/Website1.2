@@ -140,7 +140,7 @@ export default function Hero() {
       </div>
 
       <div className="mx-auto max-w-6xl">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div
             className="text-left flex flex-col"
           >
@@ -168,9 +168,6 @@ export default function Hero() {
               When that LinkedIn message from a potential partner comes in...
               When that exhibition leads to a follow-up conversation...
               The English barrier suddenly feels like a glass ceiling between you and the world.
-            </p>
-            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-1xl">
-              "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
             </p>
           </motion.div>
 
@@ -234,6 +231,10 @@ export default function Hero() {
               </div>
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black/15 to-transparent"></div>
             </div>
+            {/* Moved quote below the video */}
+            <p className="mt-4 text-center mx-auto text-base sm:text-lg text-muted-foreground italic font-bold text-balance leading-relaxed max-w-2xl">
+              "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
+            </p>
           </motion.div>
         </div>
 
