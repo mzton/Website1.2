@@ -72,7 +72,7 @@ const featuresKo = [
     icon: Megaphone,
     title: "소셜·콘텐츠 전략",
     questions: [
-      "소셜 게시물이 지역 고객에게만 말하고 있나요?",
+      "귀사의 쇼설미디어는 한국어로만 되어 있나요?",
       "글로벌 구매자들이 당신의 콘텐츠를 보고 있나요?",
       "브랜드를 이해하는 영어 팀이 글과 비주얼을 만든다면 어떨까요?",
     ],
@@ -95,8 +95,8 @@ const featuresKo = [
     title: "글로벌 전략·기획",
     questions: [
       "경쟁사가 미국 또는 유럽에서 어떻게 마케팅하는지 알고 있나요?",
-      "투자 자료와 제안서는 국제 파트너를 위해 준비되어 있나요?",
-      "모든 문서가 투자자와 구매자에게 ‘세계적이다’라는 인상을 준다면 어떨까요?",
+        "투자 자료와 제안서는 국제 파트너를 위해 준비되어 있나요?",
+        "모든 문서가 투자자와 구매자에게 ‘세계적이다’라는 인상을 준다면 어떨까요?",
     ],
     solution: "BOOSTK가 조사부터 피치까지 영어 전략을 구축합니다.",
     color: "from-amber-500 to-orange-600",
@@ -149,7 +149,7 @@ export default function Features() {
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
-              {appLanguage === "Korean" ? "왜 아직도 국내마켓만 생각하세요 글로벌 시장 비법이 있습니다" : "Where Do You Feel the English Barrier Most?"}
+              {appLanguage === "Korean" ? "영어 장벽을 가장 크게 느끼는 곳은 어디인가요?" : "Where Do You Feel the English Barrier Most?"}
             </span>
           </h2>
           <p className="text-lg text-muted-foreground">
