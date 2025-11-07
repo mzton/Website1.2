@@ -33,6 +33,7 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
           onClick={() => {
             setLanguage("English")
             setGoogleTranslateLanguage("en")
+            try { localStorage.setItem("appLanguage", "English") } catch {}
           }}
           className="font-sans"
         >
@@ -42,6 +43,7 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
           onClick={() => {
             setLanguage("Korean")
             setGoogleTranslateLanguage("ko")
+            try { localStorage.setItem("appLanguage", "Korean") } catch {}
           }}
           className="font-sans"
         >

@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Check, Megaphone, ShoppingCart, Briefcase, Shield, Play, Image, FileText, MessageSquare, TrendingUp, Heart } from "lucide-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import NextImage from "next/image"
 
 const plans = [
@@ -170,6 +170,15 @@ const iconMap = {
 export default function VisualPricing() {
   const [loginOpen, setLoginOpen] = useState(false)
   const [activePreview, setActivePreview] = useState<{planIndex: number, showcaseIndex: number} | null>(null)
+  const [appLanguage, setAppLanguage] = useState<string | null>(null)
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("appLanguage")
+      setAppLanguage(stored)
+    } catch {
+      setAppLanguage(null)
+    }
+  }, [])
 
   return (
     <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20 scroll-mt-28">
@@ -447,10 +456,18 @@ export default function VisualPricing() {
       <div className="mt-24 py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <Heart className="w-24 h-24 mx-auto mb-8 animate-pulse text-pink-500" />
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">We Believe In You</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+            <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
+              {appLanguage === "Korean" ? "우리는 당신을 믿습니다" : "We Believe In You"}
+            </span>
+          </h2>
           <div className="bg-card/50 backdrop-blur-sm p-12 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-8 leading-relaxed">
-              Language should never stop great businesses from becoming global businesses.
+              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>
+                {appLanguage === "Korean" 
+                  ? "언어는 결코 대기업이 글로벌 기업으로 성장하는 것을 막아서는 안 됩니다."
+                  : "Language should never stop great businesses from becoming global businesses."}
+              </span>
             </p>
           </div>
         </div>

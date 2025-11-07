@@ -9,7 +9,32 @@ import Image from "next/image"
 
 
 export default function Hero() {
-  const fullText = "Speak Local. Sell Global."
+  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("appLanguage")
+      if (stored === "Korean") setAppLanguage("Korean")
+    } catch {}
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "appLanguage") {
+        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
+      }
+    }
+    window.addEventListener("storage", onStorage)
+    return () => window.removeEventListener("storage", onStorage)
+  }, [])
+
+  const fullText = appLanguage === "Korean" ? "지역적으로 말하고, 세계적으로 판매하세요." : "Speak Local. Sell Global."
+  const openingStatement = appLanguage === "Korean"
+    ? "왜 아직도 국내마켓만 생각하세요? 글로벌 시장 비법이 있습니다."
+    : "Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities."
+  const quoteText = appLanguage === "Korean"
+    ? "귀사만 그런게 아닙니다, 한국 중소기업들 모두가 똑같은 상황입니다."
+    : "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
+
+  const impactLine = appLanguage === "Korean"
+    ? "언어는 위대함을 제한해서는 안 됩니다."
+    : "Language shouldn't limit greatness"
 
   const [loginOpen, setLoginOpen] = useState(false)
 
@@ -148,7 +173,7 @@ export default function Hero() {
               className="mb-4 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2.5rem,9vw,5.75rem)]"
               style={{ fontFamily: "var(--font-inter)" }}
             >
-              <span className="block">{fullText}</span>
+              <span className={`block ${appLanguage === "Korean" ? "notranslate" : ""}`} translate={appLanguage === "Korean" ? "no" : undefined}>{fullText}</span>
             </h1>
 
             {/* CTA moved up below the headline */}
@@ -163,7 +188,7 @@ export default function Hero() {
             </div>
 
             <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
-              Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities.
+              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{openingStatement}</span>
             </p>
           </motion.div>
 
@@ -229,7 +254,7 @@ export default function Hero() {
             </div>
             {/* Moved quote below the video */}
             <p className="mt-4 text-center mx-auto text-base sm:text-lg text-muted-foreground italic font-bold text-balance leading-relaxed max-w-2xl">
-              "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
+              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{quoteText}</span>
             </p>
           </motion.div>
         </div>
@@ -272,7 +297,7 @@ export default function Hero() {
         <div className="mt-16 text-center">
           <div className="inline-block bg-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-4">
-              Language shouldn't limit greatness
+              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{impactLine}</span>
             </p>
             <div className="flex items-center justify-center gap-4">
               <div className="w-32 h-2 bg-muted rounded-full overflow-hidden">
