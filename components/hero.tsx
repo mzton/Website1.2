@@ -18,7 +18,7 @@ export default function Hero({ language }: HeroProps) {
     } catch {}
     const onStorage = (e: StorageEvent) => {
       if (e.key === "appLanguage") {
-        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
+        setAppLanguage(e.newValue === "English" ? "English" : "Korean")
       }
     }
     window.addEventListener("storage", onStorage)

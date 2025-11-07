@@ -67,6 +67,7 @@ const featuresKo = [
     ],
     solution: "BOOSTK가 당신을 대신해 유창한 비즈니스 영어로 글을 쓰고, 디자인하고, 소통합니다.",
     color: "from-blue-500 to-cyan-600",
+    video: "/video/hello13.mp4",
   },
   {
     icon: Megaphone,
@@ -78,6 +79,7 @@ const featuresKo = [
     ],
     solution: "BOOSTK가 글로벌 시장을 위한 영어 친화 콘텐츠를 제작합니다.",
     color: "from-purple-500 to-pink-600",
+    video: "/video/socialmedia.mp4",
   },
   {
     icon: TrendingUp,
@@ -89,6 +91,7 @@ const featuresKo = [
     ],
     solution: "BOOSTK는 영어를 약점이 아닌 판매의 강점으로 바꿉니다.",
     color: "from-green-500 to-emerald-600",
+    video: "/video/marketing.mp4",
   },
   {
     icon: Target,
@@ -100,6 +103,7 @@ const featuresKo = [
     ],
     solution: "BOOSTK가 조사부터 피치까지 영어 전략을 구축합니다.",
     color: "from-amber-500 to-orange-600",
+    video: "/video/planning.mp4",
   },
 ]
 
