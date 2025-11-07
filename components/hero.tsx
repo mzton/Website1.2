@@ -41,6 +41,23 @@ export default function Hero({ language }: HeroProps) {
 
   const ctaText = effectiveLanguage === "Korean" ? "무료 상담 신청" : "Request Free Consultation"
 
+  // Barrier section translations
+  const barrierTitle = effectiveLanguage === "Korean" ? "침묵의 장벽" : "The Silent Barrier"
+  const barrierSubtitle = effectiveLanguage === "Korean" ? "매일, 기회가 지나갑니다..." : "Every day, opportunities pass by..."
+  const barrierItems = (
+    effectiveLanguage === "Korean"
+      ? [
+          { icon: Mail, title: "답장되지 않은 이메일", color: "from-red-600 to-red-700" },
+          { icon: MessageSquare, title: "잃어버린 대화", color: "from-orange-600 to-orange-700" },
+          { icon: TrendingUp, title: "놓친 거래", color: "from-amber-600 to-amber-700" },
+        ]
+      : [
+          { icon: Mail, title: "Unanswered Emails", color: "from-red-600 to-red-700" },
+          { icon: MessageSquare, title: "Lost Conversations", color: "from-orange-600 to-orange-700" },
+          { icon: TrendingUp, title: "Missed Deals", color: "from-amber-600 to-amber-700" },
+        ]
+  )
+
   const [loginOpen, setLoginOpen] = useState(false)
 
   // Background media for the right-side visual (video with poster)
@@ -268,18 +285,16 @@ export default function Hero({ language }: HeroProps) {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            The Silent Barrier
+            <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{barrierTitle}</span>
           </h2>
-          <p className="text-xl text-muted-foreground">Every day, opportunities pass by...</p>
+          <p className="text-xl text-muted-foreground">
+            <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{barrierSubtitle}</span>
+          </p>
         </div>
 
         {/* Visual problem scenarios */}
         <div className="grid md:grid-cols-3 gap-8">
-          {[
-            { icon: Mail, title: "Unanswered Emails", color: "from-red-600 to-red-700" },
-            { icon: MessageSquare, title: "Lost Conversations", color: "from-orange-600 to-orange-700" },
-            { icon: TrendingUp, title: "Missed Deals", color: "from-amber-600 to-amber-700" }
-          ].map((item, index) => (
+          {barrierItems.map((item, index) => (
             <div
               key={index}
               className="relative group cursor-pointer"
@@ -291,7 +306,9 @@ export default function Hero({ language }: HeroProps) {
                 <div className={`w-20 h-20 bg-gradient-to-br ${item.color} rounded-full flex items-center justify-center mb-6 mx-auto transform group-hover:rotate-12 transition-transform`}>
                   <item.icon className="w-10 h-10 text-foreground" />
                 </div>
-                <h3 className="text-xl font-bold text-foreground text-center mb-3">{item.title}</h3>
+                <h3 className="text-xl font-bold text-foreground text-center mb-3">
+                  <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{item.title}</span>
+                </h3>
                 <div className="h-1 w-16 bg-gradient-to-r from-red-500 to-amber-500 mx-auto rounded-full"></div>
               </div>
             </div>
