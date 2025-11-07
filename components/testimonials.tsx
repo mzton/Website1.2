@@ -184,7 +184,7 @@ export default function Testimonials() {
     </section>
 
     {/* Simple 3-step process section */}
-    <section id="process" className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5 py-20 px-4">
+    <section id="process" className="bg-gradient-to-br from-background via-background to-primary/5 py-16 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">Simple. Fast. Effective.</h2>
