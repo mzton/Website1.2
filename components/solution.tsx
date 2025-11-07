@@ -1,15 +1,15 @@
 "use client"
 
 import { Card } from "@/components/ui/card"
-import { Handshake } from "lucide-react"
+import { Handshake, Check } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Solution() {
   const benefits = [
-    "Marketing & Content Strategy",
-    "Sales & Lead Generation",
-    "Business Planning & Strategy",
-    "Global Client Communication",
+    { label: "Marketing & Content Strategy", color: "from-purple-500 to-pink-600" },
+    { label: "Sales & Lead Generation", color: "from-green-500 to-emerald-600" },
+    { label: "Business Planning & Strategy", color: "from-amber-500 to-orange-600" },
+    { label: "Global Client Communication", color: "from-blue-500 to-cyan-600" },
   ]
 
   return (
@@ -44,19 +44,16 @@ export default function Solution() {
           >
             {benefits.map((benefit, index) => (
               <motion.div
-                key={benefit}
+                key={benefit.label}
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group flex items-center gap-4 p-4 rounded-lg border border-border/50 bg-card/50 hover:bg-card/80 hover:border-accent/50 transition-all cursor-pointer"
               >
-                <div
-                  className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary/40 to-accent/40 flex items-center justify-center transition-all ring-0 group-hover:ring-2 ring-accent/40 group-hover:from-primary/60 group-hover:to-accent/60 group-hover:scale-110 group-hover:rotate-3 shadow-sm group-hover:shadow-accent/20"
-                  aria-hidden="true"
-                >
-                  <span className="text-accent font-bold transition-colors group-hover:text-primary">✓</span>
+                <div className={`flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br ${benefit.color} flex items-center justify-center shadow-sm`}>
+                  <Check className="w-4 h-4 text-primary-foreground" />
                 </div>
-                <span className="text-foreground font-medium">{benefit}</span>
+                <span className="text-foreground font-medium">{benefit.label}</span>
               </motion.div>
             ))}
           </motion.div>
@@ -71,8 +68,8 @@ export default function Solution() {
             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/10 rounded-2xl blur-3xl"></div>
             <Card className="relative border-accent/30 bg-gradient-to-br from-background/60 to-background/40 backdrop-blur-xl p-8 shadow-xl">
               <div className="space-y-6">
-                <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-primary/30 to-accent/30 mx-auto">
-                  <Handshake className="w-8 h-8 text-accent" />
+                <div className="flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 mx-auto shadow-sm">
+                  <Handshake className="w-8 h-8 text-primary-foreground" />
                 </div>
                 <div className="text-center space-y-3">
                   <h3 className="text-xl font-black text-foreground">Partnership Model</h3>
