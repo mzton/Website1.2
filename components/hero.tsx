@@ -33,10 +33,10 @@ export default function Hero({ language }: HeroProps) {
     : "Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities."
   const quoteText = effectiveLanguage === "Korean"
     ? "귀사만 그런게 아닙니다, 한국 중소기업들모두가 똑같은 상황입니다"
-    : "You're not alone. Thousands of Korean and Japanese companies face this exact moment every day."
+    : "It's not just your company all small and medium-sized Korean companies are in the same situation."
 
   const impactLine = effectiveLanguage === "Korean"
-    ? "언어는 위대함을 제한해서는 안 됩니다."
+    ? "영어 때문에 전세계 시장을 놓쳐서는 안됩니다"
     : "Language shouldn't limit greatness"
 
   const ctaText = effectiveLanguage === "Korean" ? "무료 상담 신청" : "Request Free Consultation"
