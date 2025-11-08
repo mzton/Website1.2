@@ -318,13 +318,6 @@ export default function VisualPricing() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-16 text-center">
-          <p className="text-sm uppercase tracking-widest text-muted-foreground">
-            {appLanguage === "Korean" ? (
-              <span className="notranslate" translate="no">요금제</span>
-            ) : (
-              "Pricing"
-            )}
-          </p>
           <h2 className="mt-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
             {appLanguage === "Korean" ? (
               <span className="notranslate" translate="no">일단 서비스를 받아보세요</span>

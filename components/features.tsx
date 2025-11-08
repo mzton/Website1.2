@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Megaphone, TrendingUp, Target, HelpCircle } from "lucide-react"
 import { motion } from "framer-motion"
@@ -114,6 +114,8 @@ export default function Features({ language }: FeaturesProps) {
     Array.from({ length: featuresEn.length }, () => true)
   )
   const [appLanguage, setAppLanguage] = useState<string | null>(null)
+  // Track per-card video play counts to cap autoplay loops
+  const playCountsRef = useRef<number[]>([])
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem("appLanguage")
@@ -139,6 +141,12 @@ export default function Features({ language }: FeaturesProps) {
       window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
     }
   }, [])
+
+  // Initialize or reset play counts when language changes (same length, but keep safe)
+  useEffect(() => {
+    const length = (appLanguage === "Korean" ? featuresKo.length : featuresEn.length)
+    playCountsRef.current = Array.from({ length }, () => 0)
+  }, [appLanguage])
 
   const effectiveLanguage = language ?? (appLanguage === "Korean" ? "Korean" : "English")
   const features = effectiveLanguage === "Korean" ? featuresKo : featuresEn
@@ -214,7 +222,7 @@ export default function Features({ language }: FeaturesProps) {
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.35 }}
-                      className="space-y-3 list-none"
+                      className="space-y-3 list-none min-h-[170px]"
                     >
                       {(features[idx] as any).questions.map((q: string) => (
                         <li key={q} className="flex items-start gap-3">
@@ -238,19 +246,31 @@ export default function Features({ language }: FeaturesProps) {
                             "Demo"
                           )}
                         </div>
-                        <video
-                          className="w-full rounded-lg shadow-sm pointer-events-none"
-                          src={feature.video}
-                          autoPlay
-                          muted
-                          playsInline
-                          preload="metadata"
-                          poster="/placeholder.jpg"
-                          disablePictureInPicture
-                          controls={false}
-                          controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
-                          tabIndex={-1}
-                        />
+                        {/* Fixed aspect ratio container to align videos across cards */}
+                        <div className="relative w-full aspect-[16/9]">
+                          <video
+                            className="absolute inset-0 h-full w-full rounded-lg shadow-sm pointer-events-none object-cover"
+                            src={feature.video}
+                            autoPlay
+                            muted
+                            playsInline
+                            preload="metadata"
+                            poster="/placeholder.jpg"
+                            disablePictureInPicture
+                            controls={false}
+                            controlsList="nodownload noplaybackrate nofullscreen noremoteplayback"
+                            tabIndex={-1}
+                            onEnded={(e) => {
+                              // Increment count and replay until 10 total plays
+                              const counts = playCountsRef.current
+                              const next = (counts[idx] ?? 0) + 1
+                              counts[idx] = next
+                              if (next < 10) {
+                                try { e.currentTarget.play() } catch {}
+                              }
+                            }}
+                          />
+                        </div>
                       </div>
                     )}
 

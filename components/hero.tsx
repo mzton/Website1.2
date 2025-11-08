@@ -356,7 +356,7 @@ export default function Hero({ language }: HeroProps) {
                 effectiveLanguage === "Korean"
                   ? [
                       { stat: "180%", label: "리드 증가", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
-                      { stat: "4", label: "새로운 파트너", icon: Globe, color: "from-blue-500 to-cyan-600" },
+                      { stat: "94", label: "새로운 파트너", icon: Globe, color: "from-blue-500 to-cyan-600" },
                       { stat: "3배", label: "더 빠른 매출", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
                     ]
                   : [
