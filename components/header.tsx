@@ -71,7 +71,7 @@ export default function Header({ language }: HeaderProps) {
             {effectiveLanguage === "Korean" ? "서비스" : "Services"}
           </a>
           <a href="#solution" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
-            {effectiveLanguage === "Korean" ? "솔루션" : "Solution"}
+            {effectiveLanguage === "Korean" ? "우리는" : "Solution"}
           </a>
           <a href="#pricing" className="text-sm font-sans text-muted-foreground transition hover:text-foreground">
             {effectiveLanguage === "Korean" ? "요금제" : "Pricing"}

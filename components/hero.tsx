@@ -37,9 +37,9 @@ export default function Hero({ language }: HeroProps) {
 
   const effectiveLanguage = language ?? appLanguage
 
-  const fullText = effectiveLanguage === "Korean" ? "왜 아직도 국내마켓만 생각하세요글로벌 시장 비법이 있습니다" : "Speak Local. Sell Global."
+  const fullText = effectiveLanguage === "Korean" ? "왜 아직도 국내마켓만 생각하세요, 글로벌 시장 비법이 있습니다" : "Speak Local. Sell Global."
   const openingStatement = effectiveLanguage === "Korean"
-    ? "왜 아직도 국내마켓만 생각하세요? 글로벌 시장 비법이 있습니다."
+    ? "BOOSTK(Boost Korea) 한국기업을 글로벌로 폭팔시킬 부스터 효과를 느껴보세요"
     : "Exceptional products. World-class technology. Outstanding service. Don't let the English language barrier become the glass ceiling between your business and international opportunities."
   const quoteText = effectiveLanguage === "Korean"
     ? "귀사만 그런게 아닙니다, 한국 중소기업들모두가 똑같은 상황입니다"

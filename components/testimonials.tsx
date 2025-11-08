@@ -221,10 +221,10 @@ export default function Testimonials({ language }: TestimonialsProps) {
           className="mb-16 text-center"
         >
           <h2 className="mb-4 text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-            {effectiveLanguage === "Korean" ? "팀이 영어로 소통하면 기회가 찾아옵니다" : "When Your Team Speaks English, Opportunity Arrives"}
+            {effectiveLanguage === "Korean" ? "당신은 최고의 제품을 만드는 데 집중하세요. 우리는 전 세계가 이해하고 구매할 수 있도록 만들겠습니다." : "When Your Team Speaks English, Opportunity Arrives"}
           </h2>
           <p className="text-lg text-muted-foreground">
-            {effectiveLanguage === "Korean" ? "당신과 같은 기업의 검증된 성과" : "Proven results from companies just like yours"}
+            {effectiveLanguage === "Korean" ? "작은도전이 큰 결과를 만듭니다" : "Proven results from companies just like yours"}
           </p>
         </motion.div>
 

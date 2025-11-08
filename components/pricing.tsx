@@ -237,22 +237,22 @@ export default function VisualPricing() {
   // Korean translations for Pricing specifics
   const koPlans: Record<string, { name?: string; subtitle?: string; bestFor?: string; ctaText?: string; roiTitle?: string; roiSubtitle?: string }> = {
     "Content & Presence": {
-      name: "콘텐츠 & 프레즌스",
+      name: "시작하기, 셔설미디어 공략",
       subtitle: "글로벌 브랜드 가시성 구축",
-      bestFor: "전문적인 영어로 소통할 준비가 된 브랜드",
-      ctaText: "해외사업 기초 시작하기",
+      bestFor: "글로벌 시장진출이 처음인 기업",
+      ctaText: "글로벌 시장으로 시작하기기",
     },
     "Sales & Commerce": {
-      name: "온라인 쇼핑몰 공략",
-      subtitle: "전 세계 판매 완전 지원",
-      bestFor: "국제 시장에서 적극적으로 판매하는 기업",
+      name: "글로벌 온라인 쇼핑몰 공략",
+      subtitle: "전 세계인이 구매가 가능한 파이프라인 구축",
+      bestFor: "글로벌시장 제품과 서비스를 판매할 콘텐츠가 있는 기업",
       ctaText: "글로벌 전문 1인 구축플랜",
       roiTitle: "월 매출을 $5,000만 늘려도",
       roiSubtitle: "투자 비용을 5배 이상 회수합니다",
     },
     "Enterprise Growth": {
       name: "글로벌 기업형업무",
-      subtitle: "풀 파트너십 개발 팀",
+      subtitle: "공격적 글로벌 팀 구성",
       bestFor: "글로벌 시장으로 공격적으로 확장하는 기업",
       ctaText: "글로벌 전문 2인 팀 구축플랜",
     },
@@ -264,7 +264,7 @@ export default function VisualPricing() {
   }
 
   const koShowcaseLabel: Record<string, string> = {
-    "Social Media Posts": "소셜 미디어 게시물",
+    "Social Media Posts": "쇼셜 미디어 게시물",
     "Content Variety": "콘텐츠 다양성",
     "Video Production": "영상 제작",
     "Product Listings": "상품 등록",
@@ -278,17 +278,17 @@ export default function VisualPricing() {
   const koShowcaseDesc: Record<string, string> = {
     "Transform product photos into scroll-stopping content": "제품 사진을 스크롤을 멈추게 하는 콘텐츠로 변환",
     "Stories, posts, ads - all professionally designed": "스토리, 게시물, 광고 — 모두 전문적으로 디자인",
-    "Professional video editing for YouTube & social": "유튜브 및 소셜용 전문 영상 편집",
+    "Professional video editing for YouTube & social": "유튜브 및 쇼셜용 전문 영상 편집",
     "Optimize listings for higher conversion rates": "전환율을 높이도록 등록을 최적화",
-    "Real-time customer support during Korean hours": "한국 근무시간 내 실시간 고객 지원",
+    "Real-time customer support during Korean hours": "실시간 고객 지원",
     "Amazon, Shopee, and beyond": "아마존, 쇼피 등 다양한 플랫폼",
-    "From prospect to partnership in 30-60 days": "잠재 고객에서 파트너십까지 30–60일",
+    "From prospect to partnership in 30-60 days": "잠재 고객에서 파트너십까지, 해외지사 역활",
     "Pitch decks, proposals, and trade show materials": "피치덱, 제안서, 박람회 자료",
     "2 specialists working full-time on your growth": "성장을 위해 풀타임으로 일하는 2명의 전문가",
   }
 
   const koFeatures: Record<string, string> = {
-    "Social media content (Facebook, Instagram, TikTok)": "소셜 미디어 콘텐츠 (페이스북, 인스타그램, 틱톡)",
+    "Social media content (Facebook, Instagram, TikTok)": "쇼셜 미디어 콘텐츠 (페이스북, 유트뷰, 인스타그램, 틱톡)",
     "Email marketing campaigns": "이메일 마케팅 캠페인",
     "Video production & editing": "영상 제작 및 편집",
     "Catalogue & ad design": "카탈로그 및 광고 디자인",
@@ -306,7 +306,7 @@ export default function VisualPricing() {
   // Plan-specific Korean feature overrides to avoid cross-card coupling
   const koPlanFeatures: Record<string, Record<string, string>> = {
     "Sales & Commerce": {
-      "Marketplace management (Amazon, Shopee, Lazada)": "해외쇼핑몰 입점,판매,관리(아마존,쇼피,라자다)",
+      "Marketplace management (Amazon, Shopee, Lazada)": "해외쇼핑몰 입점,판매,관리(아마존,쇼피)",
     },
     "Enterprise Growth": {
       "Marketplace management (Amazon, Shopee, Lazada)": "마켓플레이스 관리 (아마존, 쇼피, 라자다)",
@@ -334,7 +334,7 @@ export default function VisualPricing() {
           </h2>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl mx-auto">
             {appLanguage === "Korean" ? (
-              <span className="notranslate" translate="no">단순한 서비스가 아닙니다 — 직접 보고 측정할 수 있는 실질적인 결과물</span>
+              <span className="notranslate" translate="no">시작 버튼만 누루세요 - 전세계가 보이기 시작합니다 </span>
             ) : (
               "Not just services—real deliverables you can see and measure"
             )}
@@ -613,7 +613,7 @@ export default function VisualPricing() {
 
                   <div className="mt-3 text-center text-xs text-muted-foreground">
                     {appLanguage === "Korean" ? (
-                      <span className="notranslate" translate="no">언제든지 취소 가능 • 초기 비용 없음</span>
+                      <span className="notranslate" translate="no">언제든지 취소 가능 </span>
                     ) : (
                       "Cancel anytime • No setup fees"
                     )}
@@ -701,7 +701,7 @@ export default function VisualPricing() {
           <Heart className="w-24 h-24 mx-auto mb-8 animate-pulse text-pink-500" />
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
             {appLanguage === "Korean" ? (
-              <span className="notranslate" translate="no">글로벌 시장개척 더이상 미루어서는 안됩니다.</span>
+              <span className="notranslate" translate="no">한국의 제품과 서비스는 세계최고 입니다. AI는 사업을 할수 없습니다. 저희가 한국기업의 팀이 되어 드리겠습니다 </span>
             ) : (
               "We Believe In You"
             )}
@@ -709,7 +709,7 @@ export default function VisualPricing() {
           <div className="bg-card/50 backdrop-blur-sm p-12 rounded-2xl border border-border/50">
             <p className="text-2xl text-muted-foreground mb-8 leading-relaxed">
               {appLanguage === "Korean" ? (
-                <span className="notranslate" translate="no">세계를 향한 작은 출발을 저희가 함께 하겠습니다.</span>
+                <span className="notranslate" translate="no">제품과 서비스는 한국에서, 고객은 저희가 만들겠습니다.</span>
               ) : (
                 "We'll take the first small step toward the world together."
               )}
