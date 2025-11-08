@@ -170,7 +170,7 @@ export default function Testimonials({ language }: TestimonialsProps) {
   const effectiveLanguage = language ?? appLanguage
 
   // Create seamless infinite loop by duplicating items
-  const baseResults = effectiveLanguage === "Korean" ? resultsKo : resultsEn
+  const baseResults = resultsEn
   const duplicatedResults = [...baseResults, ...baseResults]
 
   useEffect(() => {
@@ -262,12 +262,12 @@ export default function Testimonials({ language }: TestimonialsProps) {
                       <div key={i} className="relative h-36 w-full overflow-hidden rounded-lg border border-border/30 bg-muted/10">
                         <Image
                           src={result.images?.[i] || "/placeholder.jpg"}
-                          alt={`${i === 0 ? (effectiveLanguage === "Korean" ? "전" : "Before") : (effectiveLanguage === "Korean" ? "후" : "After")} - ${result.title}`}
+                          alt={`${i === 0 ? "Before" : "After"} - ${result.title}`}
                           fill
                           className="object-cover"
                         />
                         <span className="absolute top-2 left-2 rounded-md border bg-background/70 px-2 py-1 text-[10px] tracking-wide">
-                          {i === 0 ? (effectiveLanguage === "Korean" ? "전" : "Before") : (effectiveLanguage === "Korean" ? "후" : "After")}
+                          {i === 0 ? "Before" : "After"}
                         </span>
                       </div>
                     ))}

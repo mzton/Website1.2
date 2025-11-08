@@ -120,13 +120,6 @@ export default function Solution({ language }: SolutionProps) {
                       : "We're embedded in your business as a remote extension of your team, not a vendor. Your success is our success."}
                   </p>
                 </div>
-                <div className="pt-4 border-t border-border/50">
-                  <p className="text-sm text-muted-foreground italic">
-                    {effectiveLanguage === "Korean"
-                      ? "당신은 최고의 제품을 만드는 데 집중하세요. 우리는 전 세계가 이해하고 구매할 수 있도록 만들겠습니다."
-                      : "You focus on building the best product. We'll ensure the entire world can understand and buy it."}
-                  </p>
-                </div>
               </div>
             </Card>
           </motion.div>
