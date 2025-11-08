@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Enable static export for App Router
+  output: 'export',
   typescript: {
     ignoreBuildErrors: true,
   },

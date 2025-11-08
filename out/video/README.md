@@ -1,0 +1,1 @@
+Video-related assets including promos, tutorials, testimonials, and campaign imagery.
