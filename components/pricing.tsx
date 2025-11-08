@@ -303,6 +303,16 @@ export default function VisualPricing() {
     "Enterprise priority support": "엔터프라이즈 우선 지원",
   }
 
+  // Plan-specific Korean feature overrides to avoid cross-card coupling
+  const koPlanFeatures: Record<string, Record<string, string>> = {
+    "Sales & Commerce": {
+      "Marketplace management (Amazon, Shopee, Lazada)": "해외쇼핑몰 입점,판매,관리(아마존,쇼피,라자다)",
+    },
+    "Enterprise Growth": {
+      "Marketplace management (Amazon, Shopee, Lazada)": "마켓플레이스 관리 (아마존, 쇼피, 라자다)",
+    },
+  }
+
   return (
     <section id="pricing" className="px-4 py-20 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/20 scroll-mt-28">
       <div className="mx-auto max-w-7xl">
@@ -567,7 +577,7 @@ export default function VisualPricing() {
                           <FeatureIcon className="h-4 w-4 text-primary flex-shrink-0 mt-0.5" />
                           <span className="text-xs text-muted-foreground">
                             {appLanguage === "Korean" ? (
-                              <span className="notranslate" translate="no">{koFeatures[feature.text] ?? feature.text}</span>
+                              <span className="notranslate" translate="no">{koPlanFeatures[plan.name]?.[feature.text] ?? koFeatures[feature.text] ?? feature.text}</span>
                             ) : (
                               feature.text
                             )}
@@ -589,13 +599,7 @@ export default function VisualPricing() {
                     onClick={() => setLoginOpen(true)}
                   >
                     {appLanguage === "Korean" ? (
-                      <span className="notranslate" translate="no">
-                        {koPlans[plan.name]?.ctaText ??
-                          (plan.name === "Content & Presence" ? "콘텐츠 제작 시작하기" :
-                           plan.name === "Sales & Commerce" ? "글로벌 전문 1인 구축플랜" :
-                           plan.name === "Enterprise Growth" ? "글로벌 팀 구축하기" :
-                           plan.ctaText)}
-                      </span>
+                      <span className="notranslate" translate="no">{koPlans[plan.name]?.ctaText ?? plan.ctaText}</span>
                     ) : (
                       plan.ctaText
                     )}
