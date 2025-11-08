@@ -57,15 +57,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" translate="no" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="google" content="notranslate" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body className={`${nunito.variable} ${inter.variable}`}>
+      <body className={`${nunito.variable} ${inter.variable} notranslate`} translate="no">
         <ThemeProvider>
           {/* Hidden link to prefetch Korean route for faster toggling */}
           <Link href="/ko" prefetch className="sr-only" aria-hidden>
