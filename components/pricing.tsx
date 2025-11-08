@@ -240,7 +240,7 @@ export default function VisualPricing() {
       name: "콘텐츠 & 프레즌스",
       subtitle: "글로벌 브랜드 가시성 구축",
       bestFor: "전문적인 영어로 소통할 준비가 된 브랜드",
-      ctaText: "콘텐츠 제작 시작하기",
+      ctaText: "해외사업 기초 시작하기",
     },
     "Sales & Commerce": {
       name: "온라인 쇼핑몰 공략",
@@ -251,10 +251,10 @@ export default function VisualPricing() {
       roiSubtitle: "투자 비용을 5배 이상 회수합니다",
     },
     "Enterprise Growth": {
-      name: "엔터프라이즈 성장",
+      name: "글로벌 기업형업무",
       subtitle: "풀 파트너십 개발 팀",
       bestFor: "글로벌 시장으로 공격적으로 확장하는 기업",
-      ctaText: "글로벌 팀 구축하기",
+      ctaText: "글로벌 전문 2인 팀 구축플랜",
     },
   }
 
@@ -565,7 +565,13 @@ export default function VisualPricing() {
                   <div className="mb-6 space-y-2">
                     <div className="text-sm font-semibold mb-2">
                       {appLanguage === "Korean" ? (
-                        <span className="notranslate" translate="no">추가 포함:</span>
+                        <span className="notranslate" translate="no">
+                          {plan.name === "Content & Presence"
+                            ? "해외사업 마케팅 초기 플랜"
+                            : plan.name === "Sales & Commerce"
+                              ? "추가 포함:"
+                              : "글로벌 2인 팀 구축플랜"}
+                        </span>
                       ) : (
                         "Also Includes:"
                       )}
