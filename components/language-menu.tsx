@@ -68,7 +68,10 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className={cn("gap-2 font-sans bg-transparent", className)}>
           <Globe className="h-4 w-4" />
-          {language}
+          {/* Show localized label for the active language */}
+          <span className="notranslate" translate="no">
+            {language === "Korean" ? "한국어" : "English"}
+          </span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align}>
@@ -89,7 +92,7 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
           }}
           className="font-sans"
         >
-          English
+          <span className="notranslate" translate="no">English</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
@@ -108,7 +111,7 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
           }}
           className="font-sans"
         >
-          Korean
+          <span className="notranslate" translate="no">한국어</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
