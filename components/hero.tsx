@@ -197,12 +197,12 @@ export default function Hero({ language }: HeroProps) {
       </div>
 
       <div className="mx-auto max-w-6xl">
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className={`grid md:grid-cols-2 gap-12 ${effectiveLanguage === "Korean" ? "items-center" : "items-start"}`}>
           <motion.div
             className="text-left flex flex-col"
           >
             <h1
-              className="mb-4 font-black tracking-tighter text-foreground leading-tight text-balance text-[clamp(2.5rem,9vw,5.75rem)]"
+              className={`mb-4 font-black tracking-tighter text-foreground leading-tight text-balance ${effectiveLanguage === "Korean" ? "text-[clamp(1.5rem,6vw,4rem)]" : "text-[clamp(2.5rem,9vw,5.75rem)]"}`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className={`block ${effectiveLanguage === "Korean" ? "notranslate" : ""}`} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{fullText}</span>

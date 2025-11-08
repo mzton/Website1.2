@@ -60,7 +60,7 @@ export default function Solution({ language }: SolutionProps) {
         >
           <div className="flex items-center gap-3 mb-6">
             <span className="text-sm font-semibold text-accent uppercase tracking-widest">
-              {effectiveLanguage === "Korean" ? "해결책" : "The Solution"}
+              {effectiveLanguage === "Korean" ? "" : ""}
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-black text-foreground tracking-tight mb-8 text-balance">
