@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Link from "next/link"
 import { Toaster } from "@/components/ui/toaster"
+import LiveChat from "@/components/live-chat"
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -70,6 +71,7 @@ export default function RootLayout({
           </Link>
           {children}
           <Toaster />
+          <LiveChat />
         </ThemeProvider>
       </body>
     </html>

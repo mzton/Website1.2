@@ -314,7 +314,16 @@ export default function Testimonials({ language }: TestimonialsProps) {
                 ]).map((process, index) => (
               <div key={index} className="relative group">
                 <div className={`absolute inset-0 bg-gradient-to-br ${process.color} opacity-20 group-hover:opacity-30 transition-opacity rounded-2xl blur-xl`}></div>
-                <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-border transition-all transform hover:scale-105 duration-300 text-center">
+                <div
+                  className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border hover:border-border transition-all transform hover:scale-105 duration-300 text-center cursor-pointer"
+                  onClick={() => {
+                    if (process.title === "Chat" || process.title === "상담") {
+                      window.dispatchEvent(new Event("livechat:open"))
+                    }
+                  }}
+                  role={process.title === "Chat" || process.title === "상담" ? "button" : undefined}
+                  aria-label={process.title === "Chat" || process.title === "상담" ? "Open live chat" : undefined}
+                >
                   <div className={`absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-br ${process.color} rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl shadow-lg`}>{process.step}</div>
                   <div className={`w-20 h-20 bg-gradient-to-br ${process.color} rounded-full flex items-center justify-center mx-auto mb-6 transform group-hover:rotate-12 transition-transform`}>
                     <process.icon className="w-10 h-10 text-primary-foreground" />
