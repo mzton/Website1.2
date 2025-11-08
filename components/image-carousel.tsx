@@ -182,6 +182,7 @@ const categories: CarouselCategory[] = [
 export default function ImageCarousel() {
   const [activeCategory, setActiveCategory] = useState("emails")
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
   const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
 
   // Configuration constants
@@ -245,6 +246,33 @@ export default function ImageCarousel() {
     return () => window.removeEventListener("resize", applyResponsiveSizes)
   }, [])
 
+  // Track language from <html lang> and custom appLanguageChange event
+  useEffect(() => {
+    const syncLanguage = () => {
+      try {
+        const htmlLang = document?.documentElement?.lang
+        if (htmlLang === "ko") setAppLanguage("Korean")
+        else setAppLanguage("English")
+      } catch {}
+    }
+    syncLanguage()
+    const observer = new MutationObserver(syncLanguage)
+    try {
+      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] })
+    } catch {}
+    const onLanguageChange = (e: Event) => {
+      try {
+        const detail = (e as CustomEvent<string>).detail
+        setAppLanguage(detail === "Korean" ? "Korean" : "English")
+      } catch {}
+    }
+    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
+    return () => {
+      try { observer.disconnect() } catch {}
+      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
+    }
+  }, [])
+
   // 2. Style to FIX the item position in 3D space
   const getFixedItemStyle = (index: number) => {
     const rotationY = index * angleStep
@@ -266,6 +294,22 @@ export default function ImageCarousel() {
       ["--radius" as any]: `${radius}px`,
       transformStyle: "preserve-3d",
       animation: `rotateRing ${ROTATION_SPEED_S}s linear infinite`,
+    }
+  }
+
+  const getCategoryLabel = (id: string, defaultLabel: string) => {
+    if (appLanguage !== "Korean") return defaultLabel
+    switch (id) {
+      case "videos":
+        return "영상"
+      case "ads":
+        return "이미지"
+      case "emails":
+        return "이메일"
+      case "socials":
+        return "SNS"
+      default:
+        return defaultLabel
     }
   }
 
@@ -344,7 +388,7 @@ export default function ImageCarousel() {
                   activeCategory === category.id ? "text-foreground" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
-                {category.label}
+                {getCategoryLabel(category.id, category.label)}
                 {activeCategory === category.id && (
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-primary rounded-full"></div>
                 )}

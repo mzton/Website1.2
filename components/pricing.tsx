@@ -569,7 +569,7 @@ export default function VisualPricing() {
                           {plan.name === "Content & Presence"
                             ? "해외사업 마케팅 초기 플랜"
                             : plan.name === "Sales & Commerce"
-                              ? "추가 포함:"
+                              ? "글로벌 1인업무 구축플랜"
                               : "글로벌 2인 팀 구축플랜"}
                         </span>
                       ) : (
