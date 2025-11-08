@@ -243,10 +243,10 @@ export default function VisualPricing() {
       ctaText: "해외사업 기초 시작하기",
     },
     "Sales & Commerce": {
-      name: "영업 & 커머스",
+      name: "온라인 쇼핑몰 공략",
       subtitle: "전 세계 판매 완전 지원",
       bestFor: "국제 시장에서 적극적으로 판매하는 기업",
-      ctaText: "매출 성장시키기",
+      ctaText: "글로벌 전문 1인 구축플랜",
       roiTitle: "월 매출을 $5,000만 늘려도",
       roiSubtitle: "투자 비용을 5배 이상 회수합니다",
     },
@@ -408,7 +408,7 @@ export default function VisualPricing() {
                   <div className="mb-6 space-y-3">
                     <div className="text-sm font-semibold mb-2">
                       {appLanguage === "Korean" ? (
-                        <span className="notranslate" translate="no">받게 되는 것:</span>
+                        <span className="notranslate" translate="no">글로벌 서비스품목:</span>
                       ) : (
                         "What You'll Get:"
                       )}
@@ -597,9 +597,9 @@ export default function VisualPricing() {
                     {appLanguage === "Korean" ? (
                       <span className="notranslate" translate="no">
                         {koPlans[plan.name]?.ctaText ??
-                          (plan.name === "Content & Presence" ? "해외사업 기초 시작하기" :
-                           plan.name === "Sales & Commerce" ? "매출 성장시키기" :
-                           plan.name === "Enterprise Growth" ? "글로벌 전문 2인 팀 구축플랜" :
+                          (plan.name === "Content & Presence" ? "콘텐츠 제작 시작하기" :
+                           plan.name === "Sales & Commerce" ? "글로벌 전문 1인 구축플랜" :
+                           plan.name === "Enterprise Growth" ? "글로벌 팀 구축하기" :
                            plan.ctaText)}
                       </span>
                     ) : (
