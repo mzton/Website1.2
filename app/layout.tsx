@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Link from "next/link"
 import { Toaster } from "@/components/ui/toaster"
+import LiveChat from "@/components/live-chat"
 import Script from "next/script"
 import ChatWidget from "@/components/chat"
 
@@ -88,6 +89,7 @@ export default function RootLayout({
               } catch {}
             `}
           </Script>
+          <LiveChat />
         </ThemeProvider>
       </body>
     </html>
