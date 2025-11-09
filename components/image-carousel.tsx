@@ -177,6 +177,20 @@ const categories: CarouselCategory[] = [
       { id: "email-8", image: "/email/email8.png", poster: "/placeholder.png", alt: "Email 8" },
     ],
   },
+  {
+    id: "News",
+    label: "News",
+    items: [
+      { id: "News-1", image: "/news/media.png", poster: "/placeholder.png", alt: "News 1" },
+      { id: "News-2", image: "/news/media2.png", poster: "/placeholder.png", alt: "News 2" },
+      { id: "News-3", image: "/news/media3.png", poster: "/placeholder.png", alt: "News 3" },
+      { id: "News-4", image: "/news/media4.png", poster: "/placeholder.png", alt: "News 4" },
+      { id: "News-5", image: "/news/media5.png", poster: "/placeholder.png", alt: "News 5" },
+      { id: "News-6", image: "/news/media6.png", poster: "/placeholder.png", alt: "News 6" },
+      { id: "News-7", image: "/news/media7.png", poster: "/placeholder.png", alt: "News 7" },
+      { id: "News-8", image: "/news/media8.png", poster: "/placeholder.png", alt: "News 8" },
+    ],
+  },
 ]
 
 export default function ImageCarousel() {
@@ -308,6 +322,8 @@ export default function ImageCarousel() {
         return "이메일"
       case "socials":
         return "SNS"
+      case "News":
+        return "뉴스"
       default:
         return defaultLabel
     }

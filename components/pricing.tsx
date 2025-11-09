@@ -129,10 +129,6 @@ const plans: Plan[] = [
     ctaText: "Grow Your Sales",
     ctaVariant: "default",
     highlighted: true,
-    roi: {
-      title: "Increase sales by just $5,000/mo",
-      subtitle: "and you've covered the investment 5x over"
-    }
   },
   {
     name: "Enterprise Growth",
@@ -247,8 +243,6 @@ export default function VisualPricing() {
       subtitle: "전 세계인이 구매가 가능한 파이프라인 구축",
       bestFor: "글로벌시장 제품과 서비스를 판매할 콘텐츠가 있는 기업",
       ctaText: "글로벌 전문 1인 구축플랜",
-      roiTitle: "월 매출을 $5,000만 늘려도",
-      roiSubtitle: "투자 비용을 5배 이상 회수합니다",
     },
     "Enterprise Growth": {
       name: "글로벌 기업형업무",

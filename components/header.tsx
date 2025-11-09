@@ -6,6 +6,7 @@ import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import { ThemeToggle } from "./theme-toggle"
 import LoginModal from "@/components/login-modal"
+import Image from "next/image"
 
 const LanguageMenu = dynamic(() => import("./language-menu"), { ssr: false })
 
@@ -57,13 +58,17 @@ export default function Header({ language }: HeaderProps) {
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <div className="flex items-center notranslate" translate="no">
-          <span
-            className="text-xl font-bold bg-gradient-to-r from-sky-400 to-blue-600 bg-clip-text text-transparent"
-            translate="no"
-          >
-            BOOSTK
-          </span>
+        <div className="flex items-center">
+          <a href="/" aria-label="Home" className="flex items-center gap-2">
+            <Image
+              src="/logo.png"
+              alt="BOOSTK logo"
+              width={160}
+              height={40}
+              priority
+              className="h-8 w-auto"
+            />
+          </a>
         </div>
 
         {/* Desktop Navigation */}
