@@ -9,17 +9,36 @@ const nextConfig = {
     unoptimized: true,
   },
   async headers() {
+    const crispEnabled = !!process.env.NEXT_PUBLIC_CRISP_ID
+
+    const scriptSrc = ["'self'", "'unsafe-inline'", "'unsafe-eval'"]
+    const styleSrc = ["'self'", "'unsafe-inline'"]
+    const imgSrc = ["'self'", "data:", "blob:"]
+    const fontSrc = ["'self'", "data:"]
+    const mediaSrc = ["'self'", "blob:"]
+    const connectSrc = ["'self'"]
+    const frameSrc = ["'self'"]
+
+    if (crispEnabled) {
+      scriptSrc.push("https://client.crisp.chat")
+      imgSrc.push("https://*.crisp.chat")
+      fontSrc.push("https://*.crisp.chat")
+      connectSrc.push("https://*.crisp.chat", "wss://*.crisp.chat")
+      frameSrc.push("https://*.crisp.chat")
+    }
+
     const csp = [
-      "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
-      "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
-      "font-src 'self' data:",
-      "media-src 'self' blob:",
-      "connect-src 'self'",
-      "frame-ancestors 'none'",
-      "form-action 'self'",
-      "base-uri 'self'",
+      `default-src 'self'`,
+      `script-src ${scriptSrc.join(' ')}`,
+      `style-src ${styleSrc.join(' ')}`,
+      `img-src ${imgSrc.join(' ')}`,
+      `font-src ${fontSrc.join(' ')}`,
+      `media-src ${mediaSrc.join(' ')}`,
+      `connect-src ${connectSrc.join(' ')}`,
+      `frame-src ${frameSrc.join(' ')}`,
+      `frame-ancestors 'none'`,
+      `form-action 'self'`,
+      `base-uri 'self'`,
     ].join('; ')
 
     return [

@@ -20,9 +20,10 @@ export default function Header({ language }: HeaderProps) {
     try {
       const stored = localStorage.getItem("appLanguage")
       if (!stored) {
-        // Persist English as the default language on first view
-        localStorage.setItem("appLanguage", "English")
-        setAppLanguage("English")
+        // Persist default language from env on first view
+        const envDefault = process.env.NEXT_PUBLIC_DEFAULT_LANG === "ko" ? "Korean" : "English"
+        localStorage.setItem("appLanguage", envDefault)
+        setAppLanguage(envDefault as any)
       } else {
         setAppLanguage(stored === "Korean" ? "Korean" : "English")
       }

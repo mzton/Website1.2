@@ -199,27 +199,27 @@ export default function Hero({ language }: HeroProps) {
       <div className="mx-auto max-w-6xl">
         <div className={`grid md:grid-cols-2 gap-12 ${effectiveLanguage === "Korean" ? "items-center" : "items-start"}`}>
           <motion.div
-            className="text-left flex flex-col"
+            className="flex flex-col text-center md:text-left"
           >
             <h1
-              className={`mb-4 font-black tracking-tighter text-foreground leading-tight text-balance ${effectiveLanguage === "Korean" ? "text-[clamp(1.5rem,6vw,4rem)]" : "text-[clamp(2.5rem,9vw,5.75rem)]"}`}
+              className={`mb-4 font-black tracking-tighter text-foreground leading-tight text-balance md:text-left text-center ${effectiveLanguage === "Korean" ? "text-[clamp(1.5rem,6vw,4rem)]" : "text-[clamp(2.5rem,9vw,5.75rem)]"}`}
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className={`block ${effectiveLanguage === "Korean" ? "notranslate" : ""}`} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{fullText}</span>
             </h1>
 
             {/* CTA moved up below the headline */}
-            <div className="flex flex-col gap-4 sm:flex-row items-start mb-8">
+            <div className="flex flex-col gap-4 sm:flex-row items-center sm:items-start mb-8">
               <Button
                 size="lg"
-                className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold w-full sm:w-auto"
+                className="bg-primary hover:bg-primary/90 px-8 text-lg font-semibold mx-auto sm:mx-0"
                 onClick={() => setLoginOpen(true)}
               >
                 {ctaText}
               </Button>
             </div>
 
-            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl">
+            <p className="mb-8 text-base sm:text-lg text-muted-foreground text-balance leading-relaxed max-w-2xl md:text-left text-center mx-auto md:mx-0">
               <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{openingStatement}</span>
             </p>
           </motion.div>
@@ -327,8 +327,8 @@ export default function Hero({ language }: HeroProps) {
 
         {/* Emotional impact visualization */}
         <div className="mt-16 text-center">
-          <div className="inline-block bg-card/50 backdrop-blur-sm px-8 py-6 rounded-2xl border border-border/50">
-            <p className="text-2xl text-muted-foreground mb-4">
+          <div className="inline-block mx-auto max-w-[90vw] sm:max-w-none bg-card/50 backdrop-blur-sm px-6 sm:px-8 py-5 sm:py-6 rounded-2xl border border-border/50">
+            <p className="text-center text-lg sm:text-2xl leading-relaxed text-muted-foreground mb-4">
               <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{impactLine}</span>
             </p>
             <div className="flex items-center justify-center gap-4">

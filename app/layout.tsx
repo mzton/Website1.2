@@ -5,6 +5,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Link from "next/link"
 import { Toaster } from "@/components/ui/toaster"
+import Script from "next/script"
+import ChatWidget from "@/components/chat"
 
 const nunito = Nunito({ subsets: ["latin"], variable: "--font-nunito" })
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" })
@@ -56,8 +58,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const defaultLang = process.env.NEXT_PUBLIC_DEFAULT_LANG === "ko" ? "ko" : "en"
   return (
-    <html lang="en" translate="no" suppressHydrationWarning>
+    <html lang={defaultLang} translate="no" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google" content="notranslate" />
@@ -70,6 +73,21 @@ export default function RootLayout({
           </Link>
           {children}
           <Toaster />
+          {/* Live chat widget (loads only if NEXT_PUBLIC_CRISP_ID is set) */}
+          <ChatWidget />
+          {/* Initialize appLanguage default from env on first load */}
+          <Script id="init-default-language" strategy="afterInteractive">
+            {`
+              try {
+                var defaultLang = ${JSON.stringify(defaultLang)};
+                var stored = localStorage.getItem('appLanguage');
+                if (!stored) {
+                  localStorage.setItem('appLanguage', defaultLang === 'ko' ? 'Korean' : 'English');
+                  window.dispatchEvent(new CustomEvent('appLanguageChange', { detail: (defaultLang === 'ko' ? 'Korean' : 'English') }));
+                }
+              } catch {}
+            `}
+          </Script>
         </ThemeProvider>
       </body>
     </html>

@@ -55,13 +55,13 @@ const plans: Plan[] = [
       {
         type: "gallery",
         label: "Social Media Posts",
-        images: ["/pricing/sns.png", "/pricing/anadawan.png", "/pricing/ig1.png"],
+        images: ["/pricing/sns.png", "/pricing/anadawan.png"],
         description: "Transform product photos into scroll-stopping content"
       },
       {
         type: "gallery",
         label: "Content Variety",
-        images: ["/pricing/sale1.png", "/pricing/sns7.png", "/pricing/a5.png"],
+        images: ["/pricing/sale1.png", "/pricing/sns7.png"],
         description: "Stories, posts, ads - all professionally designed"
       },
       {
@@ -99,7 +99,7 @@ const plans: Plan[] = [
       {
         type: "gallery",
         label: "Product Listings",
-        images: ["/pricing/ok4.png", "/pricing/k5.png", "/pricing/ok1.png"],
+        images: ["/pricing/ok4.png", "/pricing/k5.png"],
         description: "Optimize listings for higher conversion rates"
       },
       {
@@ -111,7 +111,7 @@ const plans: Plan[] = [
       {
         type: "gallery",
         label: "Multi-Platform Management",
-        images: ["/pricing/y1.png", "/pricing/y2.png", "/pricing/ebay.png"],
+        images: ["/pricing/y2.png", "/pricing/ebay.png"],
         description: "Amazon, Shopee, and beyond"
       }
     ],

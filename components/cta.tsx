@@ -68,7 +68,7 @@ export default function CTA() {
               initial={{ opacity: 0, x: 100, scale: 0.95 }}
               whileInView={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="relative h-96 rounded-lg overflow-hidden border border-accent/20 shadow-xl"
+              className="relative h-64 sm:h-80 md:h-96 rounded-lg overflow-hidden border border-accent/20 shadow-xl"
             >
               <Image
                 src="/diverse-filipino-professionals-working-in-modern-o.jpg"
