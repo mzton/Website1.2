@@ -6,10 +6,12 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import LoginModal from "@/components/login-modal"
 import Image from "next/image"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 
 type HeroProps = { language?: "English" | "Korean" }
 export default function Hero({ language }: HeroProps) {
+  const isMobile = useIsMobile()
   const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
   useEffect(() => {
     try {
@@ -72,15 +74,17 @@ export default function Hero({ language }: HeroProps) {
 
   // Background media for the right-side visual (video with poster)
   const heroMedia = [
-    { video: (effectiveLanguage === "Korean" ? "/video/VideoHero.mp4" : "/video/Hero.mp4"), poster: "/placeholder.jpg" },
+    { video: (effectiveLanguage === "Korean" ? "/video/herovideo1.mp4" : "/video/herovideo1.mp4"), poster: "/placeholder.jpg" },
   ]
   const [bgIndex, setBgIndex] = useState(0)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % heroMedia.length)
-    }, 5000)
-    return () => clearInterval(interval)
+    if (heroMedia.length > 1) {
+      const interval = setInterval(() => {
+        setBgIndex((prev) => (prev + 1) % heroMedia.length)
+      }, 5000)
+      return () => clearInterval(interval)
+    }
   }, [])
 
   // Custom video controls state
@@ -192,8 +196,8 @@ export default function Hero({ language }: HeroProps) {
   return (
     <section className="relative overflow-hidden px-4 pt-8 sm:pt-10 lg:pt-12 pb-12 sm:px-6 lg:px-8 scroll-mt-8 sm:scroll-mt-10 lg:scroll-mt-12">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-3xl"></div>
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-gradient-to-br from-primary/20 via-accent/15 to-transparent blur-xl md:blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 rounded-full bg-accent/10 blur-xl md:blur-3xl"></div>
       </div>
 
       <div className="mx-auto max-w-6xl">
@@ -237,15 +241,19 @@ export default function Hero({ language }: HeroProps) {
                     key={item.video}
                     src={item.video}
                     poster={item.poster}
-                    autoPlay
+                    autoPlay={!isMobile}
                     muted
                     loop
                     playsInline
-                    preload="metadata"
+                    preload={isMobile ? "none" : "metadata"}
                     onCanPlay={(e) => {
                       const v = e.currentTarget
                       // Ensure autoplay proceeds when ready
                       v.play().catch(() => {})
+                    }}
+                    onError={(e) => {
+                      // Hide the video if it fails to load
+                      e.currentTarget.style.display = "none"
                     }}
                     // Custom controls overlay; hide native controls
                     ref={i === bgIndex ? videoRef : undefined}
