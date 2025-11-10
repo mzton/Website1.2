@@ -361,7 +361,7 @@ export default function Hero({ language }: HeroProps) {
                     ]
                   : [
                       { stat: "180%", label: "Lead Growth", icon: TrendingUp, color: "from-green-500 to-emerald-600" },
-                      { stat: "4", label: "New Partners", icon: Globe, color: "from-blue-500 to-cyan-600" },
+                      { stat: "94", label: "New Partners", icon: Globe, color: "from-blue-500 to-cyan-600" },
                       { stat: "3x", label: "Faster Sales", icon: CheckCircle, color: "from-purple-500 to-pink-600" },
                     ]
               ).map((item) => (
