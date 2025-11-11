@@ -217,5 +217,9 @@
   /* Respect reduced motion */
   @media (prefers-reduced-motion: reduce) {
     .animate-chat-bounce { animation: none; }
+    .animate-slide-in-left { animation: none; }
+    .animate-slide-in-right { animation: none; }
+    /* Soften expensive filters for reduced motion users */
+    .backdrop-blur, .backdrop-blur-sm { backdrop-filter: none !important; }
   }
 }

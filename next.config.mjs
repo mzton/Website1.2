@@ -10,6 +10,7 @@ const nextConfig = {
   },
   async headers() {
     const crispEnabled = !!process.env.NEXT_PUBLIC_CRISP_ID
+    const reactScanEnabled = !!process.env.NEXT_PUBLIC_ENABLE_REACT_SCAN
 
     const scriptSrc = ["'self'", "'unsafe-inline'", "'unsafe-eval'"]
     const styleSrc = ["'self'", "'unsafe-inline'"]
@@ -25,6 +26,10 @@ const nextConfig = {
       fontSrc.push("https://*.crisp.chat")
       connectSrc.push("https://*.crisp.chat", "wss://*.crisp.chat")
       frameSrc.push("https://*.crisp.chat")
+    }
+
+    if (reactScanEnabled) {
+      scriptSrc.push("https://cdn.jsdelivr.net")
     }
 
     const csp = [

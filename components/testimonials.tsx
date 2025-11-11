@@ -5,6 +5,7 @@ import { Star, MessageSquare, Users, Rocket } from "lucide-react"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 const resultsEn = [
   {
@@ -142,6 +143,8 @@ type TestimonialsProps = { language?: "English" | "Korean" }
 export default function Testimonials({ language }: TestimonialsProps) {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+  const isMobile = useIsMobile()
+  const [shouldAnimate, setShouldAnimate] = useState<boolean>(true)
 
   useEffect(() => {
     try {
@@ -177,12 +180,38 @@ export default function Testimonials({ language }: TestimonialsProps) {
     const el = scrollRef.current
     if (!el) return
 
+    // Respect reduced motion preference
+    const prefersReduced = typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    // Disable animation on mobile or when user prefers reduced motion
+    if (isMobile || prefersReduced) {
+      setShouldAnimate(false)
+      return
+    }
+
     let animationFrame: number
     let lastTime = performance.now()
-    const pixelsPerSecond = 120 // Faster auto-scroll for clearer motion
+    // Slightly lower speed for smoother experience and less layout work
+    const pixelsPerSecond = 80
+
+    // Track visibility with IntersectionObserver so we only animate when in view
+    let isInView = true
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isInView = entries.some((e) => e.isIntersecting)
+      },
+      { root: null, threshold: 0.1 }
+    )
+    observer.observe(el)
 
     const animate = (currentTime: number) => {
       if (!el) {
+        animationFrame = requestAnimationFrame(animate)
+        return
+      }
+
+      // Pause when out of view or tab hidden
+      if (!isInView || document.hidden) {
         animationFrame = requestAnimationFrame(animate)
         return
       }
@@ -207,8 +236,11 @@ export default function Testimonials({ language }: TestimonialsProps) {
 
     animationFrame = requestAnimationFrame(animate)
 
-    return () => cancelAnimationFrame(animationFrame)
-  }, [])
+    return () => {
+      cancelAnimationFrame(animationFrame)
+      observer.disconnect()
+    }
+  }, [isMobile])
 
   return (
     <>
@@ -233,7 +265,7 @@ export default function Testimonials({ language }: TestimonialsProps) {
           <div
             ref={scrollRef}
             className="flex gap-6 overflow-x-scroll pb-2 no-scrollbar px-3 sm:px-4"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', willChange: 'scroll-position' }}
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none', willChange: shouldAnimate ? 'scroll-position' : 'auto' }}
           >
             {duplicatedResults.map((result, index) => (
               <div

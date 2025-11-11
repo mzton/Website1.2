@@ -60,11 +60,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   const defaultLang = process.env.NEXT_PUBLIC_DEFAULT_LANG === "ko" ? "ko" : "en"
+  const enableReactScan = !!process.env.NEXT_PUBLIC_ENABLE_REACT_SCAN
   return (
     <html lang={defaultLang} translate="no" suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google" content="notranslate" />
+        {enableReactScan && (
+          <Script
+            src="https://cdn.jsdelivr.net/npm/react-scan/dist/auto.global.js"
+            strategy="afterInteractive"
+          />
+        )}
       </head>
       <body className={`${nunito.variable} ${inter.variable} notranslate`} translate="no">
         <ThemeProvider>

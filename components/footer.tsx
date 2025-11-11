@@ -6,7 +6,7 @@ import PrivacyContent from "@/components/legal/privacy-content"
 type FooterProps = { language?: "English" | "Korean" }
 export default function Footer({ language = "English" }: FooterProps) {
   return (
-    <footer className="border-t border-border/40 bg-background/80 backdrop-blur px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="border-t border-border/40 bg-background/80 backdrop-blur-sm md:backdrop-blur px-4 py-16 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-12 justify-items-center text-center">
           <div>
