@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { Globe } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
@@ -11,6 +11,8 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"
 import { useRouter, usePathname } from "next/navigation"
+import { useAppStore } from "@/hooks/use-app-store"
+ 
 
 type LanguageMenuProps = {
   className?: string
@@ -18,50 +20,15 @@ type LanguageMenuProps = {
 }
 
 export default function LanguageMenu({ className, align = "end" }: LanguageMenuProps) {
-  const [language, setLanguage] = useState("English")
+  // Read from the global store using a selector to avoid unnecessary re-renders.
+  // This component will only re-render when the language value changes.
+  const language = useAppStore((s) => s.language)
+  const setLanguage = useAppStore((s) => s.setLanguage)
   const router = useRouter()
   const pathname = usePathname()
-
-  // Initialize from stored preference to keep the button label in sync
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("appLanguage")
-      const htmlLang = document?.documentElement?.lang
-      // Prefer page language for the label; fallback to stored preference
-      if (htmlLang === "ko") {
-        setLanguage("Korean")
-      } else if (htmlLang === "en") {
-        setLanguage("English")
-      } else if (stored) {
-        setLanguage(stored === "Korean" ? "Korean" : "English")
-      }
-    } catch {}
-  }, [])
-
-  // Keep label in sync if <html lang> changes or a custom event is dispatched
-  useEffect(() => {
-    const onLanguageChange = (e: Event) => {
-      try {
-        const detail = (e as CustomEvent<string>).detail
-        setLanguage(detail === "Korean" ? "Korean" : "English")
-      } catch {}
-    }
-    const observer = new MutationObserver(() => {
-      try {
-        const htmlLang = document.documentElement.lang
-        if (htmlLang === "ko") setLanguage("Korean")
-        else if (htmlLang === "en") setLanguage("English")
-      } catch {}
-    })
-    try {
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] })
-    } catch {}
-    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
-    return () => {
-      try { observer.disconnect() } catch {}
-      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
-    }
-  }, [])
+  // Note: No need for local state, localStorage, or MutationObserver.
+  // The global store centralizes persistence, DOM updates (<html lang>), and
+  // broadcasting compatibility events for legacy listeners.
 
   return (
     <DropdownMenu>
@@ -69,20 +36,15 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         <Button variant="outline" size="sm" className={cn("gap-2 font-sans bg-transparent", className)}>
           <Globe className="h-4 w-4" />
           {/* Show localized label for the active language */}
-          <span className="notranslate" translate="no">
-            {language === "Korean" ? "한국어" : "English"}
-          </span>
+          <span className="notranslate" translate="no">{language === "Korean" ? "한국어" : "English"}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align={align}>
         <DropdownMenuItem
           onClick={() => {
+            // Update global language. The store persists to localStorage,
+            // updates <html lang>, and dispatches a compatibility event.
             setLanguage("English")
-            try {
-              localStorage.setItem("appLanguage", "English")
-              window.dispatchEvent(new CustomEvent("appLanguageChange", { detail: "English" }))
-              document.documentElement.lang = "en"
-            } catch {}
             // Navigate to English homepage if currently on Korean route
             try {
               if (pathname && pathname !== "/") {
@@ -96,12 +58,8 @@ export default function LanguageMenu({ className, align = "end" }: LanguageMenuP
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => {
+            // Update global language and navigate to the Korean route when needed.
             setLanguage("Korean")
-            try {
-              localStorage.setItem("appLanguage", "Korean")
-              window.dispatchEvent(new CustomEvent("appLanguageChange", { detail: "Korean" }))
-              document.documentElement.lang = "ko"
-            } catch {}
             // Navigate to Korean homepage if not already on it
             try {
               if (pathname && pathname !== "/ko") {

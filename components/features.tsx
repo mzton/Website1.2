@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react"
 import { Card } from "@/components/ui/card"
 import { Mail, Megaphone, TrendingUp, Target, HelpCircle } from "lucide-react"
 import { motion } from "framer-motion"
+import { useAppStore } from "@/hooks/use-app-store"
 
 const featuresEn = [
   {
@@ -113,34 +114,13 @@ export default function Features({ language }: FeaturesProps) {
   const [revealed] = useState<boolean[]>(
     Array.from({ length: featuresEn.length }, () => true)
   )
-  const [appLanguage, setAppLanguage] = useState<string | null>(null)
+  // Read current language from the global store using a selector.
+  // This limits re-renders to only when the language value changes.
+  const appLanguage = useAppStore((s) => s.language)
   // Track per-card video play counts to cap autoplay loops
   const playCountsRef = useRef<number[]>([])
-  useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem("appLanguage")
-      setAppLanguage(stored)
-    } catch {
-      setAppLanguage(null)
-    }
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === "appLanguage") {
-        setAppLanguage(e.newValue)
-      }
-    }
-    const onLanguageChange = (e: Event) => {
-      try {
-        const detail = (e as CustomEvent<string>).detail
-        setAppLanguage(detail)
-      } catch {}
-    }
-    window.addEventListener("storage", onStorage)
-    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
-    return () => {
-      window.removeEventListener("storage", onStorage)
-      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
-    }
-  }, [])
+  // No localStorage/custom event listeners here; the global store
+  // centralizes persistence and cross-tab synchronization.
 
   // Initialize or reset play counts when language changes (same length, but keep safe)
   useEffect(() => {
@@ -148,7 +128,7 @@ export default function Features({ language }: FeaturesProps) {
     playCountsRef.current = Array.from({ length }, () => 0)
   }, [appLanguage])
 
-  const effectiveLanguage = language ?? (appLanguage === "Korean" ? "Korean" : "English")
+  const effectiveLanguage = language ?? appLanguage
   const features = effectiveLanguage === "Korean" ? featuresKo : featuresEn
   const containerVariants = {
     hidden: { opacity: 0 },

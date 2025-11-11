@@ -9,6 +9,9 @@ import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import { useToast } from "@/hooks/use-toast"
+// Read global UI state (language) from the Zustand store.
+// This removes localStorage/event listeners here and centralizes persistence + DOM side-effects.
+import { useAppStore } from "@/hooks/use-app-store"
 
 type Props = {
   open: boolean
@@ -19,7 +22,10 @@ type Props = {
 export default function LoginModal({ open, onOpenChange, initialMode = "signin" }: Props) {
   const router = useRouter()
   const { toast } = useToast()
-  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+  // Read the current language from the global store via a selector.
+  // Using a selector like `(s) => s.language` ensures this component only re-renders
+  // when `language` changes, avoiding unnecessary updates.
+  const language = useAppStore((s) => s.language)
   const [mode, setMode] = useState<"signin" | "signup">(initialMode)
   const [role, setRole] = useState<"client" | "teacher">("client")
   const [name, setName] = useState("")
@@ -27,23 +33,15 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [documents, setDocuments] = useState<File[]>([])
+  // Note:
+  // - We removed local language state and localStorage/event syncing.
+  // - `hooks/use-app-store.ts` now handles persistence, <html lang> updates,
+  //   and compatibility events across the app. If you need to update language here,
+  //   you could call: `const setLanguage = useAppStore((s) => s.setLanguage)`
+  //   and then `setLanguage("Korean")` or `setLanguage("English")`.
 
-  // Sync language preference with localStorage and storage events (same pattern as Hero/Header)
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("appLanguage")
-      if (stored === "Korean") setAppLanguage("Korean")
-    } catch {}
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === "appLanguage") {
-        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
-      }
-    }
-    window.addEventListener("storage", onStorage)
-    return () => window.removeEventListener("storage", onStorage)
-  }, [])
-
-  const effectiveLanguage = appLanguage
+  // For convenience, use the store value directly for translations.
+  const effectiveLanguage = language
 
   const koLogin = {
     signIn: "로그인",

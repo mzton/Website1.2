@@ -7,6 +7,8 @@ import dynamic from "next/dynamic"
 import { ThemeToggle } from "./theme-toggle"
 import LoginModal from "@/components/login-modal"
 import Image from "next/image"
+import { useAppStore } from "@/hooks/use-app-store"
+ 
 
 const LanguageMenu = dynamic(() => import("./language-menu"), { ssr: false })
 
@@ -15,44 +17,15 @@ export default function Header({ language }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [loginOpen, setLoginOpen] = useState(false)
   const [modalMode, setModalMode] = useState<"signin" | "signup">("signup")
-  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
-
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("appLanguage")
-      if (!stored) {
-        // Persist default language from env on first view
-        const envDefault = process.env.NEXT_PUBLIC_DEFAULT_LANG === "ko" ? "Korean" : "English"
-        localStorage.setItem("appLanguage", envDefault)
-        setAppLanguage(envDefault as any)
-      } else {
-        setAppLanguage(stored === "Korean" ? "Korean" : "English")
-      }
-    } catch {}
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === "appLanguage") {
-        setAppLanguage(e.newValue === "Korean" ? "Korean" : "English")
-      }
-    }
-    const onLanguageChange = (e: Event) => {
-      try {
-        const detail = (e as CustomEvent<"English" | "Korean">).detail
-        setAppLanguage(detail === "Korean" ? "Korean" : "English")
-      } catch {}
-    }
-    window.addEventListener("storage", onStorage)
-    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
-    return () => window.removeEventListener("storage", onStorage)
-  }, [])
+  // Read language from the global Zustand store.
+  // Using a selector (s => s.language) means this component only re-renders
+  // when the language value actually changes, avoiding unnecessary updates.
+  const appLanguage = useAppStore((s) => s.language)
 
   const effectiveLanguage = language ?? appLanguage
 
-  // Reflect current page language in <html lang> for SEO/UX parity
-  useEffect(() => {
-    try {
-      document.documentElement.lang = effectiveLanguage === "Korean" ? "ko" : "en"
-    } catch {}
-  }, [effectiveLanguage])
+  // Note: We no longer mutate <html lang> here. The global store
+  // updates <html lang> when setLanguage is called, centralizing side effects.
 
   return (
     <header className="sticky top-0 z-50 border-b border-border/40 bg-background/95 backdrop-blur-sm md:backdrop-blur supports-[backdrop-filter]:bg-background/60">

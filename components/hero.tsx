@@ -7,35 +7,15 @@ import { motion } from "framer-motion"
 import LoginModal from "@/components/login-modal"
 import Image from "next/image"
 import { useIsMobile } from "@/hooks/use-mobile"
+import { useAppStore } from "@/hooks/use-app-store"
 
 
 type HeroProps = { language?: "English" | "Korean" }
 export default function Hero({ language }: HeroProps) {
   const isMobile = useIsMobile()
-  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("appLanguage")
-      if (stored === "Korean") setAppLanguage("Korean")
-    } catch {}
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === "appLanguage") {
-        setAppLanguage(e.newValue === "English" ? "English" : "Korean")
-      }
-    }
-    const onLanguageChange = (e: Event) => {
-      try {
-        const detail = (e as CustomEvent<"English" | "Korean">).detail
-        setAppLanguage(detail === "Korean" ? "Korean" : "English")
-      } catch {}
-    }
-    window.addEventListener("storage", onStorage)
-    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
-    return () => {
-      window.removeEventListener("storage", onStorage)
-      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
-    }
-  }, [])
+  // Read current language from the global Zustand store using a selector.
+  // This limits re-renders to only when the language value changes.
+  const appLanguage = useAppStore((s) => s.language)
 
   const effectiveLanguage = language ?? appLanguage
 
@@ -294,7 +274,8 @@ export default function Hero({ language }: HeroProps) {
             </div>
             {/* Moved quote below the video */}
             <p className="mt-4 text-center mx-auto text-base sm:text-lg text-muted-foreground italic font-bold text-balance leading-relaxed max-w-2xl">
-              <span className={appLanguage === "Korean" ? "notranslate" : undefined} translate={appLanguage === "Korean" ? "no" : undefined}>{quoteText}</span>
+              {/* Use the effective language (prop override or global store) */}
+              <span className={effectiveLanguage === "Korean" ? "notranslate" : undefined} translate={effectiveLanguage === "Korean" ? "no" : undefined}>{quoteText}</span>
             </p>
           </motion.div>
         </div>
