@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { registerUser } from '@/lib/auth';
 import { RegisterFormData } from '@/types/auth';
+import { prisma } from '@/lib/prisma'
 
 export async function POST(request: NextRequest) {
   try {
@@ -16,7 +17,7 @@ export async function POST(request: NextRequest) {
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(body.email)) {
+    if (!emailRegex.test(body.email)) { 
       return NextResponse.json(
         { error: 'Invalid email format' },
         { status: 400 }
@@ -32,7 +33,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate role
-    if (!['teacher', 'client'].includes(body.role)) {
+    if (!['Admin', 'Assistant', 'Viewer'].includes(body.role)) {
       return NextResponse.json(
         { error: 'Invalid role' },
         { status: 400 }

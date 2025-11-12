@@ -11,7 +11,6 @@ import Pricing from "@/components/pricing"
 import Footer from "@/components/footer"
 
 export default function KoreanHome() {
-  // Do not force localStorage; render Korean via explicit props only
 
   return (
     <main className="min-h-screen bg-background" lang="ko">

@@ -2,100 +2,75 @@ export interface User {
   id: string;
   email: string;
   name: string;
-  role: 'teacher' | 'client';
+  role: 'Admin' | 'Assistant' | 'Viewer';
   createdAt: Date;
   updatedAt: Date;
 }
 
-export interface Teacher extends User {
-  role: 'teacher';
-  profile?: TeacherProfile;
-  isVerified: boolean;
-  documents?: Document[];
+export interface Admin extends User {
+  role: 'Admin';
+  profile?: AdminProfile;
+  permissions: AdminPermission[];
 }
 
-export interface Client extends User {
-  role: 'client';
-  profile?: ClientProfile;
+export interface Assistant extends User {
+  role: 'Assistant';
+  profile?: AssistantProfile;
+  permissions: AssistantPermission[];
 }
 
-export interface TeacherProfile {
+export interface Viewer extends User {
+  role: 'Viewer';
+  profile?: ViewerProfile;
+}
+
+export interface AdminProfile {
   id: string;
-  teacherId: string;
+  userId: string;
   bio?: string;
-  subjects: string[];
-  qualifications: string[];
-  experience: number;
-  hourlyRate: number;
-  availability: AvailabilitySlot[];
-  languages: string[];
-  timezone: string;
+  department?: string;
   profileImage?: string;
-  rating: number;
-  totalReviews: number;
+  phoneNumber?: string;
 }
 
-export interface ClientProfile {
+export interface AssistantProfile {
   id: string;
-  clientId: string;
+  userId: string;
   bio?: string;
-  interests: string[];
-  preferredLanguages: string[];
-  timezone: string;
+  department?: string;
   profileImage?: string;
+  assignedTasks?: string[];
 }
 
-export interface Document {
+export interface ViewerProfile {
   id: string;
-  teacherId: string;
-  type: 'certificate' | 'diploma' | 'id' | 'other';
-  name: string;
-  url: string;
-  verified: boolean;
-  uploadedAt: Date;
+  userId: string;
+  bio?: string;
+  profileImage?: string;
+  accessLevel?: string;
 }
 
-export interface AvailabilitySlot {
-  id: string;
-  dayOfWeek: number; // 0-6 (Sunday-Saturday)
-  startTime: string; // HH:MM format
-  endTime: string; // HH:MM format
-  isAvailable: boolean;
-}
+export type AdminPermission = 
+  | 'manage_users'
+  | 'manage_content'
+  | 'view_analytics'
+  | 'manage_settings'
+  | 'delete_data';
 
-export interface Booking {
-  id: string;
-  teacherId: string;
-  clientId: string;
-  subject: string;
-  scheduledAt: Date;
-  duration: number; // in minutes
-  status: 'pending' | 'confirmed' | 'completed' | 'cancelled';
-  price: number;
-  paymentStatus: 'pending' | 'paid' | 'refunded';
-  notes?: string;
-  createdAt: Date;
-}
-
-export interface Review {
-  id: string;
-  bookingId: string;
-  teacherId: string;
-  clientId: string;
-  rating: number; // 1-5
-  comment?: string;
-  createdAt: Date;
-}
+export type AssistantPermission = 
+  | 'edit_content'
+  | 'view_analytics'
+  | 'moderate_content';
 
 export interface AuthFormData {
   email: string;
   password: string;
   name?: string;
-  role?: 'teacher' | 'client';
+  role?: 'Admin' | 'Assistant' | 'Viewer';
 }
 
 export interface RegisterFormData extends AuthFormData {
   name: string;
-  role: 'teacher' | 'client';
-  confirmPassword: string;
+  role: 'Admin' | 'Assistant' | 'Viewer';
+  confirmPassword?: string;
 }

@@ -12,6 +12,10 @@ import { useToast } from "@/hooks/use-toast"
 // Read global UI state (language) from the Zustand store.
 // This removes localStorage/event listeners here and centralizes persistence + DOM side-effects.
 import { useAppStore } from "@/hooks/use-app-store"
+// Align auth interactions with the shared types and schema.
+import type { AuthFormData, RegisterFormData } from "@/types/auth"
+// NOTE: Client components should not import server-only code (e.g., Prisma).
+// We submit to API routes under app/api/auth/* to avoid bundling server code.
 
 type Props = {
   open: boolean
@@ -19,6 +23,16 @@ type Props = {
   initialMode?: "signin" | "signup"
 }
 
+/**
+ * LoginModal
+ *
+ * Patterns this component to the shared auth types (types/auth.ts)
+ * and Prisma schema (schema.prisma). Specifically:
+ * - Uses UserRole options: 'Admin' | 'Assistant' | 'Viewer'
+ * - For signin: collects { email, password }
+ * - For signup: collects { name, email, password, role, confirmPassword }
+ * - Submits via API routes under app/api/auth/* to avoid bundling server-only code
+ */
 export default function LoginModal({ open, onOpenChange, initialMode = "signin" }: Props) {
   const router = useRouter()
   const { toast } = useToast()
@@ -27,7 +41,9 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
   // when `language` changes, avoiding unnecessary updates.
   const language = useAppStore((s) => s.language)
   const [mode, setMode] = useState<"signin" | "signup">(initialMode)
-  const [role, setRole] = useState<"client" | "teacher">("client")
+  // Role options match Prisma's UserRole enum and types/auth.ts
+  // Use RegisterFormData['role'] to keep the union type in sync.
+  const [role, setRole] = useState<RegisterFormData["role"]>("Viewer")
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -38,11 +54,12 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
   // - `hooks/use-app-store.ts` now handles persistence, <html lang> updates,
   //   and compatibility events across the app. If you need to update language here,
   //   you could call: `const setLanguage = useAppStore((s) => s.setLanguage)`
-  //   and then `setLanguage("Korean")` or `setLanguage("English")`.
+  //   and then `setLanguage("Korean")` or `setLanguage("English")`.x
 
   // For convenience, use the store value directly for translations.
   const effectiveLanguage = language
 
+  // Basic i18n strings; keys map to consistent role names.
   const koLogin = {
     signIn: "로그인",
     signUp: "회원가입",
@@ -50,8 +67,9 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     email: "이메일",
     password: "비밀번호",
     joinAs: "역할 선택",
-    client: "고객",
+    admin: "관리자",
     assistant: "어시스턴트",
+    viewer: "뷰어",
     name: "이름",
     namePlaceholder: "이름 입력",
     emailPlaceholder: "you@example.com",
@@ -71,7 +89,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     toastMismatch: { title: "비밀번호가 일치하지 않습니다", desc: "다시 입력해주세요." },
     toastSignedIn: { title: "로그인 완료", desc: "다시 오신 것을 환영합니다. 곧 연락드리겠습니다." },
     toastSignedUpTitle: "가입해 주셔서 감사합니다!",
-    toastWelcome: (isAssistant: boolean, docCount: number) => `환영합니다, ${isAssistant ? "어시스턴트" : "고객"}. ${isAssistant && docCount > 0 ? `${docCount}개 파일 선택됨. ` : ""}곧 연락드리겠습니다.`,
+    toastWelcome: (roleLabel: string, docCount: number) => `환영합니다, ${roleLabel}. ${docCount > 0 ? `${docCount}개 파일 선택됨. ` : ""}곧 연락드리겠습니다.`,
   }
 
   const handleDocsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -86,7 +104,12 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     }
   }, [initialMode, open])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  /**
+   * Submit handler aligns payloads to types/auth.ts.
+   * - signin -> AuthFormData
+   * - signup -> RegisterFormData
+   */
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (mode === "signup") {
       if (password.length < 6) {
@@ -103,21 +126,48 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
         })
         return
       }
-    }
-    if (mode === "signin") {
-      toast({
-        title: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.title : "Signed in",
-        description: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.desc : "Welcome back. We’ll be in touch soon.",
+      // Build a typed registration payload (matches RegisterFormData)
+      const payload: RegisterFormData = { name, email, password, role }
+      const resp = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
       })
-    } else {
+      const result = await resp.json()
+      if (!resp.ok || "error" in result) {
+        toast({ title: effectiveLanguage === "Korean" ? "오류" : "Error", description: result.error || (effectiveLanguage === "Korean" ? "요청 실패" : "Request failed") })
+        return
+      }
+      const roleLabel = effectiveLanguage === "Korean"
+        ? (role === "Admin" ? koLogin.admin : role === "Assistant" ? koLogin.assistant : koLogin.viewer)
+        : role
       toast({
         title: effectiveLanguage === "Korean" ? koLogin.toastSignedUpTitle : "Thanks for signing up!",
         description:
           effectiveLanguage === "Korean"
-            ? koLogin.toastWelcome(role === "teacher", documents.length)
-            : `Welcome, ${role === "teacher" ? "Assistant" : "Client"}. ${role === "teacher" && documents.length > 0 ? `${documents.length} document${documents.length > 1 ? "s" : ""} selected. ` : ""}We’ll be in touch soon.`,
+            ? koLogin.toastWelcome(roleLabel, documents.length)
+            : `Welcome, ${role}. ${documents.length > 0 ? `${documents.length} document${documents.length > 1 ? "s" : ""} selected. ` : ""}We’ll be in touch soon.`,
       })
+      onOpenChange(false)
+      router.push("/")
+      return
     }
+    // Sign in flow: build typed AuthFormData payload
+    const loginPayload: AuthFormData = { email, password }
+    const resp = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginPayload),
+    })
+    const loginResult = await resp.json()
+    if (!resp.ok || "error" in loginResult) {
+      toast({ title: effectiveLanguage === "Korean" ? "오류" : "Error", description: loginResult.error || (effectiveLanguage === "Korean" ? "요청 실패" : "Request failed") })
+      return
+    }
+    toast({
+      title: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.title : "Signed in",
+      description: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.desc : "Welcome back. We’ll be in touch soon.",
+    })
     onOpenChange(false)
     router.push("/")
   }
@@ -222,24 +272,35 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                     "Join as"
                   )}
                 </Label>
-                <RadioGroup value={role} onValueChange={(v) => setRole(v as any)} className="grid grid-cols-2 gap-3 sm:flex sm:items-center sm:gap-4">
+                {/* Role selector uses Prisma's UserRole enum values */}
+                <RadioGroup value={role} onValueChange={(v) => setRole(v as any)} className="grid grid-cols-3 gap-3 sm:flex sm:items-center sm:gap-4">
                   <div className="flex items-center gap-2 rounded-md border px-3 py-2">
-                    <RadioGroupItem value="client" id="client" />
-                    <Label htmlFor="client">
+                    <RadioGroupItem value="Admin" id="Admin" />
+                    <Label htmlFor="Admin">
                       {effectiveLanguage === "Korean" ? (
-                        <span className="notranslate" translate="no">{koLogin.client}</span>
+                        <span className="notranslate" translate="no">{koLogin.admin}</span>
                       ) : (
-                        "Client"
+                        "Admin"
                       )}
                     </Label>
                   </div>
                   <div className="flex items-center gap-2 rounded-md border px-3 py-2">
-                    <RadioGroupItem value="teacher" id="teacher" />
-                    <Label htmlFor="teacher">
+                    <RadioGroupItem value="Assistant" id="Assistant" />
+                    <Label htmlFor="Assistant">
                       {effectiveLanguage === "Korean" ? (
                         <span className="notranslate" translate="no">{koLogin.assistant}</span>
                       ) : (
                         "Assistant"
+                      )}
+                    </Label>
+                  </div>
+                  <div className="flex items-center gap-2 rounded-md border px-3 py-2">
+                    <RadioGroupItem value="Viewer" id="Viewer" />
+                    <Label htmlFor="Viewer">
+                      {effectiveLanguage === "Korean" ? (
+                        <span className="notranslate" translate="no">{koLogin.viewer}</span>
+                      ) : (
+                        "Viewer"
                       )}
                     </Label>
                   </div>
@@ -286,7 +347,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                   onInput={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity("")}
                 />
               </div>
-              {role === "teacher" && (
+              {role === "Assistant" && (
                 <div className="space-y-2">
                   <Label htmlFor="documents">
                     {effectiveLanguage === "Korean" ? (

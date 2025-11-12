@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
+// Read global UI state (language) from the Zustand store to avoid
+// MutationObserver/event listeners here and minimize work per render.
+import { useAppStore } from "@/hooks/use-app-store"
 
 interface CarouselItem {
   id: string
@@ -196,7 +199,8 @@ const categories: CarouselCategory[] = [
 export default function ImageCarousel() {
   const [activeCategory, setActiveCategory] = useState("emails")
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [appLanguage, setAppLanguage] = useState<"English" | "Korean">("English")
+  // Use selector so this component only re-renders when `language` changes.
+  const appLanguage = useAppStore((s) => s.language)
   const ROTATION_SPEED_S = 24 // Seconds per full revolution (slower, continuous)
 
   // Configuration constants
@@ -260,32 +264,8 @@ export default function ImageCarousel() {
     return () => window.removeEventListener("resize", applyResponsiveSizes)
   }, [])
 
-  // Track language from <html lang> and custom appLanguageChange event
-  useEffect(() => {
-    const syncLanguage = () => {
-      try {
-        const htmlLang = document?.documentElement?.lang
-        if (htmlLang === "ko") setAppLanguage("Korean")
-        else setAppLanguage("English")
-      } catch {}
-    }
-    syncLanguage()
-    const observer = new MutationObserver(syncLanguage)
-    try {
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] })
-    } catch {}
-    const onLanguageChange = (e: Event) => {
-      try {
-        const detail = (e as CustomEvent<string>).detail
-        setAppLanguage(detail === "Korean" ? "Korean" : "English")
-      } catch {}
-    }
-    window.addEventListener("appLanguageChange", onLanguageChange as EventListener)
-    return () => {
-      try { observer.disconnect() } catch {}
-      window.removeEventListener("appLanguageChange", onLanguageChange as EventListener)
-    }
-  }, [])
+  // Note: language is now sourced from the global store. The store already
+  // persists to localStorage and updates <html lang> centrally.
 
   // 2. Style to FIX the item position in 3D space
   const getFixedItemStyle = (index: number) => {
@@ -298,6 +278,8 @@ export default function ImageCarousel() {
       transform: `rotateY(${rotationY}deg) translateZ(${radius}px) scale(${scale})`,
       opacity,
       zIndex: 50,
+      // Hint the browser that transform/opacity will change, helping the GPU pipeline.
+      willChange: "transform, opacity",
     }
   }
 
@@ -308,6 +290,8 @@ export default function ImageCarousel() {
       ["--radius" as any]: `${radius}px`,
       transformStyle: "preserve-3d",
       animation: `rotateRing ${ROTATION_SPEED_S}s linear infinite`,
+      // Performance hint to keep animations smooth
+      willChange: "transform",
     }
   }
 
@@ -381,7 +365,7 @@ export default function ImageCarousel() {
                         muted
                         loop
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         onClick={(e) => enterFullscreen(e.currentTarget)}
                       />
                     ) : (
