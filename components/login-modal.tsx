@@ -97,6 +97,16 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
     setDocuments(files)
   }
 
+  // Reset all form-controlled fields. This helps avoid stale values when the modal is closed or after a successful submission.
+  const resetFields = () => {
+    setRole("Viewer")
+    setName("")
+    setEmail("")
+    setPassword("")
+    setConfirmPassword("")
+    setDocuments([])
+  }
+
   // Keep mode in sync with the trigger intent when modal opens
   useEffect(() => {
     if (open) {
@@ -111,6 +121,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
    */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    // pang koreano
     if (mode === "signup") {
       if (password.length < 6) {
         toast({
@@ -148,32 +159,50 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
             ? koLogin.toastWelcome(roleLabel, documents.length)
             : `Welcome, ${role}. ${documents.length > 0 ? `${documents.length} document${documents.length > 1 ? "s" : ""} selected. ` : ""}We’ll be in touch soon.`,
       })
+      // Clear fields before closing the modal to prevent persistence on next open.
+      resetFields()
       onOpenChange(false)
       router.push("/")
       return
     }
     // Sign in flow: build typed AuthFormData payload
     const loginPayload: AuthFormData = { email, password }
+
+    // logging in 
     const resp = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginPayload),
     })
+
+    //error hindi tama login or not authenticated
     const loginResult = await resp.json()
     if (!resp.ok || "error" in loginResult) {
       toast({ title: effectiveLanguage === "Korean" ? "오류" : "Error", description: loginResult.error || (effectiveLanguage === "Korean" ? "요청 실패" : "Request failed") })
       return
     }
+    // if yes go here
     toast({
       title: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.title : "Signed in",
       description: effectiveLanguage === "Korean" ? koLogin.toastSignedIn.desc : "Welcome back. We’ll be in touch soon.",
     })
+    // Clear fields before closing to avoid seeing old credentials later.
+    resetFields()
     onOpenChange(false)
     router.push("/")
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog
+      open={open}
+      // Intercept close to clear fields. We still delegate to the provided handler.
+      onOpenChange={(next) => {
+        if (!next) {
+          resetFields()
+        }
+        onOpenChange(next)
+      }}
+    >
       <DialogContent className="w-full max-w-[92vw] sm:max-w-md p-6 sm:p-8 rounded-xl max-h-[85vh] sm:max-h-none overflow-y-auto">
         {/* Accessible title for screen readers (visually hidden) */}
         <DialogHeader className="sr-only">
@@ -211,7 +240,8 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
           </TabsList>
 
           <TabsContent value="signin">
-            <form onSubmit={handleSubmit} className="space-y-5 pt-4">
+            {/* Turn off form-level autocomplete to discourage browser prefill for credentials. */}
+            <form onSubmit={handleSubmit} className="space-y-5 pt-4" autoComplete="off">
               <div className="space-y-2">
                 <Label htmlFor="email">
                   {effectiveLanguage === "Korean" ? (
@@ -222,12 +252,13 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={effectiveLanguage === "Korean" ? koLogin.emailPlaceholder : "you@example.com"}
                   required
-                  autoComplete="email"
+                  autoComplete="off"
                   onInvalid={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity(effectiveLanguage === "Korean" ? koLogin.requiredEmail : "")}
                   onInput={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity("")}
                 />
@@ -242,6 +273,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="password"
+                  name="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -263,7 +295,8 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
           </TabsContent>
 
           <TabsContent value="signup">
-            <form onSubmit={handleSubmit} className="space-y-5 pt-4">
+            {/* Turn off form-level autocomplete for sign up to avoid unintended prefill. no autocomplete for safety*/}
+            <form onSubmit={handleSubmit} className="space-y-5 pt-4" autoComplete="off">
               <div className="space-y-2">
                 <Label>
                   {effectiveLanguage === "Korean" ? (
@@ -272,7 +305,9 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                     "Join as"
                   )}
                 </Label>
-                {/* Role selector uses Prisma's UserRole enum values */}
+
+
+                {/* Role selector uses Prisma's UserRole enum values dito coconnect yung db basta kulang toh dont touch*/}
                 <RadioGroup value={role} onValueChange={(v) => setRole(v as any)} className="grid grid-cols-3 gap-3 sm:flex sm:items-center sm:gap-4">
                   <div className="flex items-center gap-2 rounded-md border px-3 py-2">
                     <RadioGroupItem value="Admin" id="Admin" />
@@ -317,6 +352,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="name"
+                  name="name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder={effectiveLanguage === "Korean" ? koLogin.namePlaceholder : "Your name"}
@@ -337,12 +373,13 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="email-signup"
+                  name="email-signup"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={effectiveLanguage === "Korean" ? koLogin.emailPlaceholder : "you@example.com"}
                   required
-                  autoComplete="email"
+                  autoComplete="off"
                   onInvalid={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity(effectiveLanguage === "Korean" ? koLogin.requiredEmail : "")}
                   onInput={(e) => (e.currentTarget as HTMLInputElement).setCustomValidity("")}
                 />
@@ -356,7 +393,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                       "Optional: Upload required documents (images)"
                     )}
                   </Label>
-                  <Input id="documents" type="file" accept="image/*" multiple onChange={handleDocsChange} />
+                <Input id="documents" type="file" accept="image/*" multiple onChange={handleDocsChange} />
                   {documents.length > 0 && (
                     <p className="text-xs text-muted-foreground">
                       {effectiveLanguage === "Korean" ? (
@@ -378,6 +415,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="password-signup"
+                  name="password-signup"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -398,6 +436,7 @@ export default function LoginModal({ open, onOpenChange, initialMode = "signin" 
                 </Label>
                 <Input
                   id="confirm-password"
+                  name="confirm-password"
                   type="password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
